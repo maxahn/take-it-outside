@@ -35,8 +35,10 @@ jquery@1.11.9
 launch-screen@1.0.12
 livedata@1.0.18
 logging@1.0.13_1
+materialize:materialize@0.97.6
 meteor@1.1.15_1
 meteor-base@1.0.4
+meteorhacks:picker@1.0.3
 minifier-css@1.1.12_1
 minifier-js@1.1.12_1
 minimongo@1.0.17
