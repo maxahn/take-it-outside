@@ -19,6 +19,7 @@ Template.trumpRoom.helpers({
   },
 
   creatorArguments(url) {
+    
     return Rooms.findOne({url: url}).creator.comments;
     // return room.creator.comments;
   },
@@ -28,6 +29,7 @@ Template.trumpRoom.helpers({
   },
 
   allArguments() {
+    
   },
   
 });

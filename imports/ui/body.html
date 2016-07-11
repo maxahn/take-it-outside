@@ -24,7 +24,7 @@
     <div class='debate-point'>
       <ul>
       {{#each creatorArguments '/trump'}}
-      <li>{{point}} - {{createdAt}}</li>
+      <li>{{this.debaterName}}: {{point}} - {{createdAt}}</li>
       {{/each}}
       <p>-------</p>
       {{#each challengedArguments '/trump'}}
