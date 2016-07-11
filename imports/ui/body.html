@@ -3,12 +3,15 @@
      <h1>Debate Time!</h1>
     {{#each rooms}}
       {{ > room}}
-      {{/each}}
+    {{/each}}
   </div>
 </body>
 
 <template name='room'>
   <div>
     {{topic}}
+    {{#each creator.arguments}}<br>
+      {{point}}
+    {{/each}}
   </div>
 </template>
