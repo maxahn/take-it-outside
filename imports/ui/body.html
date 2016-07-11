@@ -1,11 +1,11 @@
-<body>
+<template name='rooms'>
   <div class='container'>
     <h1>Debate Time!</h1>
     {{#each rooms}}
       {{ > room}}
     {{/each}}
   </div>
-</body>
+</template>
 
 <template name='room'>
   <div>
@@ -14,4 +14,8 @@
       {{point}}
     {{/each}}
   </div>
+</template>
+
+<template name='trumpRoom'>
+  <div>TRUMP</div>
 </template>
