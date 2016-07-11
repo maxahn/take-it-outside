@@ -54,7 +54,7 @@ div.input-field.col.s6 {
 
 }
 
-.input#icon_prefix.validate {
+input#icon_prefix.validate {
 
     color: white;
 }
@@ -309,8 +309,74 @@ nav a.button-collapse {
 
 .parallax-container {
     max-height: 400px;
+
 }
 
 footer.page-footer {
     margin-top: 0px !important;
 }
+
+
+.heart {
+
+    color: #ff4d88;
+}
+
+.white {
+
+    color: white;
+
+}
+
+#para-1 {
+
+background-color: green;
+text-align: center;
+
+
+}
+
+.icon {
+
+height: 65px !important;
+
+
+}
+
+
+
+/* for form input field */
+
+
+.input-field label {
+     color: white !important;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: white !important;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid white !important;
+     box-shadow: 0 1px 0 0 white !important;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid white !important;
+     box-shadow: 0 1px 0 0 white !important;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid white !important;
+     box-shadow: 0 1px 0 0 white !important;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: white !important;
+   }
+
+
+
+
+
+
