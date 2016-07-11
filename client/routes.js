@@ -14,3 +14,4 @@ Router.route('/test-room', function() {
 Router.route('/test-rooms', function() {
   this.render('rooms');
 });
+

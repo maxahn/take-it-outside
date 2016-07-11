@@ -19,7 +19,6 @@ Template.trumpRoom.helpers({
   },
 
   creatorArguments(url) {
-    
     return Rooms.findOne({url: url}).creator.comments;
     // return room.creator.comments;
   },
@@ -28,8 +27,27 @@ Template.trumpRoom.helpers({
     return Rooms.findOne({url: url}).challengedDebater.comments;
   },
 
-  allArguments() {
-    
+  allArguments(url) {
+    var allArguments = [];
+    // allArguments.push(Rooms.findOne({url: url}).challengedDebater.comments);
+    // allArguments.push(Rooms.findOne({url: url}).creator.comments);
+    // console.log(Rooms.findOne({url: '/trump'}).challengedDebater.comments);
+    // console.log(allArguments);
+    // return allArguments;
+    return allArguments.push(Rooms.findOne({url: url}).challengedDebater.comments) + 
+     allArguments.push(Rooms.findOne({url: url}).creator.comments);
   },
+});
+
+Template.trumpRoom.events({
+  'submit .chat-input'(event) {
+    event.preventDefault();
+
+    const target = event.target;
+    const text = target.text.value;
+    
+    const user = 'creator';
   
+    Rooms.update({_id: "8dW53YQ2pK4fGMcRT"}, {$push: { 'challengedDebater.comments': { point: text, createdAt: new Date() }}});
+  }
 });

@@ -21,18 +21,32 @@
     <div class='topic'>
       {{topic}}
     </div>
-    <div class='debate-point'>
+    <div class='creator-debate-points'>
+      {{creator.debaterName}}
       <ul>
       {{#each creatorArguments '/trump'}}
-      <li>{{this.debaterName}}: {{point}} - {{createdAt}}</li>
+      <li>{{this.debaterName}}  {{point}} - {{createdAt}}</li>
       {{/each}}
-      <p>-------</p>
-      {{#each challengedArguments '/trump'}}
-      <li>{{point}} - {{createdAt}}</li>
-      {{/each}}
+      </ul>
+    </div>
+    <p>-------</p>
+    <div class='challenged-debate-points'>
+      {{challengedDebater.debaterName}}
+      <ul>
+        {{#each challengedArguments '/trump'}}
+        <li>{{point}} - {{createdAt}}</li>
+        {{/each}}
+      <!-- {{#each allArguments '/trump'}} -->
+      <!--   <li>{{point}} &#45; {{createdAt}}</li> -->
+      <!-- {{/each}} -->
       </ul>
     </div>
   {{else}}
     <p>Room not found!</p>
   {{/with}}
+  <form class='chat-input'>
+    <input type='text' name ='text' placeholder='Enter argument here'>
+  </form>
 </template>
+
+
