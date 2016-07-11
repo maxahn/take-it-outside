@@ -7,3 +7,8 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
 
+Template.MyButton.events({
+  'click #clickme': function () {
+    Router.go('/debate-room');
+  }
+});
