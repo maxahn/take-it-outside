@@ -17,5 +17,22 @@
 </template>
 
 <template name='trumpRoom'>
-  <div>TRUMP</div>
+  {{#with room '/trump'}}
+    <div class='topic'>
+      {{topic}}
+    </div>
+    <div class='debate-point'>
+      <ul>
+      {{#each creatorArguments '/trump'}}
+      <li>{{point}} - {{createdAt}}</li>
+      {{/each}}
+      <p>-------</p>
+      {{#each challengedArguments '/trump'}}
+      <li>{{point}} - {{createdAt}}</li>
+      {{/each}}
+      </ul>
+    </div>
+  {{else}}
+    <p>Room not found!</p>
+  {{/with}}
 </template>

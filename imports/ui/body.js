@@ -14,7 +14,20 @@ Template.rooms.helpers({
 });
 
 Template.trumpRoom.helpers({
-  room() {
-    return Rooms.findOne({url: '/trump'});
-  }
+  room(url) {
+    return Rooms.findOne({url: url});
+  },
+
+  creatorArguments(url) {
+    return Rooms.findOne({url: url}).creator.comments;
+    // return room.creator.comments;
+  },
+
+  challengedArguments(url) {
+    return Rooms.findOne({url: url}).challengedDebater.comments;
+  },
+
+  allArguments() {
+  },
+  
 });
