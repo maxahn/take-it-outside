@@ -1,6 +1,4 @@
-import { Mongo } from 'meteor/mongo';
-
-export const Rooms = new Mongo.Collection('rooms');
+// import { Rooms } from  './rooms';
 
 var kittyRoom = 
 {
@@ -72,4 +70,3 @@ var trumpRoom =
 
 Rooms.insert(kittyRoom);
 Rooms.insert(trumpRoom);
-

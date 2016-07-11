@@ -9,7 +9,7 @@ Template.body.helpers({
   //   { topic: 'Is Obama really American?', creator: {name: 'Saeid'}, challenged: {name: 'Deepak'}, createdAt: new Date()},
   //   { topic: 'Is Bugs Bunny really smart, or Elmer Fudd just really stupid?' , creator: {name: 'Bugs Bunny'}, challenged: {name: 'Elmer Fudd'}, createdAt: new Date()}
   // ],
-  rooms() {
-    return Rooms.find({});
+  rooms(url) {
+    return Rooms.find({url: url});
   }
 });
