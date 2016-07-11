@@ -1,13 +1,13 @@
 <body>
   <div class='container'>
      <h1>Debate Time!</h1>
-    {{#each arguments}}
-      {{ > argument}}
-    {{/each}}
+    {{#each rooms}}
+      {{ > room}}
+      {{/each}}
   </div>
 </body>
 
-<template name='argument'>
+<template name='room'>
   <div>
     {{topic}}
   </div>
