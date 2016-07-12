@@ -285,3 +285,42 @@ nav a.button-collapse {
 footer.page-footer {
     margin-top: 0px !important;
 }
+
+
+
+
+#linker {
+
+
+right: 80px;
+top: 60px;
+
+
+}
+
+.input-field label {
+ color: white;
+}
+
+.input-field input[type=text]:focus + label {
+ color: white;
+}
+
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid white;
+ box-shadow: 0 1px 0 0 white;
+}
+
+.input-field input[type=text].valid {
+ border-bottom: 1px solid white;
+ box-shadow: 0 1px 0 0 white;
+}
+
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid white;
+ box-shadow: 0 1px 0 0 white;
+}
+
+.input-field .prefix.active {
+ color: white;
+}
