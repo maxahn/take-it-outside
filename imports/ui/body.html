@@ -21,26 +21,29 @@
     <div class='topic'>
       {{topic}}
     </div>
-    <div class='creator-debate-points'>
+    <div class='creator-name'>
       {{creator.debaterName}}
+    </div>
       <ul>
       {{#each creatorArguments '/trump'}}
-      <li>{{this.debaterName}}  {{point}} - {{createdAt}}</li>
+        <div class='creator-debate-points'>
+          <li>{{this.debaterName}}  {{point}} - {{createdAt}}</li>
+        </div>
       {{/each}}
       </ul>
-    </div>
-    <p>-------</p>
-    <div class='challenged-debate-points'>
+      <div class='challenged-name'>
       {{challengedDebater.debaterName}}
+      </div>
       <ul>
         {{#each challengedArguments '/trump'}}
-        <li>{{point}} - {{createdAt}}</li>
+          <div class='challenged-debate-points'>
+            <li>{{point}} - {{createdAt}}</li>
+          </div>
         {{/each}}
       <!-- {{#each allArguments '/trump'}} -->
       <!--   <li>{{point}} &#45; {{createdAt}}</li> -->
       <!-- {{/each}} -->
       </ul>
-    </div>
   {{else}}
     <p>Room not found!</p>
   {{/with}}

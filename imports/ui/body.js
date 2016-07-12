@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Rooms } from '../api/rooms'
+import './body.css';
 
 import './body.html';
 
@@ -15,7 +16,7 @@ Template.rooms.helpers({
 
 Template.trumpRoom.helpers({
   room(url) {
-    return Rooms.findOne({url: url});
+    return Rooms.findOne({_id: "8dW53YQ2pK4fGMcRT"});
   },
 
   creatorArguments(url) {
@@ -47,7 +48,7 @@ Template.trumpRoom.events({
     const text = target.text.value;
     
     const user = 'creator';
-  
+    console.log('submit'); 
     Rooms.update({_id: "8dW53YQ2pK4fGMcRT"}, {$push: { 'challengedDebater.comments': { point: text, createdAt: new Date() }}});
   }
 });

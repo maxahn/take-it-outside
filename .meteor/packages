@@ -22,3 +22,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 materialize:materialize
 meteorhacks:picker
 iron:router
+chuangbo:cookie
