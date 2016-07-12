@@ -1,6 +1,6 @@
-import '../imports/ui/body.js';
+import '../imports/ui/main_debate.js';
 import '../imports/material-design-template-master/www/index.html';
-import '../imports/ui/body.html';
+import '../imports/ui/main_debate.html';
 
 Router.route('/', function() {
   this.render('landingPage');

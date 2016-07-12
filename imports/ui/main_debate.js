@@ -32,7 +32,7 @@ Template.trumpRoom.helpers({
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
     var creatorComments = Rooms.findOne({url: url}).creator.comments;
      
-    var allComments = challengedComments.concat(creatorComments);  //combines all comments
+    var allComments = challengedComments.concat(creatorComments);
 
     return allComments.sort(function(commentA, commentB) {           //sorting from most recent to latest 
       return commentA.createdAt > commentB.createdAt ? 1 : commentA.createdAt < commentB.createdAt ? -1 : 0;
@@ -54,7 +54,7 @@ Template.trumpRoom.events({
     Rooms.update(
       {_id: "hvKN3XwPXf8hmR48L"}, 
       {$push: 
-        {'creator.comments': { point: text, createdAt: new Date() }}
+        { 'creator.comments': { point: text, createdAt: new Date() }}
       });
     event.target.text.value = '';
   }
