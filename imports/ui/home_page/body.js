@@ -9,5 +9,4 @@ import './body.html';
 Template.homepage.onRendered(function(){
 
 
-
 });
