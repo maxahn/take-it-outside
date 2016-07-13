@@ -1,10 +1,12 @@
 <template name="index">
-  <ul class="nav nav-pills">
-    <li data-template="books" role="presentation" class="active"><a href="#" class="col s12 m6 l3" >Books</a></li>
-    <li data-template="movies" role="presentation"><a href="#" class="col s12 m6 l3" >Movies</a></li>
-    <li data-template="games" role="presentation"><a href="#" class="col s12 m6 l3" >Games</a></li>
-  </ul>
-  {{> Template.dynamic template=tab data=tabData}}
+	<div class = "nav-wrapper">
+	  <ul id="nav-mobile" class="left hide-on-med-and-down">
+	    <li data-template="books" role="presentation" class="active"><a href="#"  > Viewer Chat </a></li>
+	    <li data-template="movies" role="presentation"><a href="#"  >Analytics</a></li>
+	    <li data-template="games" role="presentation"><a href="#"  >FAQ</a></li>
+	  </ul>
+	  {{> Template.dynamic template=tab data=tabData}}
+	</div> 
 </template>
 
 
