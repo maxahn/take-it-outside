@@ -1,0 +1,34 @@
+body {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.topic {
+  font-size: 20px;
+  font-style: bold;
+  text-align: center;
+  padding: 20px;
+}
+.creator-debate-points {
+  background-color: red;
+  border-radius: 20px;
+  padding: 20px;
+  position: inline;
+  float: left;
+  max-width: 500px;
+}
+.challenged-debate-points {
+  background-color: grey;
+  border-radius: 20px;
+  padding: 20px;
+  position: inline;
+  float: right;
+  max-width: 500px;
+}
+.creator-name {
+  float: left;
+  color: red;
+}
+.challenged-name {
+  float: right;
+  color: grey;
+}
