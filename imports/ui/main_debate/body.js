@@ -45,11 +45,11 @@ Template.trumpRoom.helpers({
      
     var allComments = challengedComments.concat(creatorComments);
     var allCommentsObjects = challengedCommentObjects.concat(creatorCommentObjects);
-    return allCommentsObjects;
-    //
-    // return allComments.sort(function(commentA, commentB) {           //sorting from most recent to latest 
-    //   return commentA.createdAt > commentB.createdAt ? 1 : commentA.createdAt < commentB.createdAt ? -1 : 0;
-    // });
+    // return allCommentsObjects;
+
+    return allCommentsObjects.sort(function(commentA, commentB) {           //sorting from most recent to latest 
+      return commentA.comment.createdAt > commentB.comment.createdAt ? 1 : commentA.comment.createdAt < commentB.comment.createdAt ? -1 : 0;
+    });
   },
 });
 
@@ -63,9 +63,9 @@ Template.trumpRoom.events({
     console.log(event);
     const user = 'creator';
     Rooms.update(
-      {_id: "hvKN3XwPXf8hmR48L"}, 
+      {_id: "eL3XzPhWeX2nLfcEN"}, 
       {$push: 
-        { 'creator.comments': { point: text, createdAt: new Date() }}
+        { 'challengedDebater.comments': { point: text, createdAt: new Date() }}
       });
     event.target.text.value = '';
   }
