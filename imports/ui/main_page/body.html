@@ -1,0 +1,59 @@
+<template name='rooms'>
+  <div class='container'>
+    <h1>Debate Time!</h1>
+    {{#each rooms}}
+      {{ > room}}
+    {{/each}}
+  </div>
+</template>
+
+<template name='room'>
+  <div>
+    {{topic}}
+    {{#each creator.arguments}}<br>
+      {{point}}
+    {{/each}}
+  </div>
+</template>
+
+<template name='trumpRoom'>
+    <div class='topic'>
+      {{topic}}
+    </div>
+  <!-- {{#each allArguments '/trump'}} -->
+  <!-- {{point}}&#45;{{createdAt}}<br> -->
+  <!-- {{/each}} -->
+  {{#with room '/trump'}}
+    <div class='topic'>
+      {{topic}}
+    </div>
+    <div class='creator-name'>
+      {{creator.debaterName}}
+    </div>
+      <ul>
+      {{#each creatorArguments '/trump'}}
+        <div class='creator-debate-points'>
+          <li>{{this.debaterName}}  {{point}} - {{createdAt}}</li>
+        </div>
+      {{/each}}
+      </ul>
+      <div class='challenged-name'>
+      {{challengedDebater.debaterName}}
+      </div>
+      <ul>
+        {{#each challengedArguments '/trump'}}
+          <div class='challenged-debate-points'>
+            <li>{{point}} - {{createdAt}}</li>
+          </div>
+        {{/each}}
+      {{#each allArguments '/trump'}}
+        <li>{{point}} - {{createdAt}}</li>
+      {{/each}}
+      </ul>
+  {{else}}
+    <p>Room not found!</p>
+  {{/with}}
+  <form class='chat-input'>
+    <input type='text' name ='text' placeholder='Enter argument here'>
+  </form>
+</template>

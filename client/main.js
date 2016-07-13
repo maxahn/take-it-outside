@@ -1,10 +1,11 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-
-import './main.html';
-import '../imports/ui/body.js';
-import '../client/js/'
-
+import '../imports/api/rooms.js';
+// import './main.html';
+// import '../imports/ui/home_page/body.js';
+// import '../imports/ui/home_page/body.html';
+// import '../imports/ui/main_page/body.js';
+// import '../imports/ui/main_page/body.js';
 
 // Template.hello.onCreated(function helloOnCreated() {
 //   // counter starts at 0
