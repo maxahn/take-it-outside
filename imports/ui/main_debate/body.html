@@ -1,55 +1,54 @@
-<template name='rooms'>
-  <div class='container'>
-    <h1>Debate Time!</h1>
-    {{#each rooms}}
-      {{ > room}}
-    {{/each}}
-  </div>
-</template>
-
-<template name='room'>
-  <div>
-    {{topic}}
-    {{#each creator.arguments}}<br>
-      {{point}}
-    {{/each}}
-  </div>
-</template>
+<!-- <template name='rooms'> -->
+<!--   <div class='container'> -->
+<!--     <h1>Debate Time!</h1> -->
+<!--     {{#each rooms}} -->
+<!--       {{ > room}} -->
+<!--     {{/each}} -->
+<!--   </div> -->
+<!-- </template> -->
+<!--  -->
+<!-- <template name='room'> -->
+<!--   <div> -->
+<!--     {{topic}} -->
+<!--     {{#each creator.arguments}}<br> -->
+<!--       {{point}} -->
+<!--     {{/each}} -->
+<!--   </div> -->
+<!-- </template> -->
 
 <template name='trumpRoom'>
-    <div class='topic'>
-      {{topic}}
-    </div>
   <!-- {{#each allArguments '/trump'}} -->
   <!-- {{point}}&#45;{{createdAt}}<br> -->
   <!-- {{/each}} -->
   {{#with room '/trump'}}
     <div class='topic'>
-      {{topic}}
+      <h2>{{topic}}</h2>
     </div>
-    <div class='creator-name'>
-      {{creator.debaterName}}
-    </div>
-      <ul>
-      {{#each creatorArguments '/trump'}}
-        <div class='creator-debate-points'>
-          <li>{{this.debaterName}}  {{point}} - {{createdAt}}</li>
-        </div>
-      {{/each}}
-      </ul>
-      <div class='challenged-name'>
-      {{challengedDebater.debaterName}}
+    <div class='debater-names'>
+      <div class='creator-name'>
+        <h3>{{creator.debaterName}}</h3>
       </div>
-      <ul>
-        {{#each challengedArguments '/trump'}}
-          <div class='challenged-debate-points'>
-            <li>{{point}} - {{createdAt}}</li>
-          </div>
-        {{/each}}
-      {{#each allArguments '/trump'}}
-        <li>{{point}} - {{createdAt}}</li>
-      {{/each}}
-      </ul>
+      <div class='challenged-name'>
+        <h3>{{challengedDebater.debaterName}}</h3>
+      </div>
+    </div>
+      <!-- <ul> -->
+      <!-- {{#each creatorArguments '/trump'}} -->
+      <!--   <div class='creator&#45;debate&#45;points'> -->
+      <!--     <li>{{this.debaterName}}  {{point}} &#45; {{createdAt}}</li> -->
+      <!--   </div> -->
+      <!-- {{/each}} -->
+      <!-- </ul> -->
+      <!-- <ul> -->
+      <!--   {{#each challengedArguments '/trump'}} -->
+      <!--     <div class='challenged&#45;debate&#45;points'> -->
+      <!--       <li>{{point}} &#45; {{createdAt}}</li> -->
+      <!--     </div> -->
+      <!--   {{/each}} -->
+      <!-- {{#each allArguments '/trump'}} -->
+      <!--   <li>{{point}} &#45; {{createdAt}}</li> -->
+      <!-- {{/each}} -->
+      <!-- </ul> -->
   {{else}}
     <p>Room not found!</p>
   {{/with}}
