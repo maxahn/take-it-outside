@@ -45,11 +45,11 @@ Template.trumpRoom.helpers({
      
     var allComments = challengedComments.concat(creatorComments);
     var allCommentsObjects = challengedCommentObjects.concat(creatorCommentObjects);
-    // return allCommentsObjects;
-    
-    return allComments.sort(function(commentA, commentB) {           //sorting from most recent to latest 
-      return commentA.createdAt > commentB.createdAt ? 1 : commentA.createdAt < commentB.createdAt ? -1 : 0;
-    });
+    return allCommentsObjects;
+    //
+    // return allComments.sort(function(commentA, commentB) {           //sorting from most recent to latest 
+    //   return commentA.createdAt > commentB.createdAt ? 1 : commentA.createdAt < commentB.createdAt ? -1 : 0;
+    // });
   },
 });
 

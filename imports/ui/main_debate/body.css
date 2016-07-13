@@ -8,21 +8,23 @@ body {
   text-align: center;
   padding: 20px;
 }
-.creator-debate-points {
+.creator-point {
   background-color: red;
   border-radius: 20px;
   padding: 20px;
   position: inline;
   float: left;
   max-width: 500px;
+  clear: both;
 }
-.challenged-debate-points {
+.challenged-point {
   background-color: grey;
   border-radius: 20px;
   padding: 20px;
   position: inline;
   float: right;
   max-width: 500px;
+  clear: both;
 }
 .creator-name {
   float: left;
