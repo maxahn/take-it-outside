@@ -11,4 +11,3 @@ Router.route ('/', function() {
 Router.route('/test-room', function() {
   this.render('trumpRoom');
 });
-
