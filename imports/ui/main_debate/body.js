@@ -30,10 +30,23 @@ Template.trumpRoom.helpers({
 
   allArguments(url) {
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
+    var challengedCommentObjects = [];
+    for (let counter = 0; counter < challengedComments.length; counter++) {
+      let challengedObject = {comment: challengedComments[counter], debater: 'challenged'};
+      challengedCommentObjects.push(challengedObject);
+    }
+
     var creatorComments = Rooms.findOne({url: url}).creator.comments;
+    var creatorCommentObjects = [];
+    for (let counter = 0; counter < creatorComments.length; counter++) {
+      let creatorObject = {comment: creatorComments[counter], debater: 'creator'};
+      creatorCommentObjects.push(creatorObject);
+    }
      
     var allComments = challengedComments.concat(creatorComments);
-
+    var allCommentsObjects = challengedCommentObjects.concat(creatorCommentObjects);
+    // return allCommentsObjects;
+    
     return allComments.sort(function(commentA, commentB) {           //sorting from most recent to latest 
       return commentA.createdAt > commentB.createdAt ? 1 : commentA.createdAt < commentB.createdAt ? -1 : 0;
     });
