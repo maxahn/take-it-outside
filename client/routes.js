@@ -15,3 +15,12 @@ Router.route('/test-rooms', function() {
   this.render('rooms');
 });
 
+Router.route('/add', {
+  name: 'add',
+  template: 'UserForm',
+  data: function() {
+    return {
+      user: new ReactiveVar(new User())
+    };
+  }
+});

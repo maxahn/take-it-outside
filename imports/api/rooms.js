@@ -35,7 +35,7 @@ export const Rooms = new Mongo.Collection('rooms');
 //     'creatorFlag': false,
 //   }
 // };
-//
+
 // var trumpRoom = 
 // {
 //   'url': '/trump',
@@ -69,7 +69,7 @@ export const Rooms = new Mongo.Collection('rooms');
 //     'creatorFlag': false,
 //   }
 // };
-//
+
 // Rooms.insert(kittyRoom);
 // Rooms.insert(trumpRoom);
 //

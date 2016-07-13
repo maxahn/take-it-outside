@@ -1,0 +1,74 @@
+<head>
+  <title>new room</title>
+</head>
+
+<body></body>
+
+
+<template name="Users">
+  <div id="container">
+    <button type="button" name="add">Add new user</button>
+  </div>
+</template>
+
+<template name="UserForm">
+  {{#with user.get}}
+  <div id="container">
+    {{#if _id}}
+      <h1>Editing "{{fullName}}"</h1>
+    {{else}}
+      <h1>Adding a new user</h1>
+    {{/if}}
+    <div>
+      <label for="firstName">First name</label>
+      <input id="firstName" type="text" value="{{firstName}}" class="{{#if hasValidationError 'firstName'}}error{{/if}}" />
+    </div>
+    {{#if hasValidationError 'firstName'}}
+      <div class="error">{{getValidationError 'firstName'}}</div>
+    {{/if}}
+
+    <div>
+      <label for="lastName">Last name</label>
+      <input id="lastName" type="text" value="{{lastName}}" class="{{#if hasValidationError 'lastName'}}error{{/if}}" />
+    </div>
+    {{#if hasValidationError 'lastName'}}
+      <div class="error">{{getValidationError 'lastName'}}</div>
+    {{/if}}
+
+    <div>
+      <label for="email">E-mail</label>
+      <input id="email" type="text" value="{{email}}" class="{{#if hasValidationError 'email'}}error{{/if}}" />
+    </div>
+    {{#if hasValidationError 'email'}}
+      <div class="error">{{getValidationError 'email'}}</div>
+    {{/if}}
+
+    <div>
+      <label for="birthDate">Birth date</label>
+      <input id="birthDate" type="date" value="{{formattedBirthDate}}" class="{{#if hasValidationError 'birthDate'}}error{{/if}}" />
+    </div>
+    {{#if hasValidationError 'birthDate'}}
+      <div class="error">{{getValidationError 'birthDate'}}</div>
+    {{/if}}
+
+    <label>Address</label>
+    {{#if address}}
+      {{> AddressForm address}}
+    {{/if}}
+
+    <label>Phones</label>
+    {{#if phones}}
+      {{#each phones}}
+        {{> PhoneForm}}
+      {{/each}}
+    {{/if}}
+
+    <div>
+      <button type="button" name="addPhone">Add phone</button>
+    </div>
+    <div>
+      <button type="button" name="save">Save</button>
+    </div>
+  </div>
+  {{/with}}
+</template>
