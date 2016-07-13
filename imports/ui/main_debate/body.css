@@ -32,3 +32,6 @@ body {
   float: right;
   color: grey;
 }
+.point {
+  clear: both;
+}

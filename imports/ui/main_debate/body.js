@@ -19,14 +19,14 @@ Template.trumpRoom.helpers({
     return Rooms.findOne({url: url});
   },
 
-  creatorArguments(url) {
-    return Rooms.findOne({url: url}).creator.comments;
-    // return room.creator.comments;
-  },
-
-  challengedArguments(url) {
-    return Rooms.findOne({url: url}).challengedDebater.comments;
-  },
+  // creatorArguments(url) {
+  //   return Rooms.findOne({url: url}).creator.comments;
+  //   // return room.creator.comments;
+  // },
+  //
+  // challengedArguments(url) {
+  //   return Rooms.findOne({url: url}).challengedDebater.comments;
+  // },
 
   allArguments(url) {
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
@@ -37,8 +37,6 @@ Template.trumpRoom.helpers({
     return allComments.sort(function(commentA, commentB) {           //sorting from most recent to latest 
       return commentA.createdAt > commentB.createdAt ? 1 : commentA.createdAt < commentB.createdAt ? -1 : 0;
     });
-    // return allArguments.push(Rooms.findOne({url: url}).challengedDebater.comments) + 
-    //  allArguments.push(Rooms.findOne({url: url}).creator.comments);
   },
 });
 

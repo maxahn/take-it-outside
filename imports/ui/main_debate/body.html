@@ -17,9 +17,6 @@
 <!-- </template> -->
 
 <template name='trumpRoom'>
-  <!-- {{#each allArguments '/trump'}} -->
-  <!-- {{point}}&#45;{{createdAt}}<br> -->
-  <!-- {{/each}} -->
   {{#with room '/trump'}}
     <div class='topic'>
       <h2>{{topic}}</h2>
@@ -31,6 +28,13 @@
       <div class='challenged-name'>
         <h3>{{challengedDebater.debaterName}}</h3>
       </div>
+    </div>
+    <div>
+      {{#each allArguments '/trump'}}
+        <div class= 'point'>
+          {{point}}-{{createdAt}}<br>
+        </div>
+      {{/each}}
     </div>
       <!-- <ul> -->
       <!-- {{#each creatorArguments '/trump'}} -->
@@ -49,10 +53,10 @@
       <!--   <li>{{point}} &#45; {{createdAt}}</li> -->
       <!-- {{/each}} -->
       <!-- </ul> -->
+    <form class='chat-input'>
+      <input type='text' name ='text' placeholder='Enter argument here'>
+    </form>
   {{else}}
     <p>Room not found!</p>
   {{/with}}
-  <form class='chat-input'>
-    <input type='text' name ='text' placeholder='Enter argument here'>
-  </form>
 </template>
