@@ -12,6 +12,9 @@ Router.route ('/', function() {
   this.render('homepage');
 });
 //
+Router.route('/form', function() {
+  this.render('form');
+});
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
   console.log(roomName);
@@ -22,6 +25,3 @@ Router.route('/:roomname', function() {
   });
 });
 
-Router.route('/form', function() {
-  this.render('form');
-});
