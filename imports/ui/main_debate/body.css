@@ -1,0 +1,40 @@
+.debate-room {
+  margin-left: 100px;
+  margin-right: 100px;
+  /* max-width: 700px; */
+}
+.topic {
+  font-size: 20px;
+  font-style: bold;
+  text-align: center;
+  padding: 20px;
+}
+.creator-point {
+  background-color: red;
+  border-radius: 20px;
+  padding: 20px;
+  position: inline;
+  float: left;
+  max-width: 500px;
+  clear: both;
+}
+.challenged-point {
+  background-color: grey;
+  border-radius: 20px;
+  padding: 20px;
+  position: inline;
+  float: right;
+  max-width: 500px;
+  clear: both;
+}
+.creator-name {
+  float: left;
+  color: red;
+}
+.challenged-name {
+  float: right;
+  color: grey;
+}
+.point {
+  clear: both;
+}

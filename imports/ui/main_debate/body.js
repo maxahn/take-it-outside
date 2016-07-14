@@ -1,60 +1,58 @@
 import { Template } from 'meteor/templating';
-import { Rooms } from '../../api/rooms'
+import { Rooms } from '../../api/rooms';
+import { Session } from 'meteor/session';
 
 import './body.css';
 import './body.html';
 
-Template.rooms.helpers({
-  rooms() {
-    return Rooms.find();
+Template.debateRoom.helpers({
+  getUrl() {
+    // console.log('/' + Template.instance().data.roomName);
+    return '/' + Template.instance().data.roomName;
   },
-
-  findRoom(url) {
-    return Rooms.find({url: url}); 
-  }
-});
-
-Template.trumpRoom.helpers({
   room(url) {
-    return Rooms.findOne({url: url});
-  },
-
-  creatorArguments(url) {
-    return Rooms.findOne({url: url}).creator.comments;
-    // return room.creator.comments;
-  },
-
-  challengedArguments(url) {
-    return Rooms.findOne({url: url}).challengedDebater.comments;
+    var roomId  = Rooms.findOne({url: url})._id;
+    Session.set('roomId', roomId);
+    return Rooms.findOne({_id: roomId}); 
   },
 
   allArguments(url) {
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
+    var challengedCommentObjects = [];
+    for (let counter = 0; counter < challengedComments.length; counter++) {
+      let challengedObject = {comment: challengedComments[counter], debater: 'challenged'};
+      challengedCommentObjects.push(challengedObject);
+    }
+
     var creatorComments = Rooms.findOne({url: url}).creator.comments;
+    var creatorCommentObjects = [];
+    for (let counter = 0; counter < creatorComments.length; counter++) {
+      let creatorObject = {comment: creatorComments[counter], debater: 'creator'};
+      creatorCommentObjects.push(creatorObject);
+    }
      
     var allComments = challengedComments.concat(creatorComments);
+    var allCommentsObjects = challengedCommentObjects.concat(creatorCommentObjects);
+    // return allCommentsObjects;
 
-    return allComments.sort(function(commentA, commentB) {           //sorting from most recent to latest 
-      return commentA.createdAt > commentB.createdAt ? 1 : commentA.createdAt < commentB.createdAt ? -1 : 0;
+    return allCommentsObjects.sort(function(commentA, commentB) {           //sorting from most recent to latest 
+      return commentA.comment.createdAt > commentB.comment.createdAt ? 1 : commentA.comment.createdAt < commentB.comment.createdAt ? -1 : 0;
     });
-    // return allArguments.push(Rooms.findOne({url: url}).challengedDebater.comments) + 
-    //  allArguments.push(Rooms.findOne({url: url}).creator.comments);
   },
 });
 
-Template.trumpRoom.events({
+Template.debateRoom.events({
   'submit .chat-input'(event) {
     event.preventDefault();
 
     const target = event.target;
     const text = target.text.value;
     
-    console.log(event);
     const user = 'creator';
     Rooms.update(
-      {_id: "hvKN3XwPXf8hmR48L"}, 
+      {_id: Session.get('roomId')}, 
       {$push: 
-        { 'creator.comments': { point: text, createdAt: new Date() }}
+        { 'challengedDebater.comments': { point: text, createdAt: new Date() }}
       });
     event.target.text.value = '';
   }
