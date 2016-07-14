@@ -7,6 +7,10 @@
   "dependencies": {
     "hammerjs": "^2.0.8",
     "jquery": "^3.1.0",
-    "meteor-node-stubs": "~0.2.0"
+    "meteor-node-stubs": "~0.2.0",
+    "pickadate": "^3.5.6"
+  },
+  "devDependencies": {
+    "hammerjs": "^2.0.8"
   }
 }

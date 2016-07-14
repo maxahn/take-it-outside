@@ -1,6 +1,6 @@
 <template name="form">
 	<h1> form page </h1>
-	<div class="row">
+	<!-- <div class="row">
 	    <form class="col s6">
 	    	<div class="input-field col s6">
 	          <input id="email" type="email" class="the_topic">
@@ -22,5 +22,33 @@
                          <p class="right-align"><button class="btn btn-large submit" type="button" name="action">Enter Room</button></p>
                 </div>
 	    </form>
-	</div>    
+	</div>     -->
+
+{{#with room.get}}
+  <div id="container">
+    <!-- <div class="input-field col s6">
+      <label for="topic">Topic</label>
+      <input id="topic" type="text" value="{{topic}}" />
+    </div>
+    {{#if hasValidationError 'topic'}}
+      <div class="error">{{getValidationError 'topic'}}</div>
+    {{/if}}
+		<div class="input-field col s6">
+      <button type="button" name="save">Save</button>
+    </div>  -->
+    <form class='new-room'>
+    	<input type='text' name='topic' placeholder='Enter topic here'>
+    </form>
+  </div>
+  {{/with}}
+
+</template>
+
+<template name="rooms">
+  <div id="container_a">
+    <h1>List of rooms</h1>
+    {{#each rooms}}
+      {{> room}}
+    {{/each}}
+  </div>
 </template>

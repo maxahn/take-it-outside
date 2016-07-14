@@ -1,6 +1,43 @@
 import { Mongo } from 'meteor/mongo';
+import { Class } from 'meteor/jagi:astronomy';
 
 export const Rooms = new Mongo.Collection('rooms');
+
+
+Meteor.methods({
+
+  'room.save' (topic) {
+    
+
+    // console.log(target);
+    // alert('topic' + topic);
+
+    var room = new Room();
+    
+    room.topic = topic;
+    room.save();
+    
+    }
+
+  // '/room/remove': function(room) {
+  //   room.remove();
+  // }
+});
+
+
+Room = Class.create({
+  name: 'Room',
+  collection: Rooms,
+  fields: {
+    'topic': {
+      type: String
+      // validator: [
+      //   Validators.minLength(3)
+      // ]
+    }
+  }
+});
+
 
 // var kittyRoom = 
 // {
