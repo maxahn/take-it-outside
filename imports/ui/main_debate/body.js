@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Rooms } from '../../api/rooms';
 import { Session } from 'meteor/session';
+import  moment  from 'moment';
 
 import './body.css';
 import './body.html';
@@ -17,6 +18,10 @@ Template.debateRoom.helpers({
   },
   currentUser() {
     return Session.get('currentUser');
+  },
+  formatDate(date) {
+    //return moment(date).format('MM-DD-YYYY');
+    return moment(date, 'YYYYMMDD').fromNow();
   },
   allArguments(url) {
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
@@ -79,6 +84,5 @@ Template.debateRoom.events({
     const target = event.target;
     Session.set('currentUser', 'challengedDebater');
   }
-
 
 });

@@ -15,7 +15,7 @@
       <div>
         {{#each allArguments getUrl}}
           <div class= '{{debater}}-point'>
-            {{comment.point}}-{{comment.createdAt}}<br>
+            {{comment.point}} - {{formatDate comment.createdAt}}<br>
           </div>
         {{/each}}
       </div>
