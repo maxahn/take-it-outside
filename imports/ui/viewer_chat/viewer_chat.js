@@ -4,7 +4,7 @@ import { Rooms } from '../../api/rooms';
 import './viewer_chat.html';
 import './viewer_chat.css';
 Messages = new Mongo.Collection( 'messages' );
-
+User = new Mongo.Collection( 'user' );
 
 
 
@@ -24,6 +24,7 @@ Template.index.helpers({
     var tab = Template.instance().currentTab.get();
 
     var data = {
+
       "books": [
         { "name": "Viewer chat", "creator": "Peter Bevelin" }
         
@@ -65,12 +66,35 @@ Template.slideOutThing.events({
 
 
 
-//.................... To keep username clean .....................//
+//.................... To keep username clean currently not working .....................//
 
 export default function( value ) {
   return value.replace( /[^A-Za-z0-9\s]/g, '' ).toLowerCase().trim();
 }
 
+
+
+//......................... Cookie Setup........................//
+
+
+document.cookie = 'user';
+
+Cookie.get('user');
+
+// Some function code 
+
+Cookie.set('user');
+
+// Cookie.set('bar', 4, {
+//     domain: 'example.com',
+//     path: '/',
+//     expires: 30
+// });
+
+
+// need method for date time possibly if using method above
+
+Cookie.remove('user');
 
 
 //....................  For messaging .........................//
