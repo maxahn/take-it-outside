@@ -1,9 +1,39 @@
-<template name="viewer_chat">
-<!-- Pre Loader -->
-<div id="loader-wrapper">
-    <div id="loader"></div>
- 
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
- 
-</div>
+<template name="index">
+  <ul class="nav nav-pills">
+    <li data-template="books" role="presentation" class="active"><a href="#" class="col s12 m6 l3" >Books</a></li>
+    <li data-template="movies" role="presentation"><a href="#" class="col s12 m6 l3" >Movies</a></li>
+    <li data-template="games" role="presentation"><a href="#" class="col s12 m6 l3" >Games</a></li>
+  </ul>
+  {{> Template.dynamic template=tab data=tabData}}
+</template>
+
+
+<template name="books">
+  <!-- <h3 class="page-header">Books</h3> -->
+
+  <ul class="collection">
+    {{#each this}}
+      <li class="collection-item"><strong>{{name}}</strong> by {{creator}}</li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="movies">
+ <!--  <h3 class="page-header">Movies</h3> -->
+
+  <ul class="collection">
+    {{#each this}}
+      <li class="collection-item"><strong>{{name}}</strong> by {{creator}}</li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="games">
+  <!-- <h3 class="page-header">Games</h3> For head tags -->
+
+  <ul class="collection">
+    {{#each this}}
+      <li class="collection-item"><strong>{{name}}</strong> by {{creator}}</li>
+    {{/each}}
+  </ul>
+</template>
