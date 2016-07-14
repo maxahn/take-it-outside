@@ -11,7 +11,7 @@ Router.route ('/', function() {
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
   console.log(roomName);
-  this.render('trumpRoom', {
+  this.render('debateRoom', {
     data : {
       roomName: roomName
     }

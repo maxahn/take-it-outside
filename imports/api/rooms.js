@@ -36,6 +36,7 @@ export const Rooms = new Mongo.Collection('rooms');
 //   }
 // };
 //
+//
 // var trumpRoom = 
 // {
 //   'url': '/trump',

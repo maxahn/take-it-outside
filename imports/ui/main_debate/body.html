@@ -1,7 +1,6 @@
-<template name='trumpRoom'>
+<template name='debateRoom'>
   <div class='debate-room'>
-    <div><h1>{{getUrl}}</h1></div>
-    {{#with room '/trump'}}
+    {{#with room getUrl}}
       <div class='topic'>
         <h2>{{topic}}</h2>
       </div>
@@ -14,7 +13,7 @@
         </div>
       </div>
       <div>
-        {{#each allArguments '/trump'}}
+        {{#each allArguments getUrl}}
           <div class= '{{debater}}-point'>
             {{comment.point}}-{{comment.createdAt}}<br>
           </div>
