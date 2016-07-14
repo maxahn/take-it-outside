@@ -15,7 +15,9 @@ Template.debateRoom.helpers({
     Session.set('roomId', roomId);
     return Rooms.findOne({_id: roomId}); 
   },
-
+  currentUser() {
+    return Session.get('currentUser');
+  },
   allArguments(url) {
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
     var challengedCommentObjects = [];
@@ -50,7 +52,6 @@ Template.debateRoom.events({
     
     const user = Session.get('currentUser');  
     const id = Session.get('roomId');
-    console.log(user);
     if (user === 'creator') {
       Rooms.update(
         {_id: id}, 
@@ -71,15 +72,12 @@ Template.debateRoom.events({
 
   'click .creator-name h3'(event) {
     const target = event.target;
-    console.log(target);
     Session.set('currentUser', 'creator');
-    console.log(Session.get('currentUser'));
   },
 
   'click .challenged-name h3'(event) {
     const target = event.target;
     Session.set('currentUser', 'challengedDebater');
-    console.log(Session.get('currentUser'));
   }
 
 

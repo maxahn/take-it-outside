@@ -19,9 +19,11 @@
           </div>
         {{/each}}
       </div>
-      <form class='chat-input'>
-        <input type='text' name ='text' placeholder='Enter argument here'>
-      </form>
+      {{#if currentUser}}
+        <form class='chat-input'>
+          <input type='text' name ='text' placeholder='Enter argument here'>
+        </form>
+      {{/if}}
     {{else}}
       <p>Room not found!</p>
     {{/with}}
