@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Rooms } from '../../api/rooms';
 import { Session } from 'meteor/session';
+var moment = require('moment');
 
 import './body.css';
 import './body.html';
@@ -14,6 +15,9 @@ Template.debateRoom.helpers({
     var roomId  = Rooms.findOne({url: url})._id;
     Session.set('roomId', roomId);
     return Rooms.findOne({_id: roomId}); 
+  },
+  formatDate(date) {
+    return moment(date).fromNow();
   },
 
   allArguments(url) {
