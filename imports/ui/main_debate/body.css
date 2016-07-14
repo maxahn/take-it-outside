@@ -38,3 +38,8 @@
 .point {
   clear: both;
 }
+
+.debater-names h3:hover {
+  color: darkblue;
+  cursor: pointer;
+}

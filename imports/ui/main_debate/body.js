@@ -48,12 +48,39 @@ Template.debateRoom.events({
     const target = event.target;
     const text = target.text.value;
     
-    const user = 'creator';
-    Rooms.update(
-      {_id: Session.get('roomId')}, 
-      {$push: 
-        { 'challengedDebater.comments': { point: text, createdAt: new Date() }}
-      });
+    const user = Session.get('currentUser');  
+    const id = Session.get('roomId');
+    console.log(user);
+    if (user === 'creator') {
+      Rooms.update(
+        {_id: id}, 
+        {$push: 
+          { 'creator.comments' : { point: text, createdAt: new Date() }}
+        }
+      );
+    } else if (user == 'challengedDebater') {
+      Rooms.update(
+        {_id: id}, 
+        {$push: 
+          { 'challengedDebater.comments' : { point: text, createdAt: new Date() }}
+        }
+      );
+    }
     event.target.text.value = '';
+  },
+
+  'click .creator-name h3'(event) {
+    const target = event.target;
+    console.log(target);
+    Session.set('currentUser', 'creator');
+    console.log(Session.get('currentUser'));
+  },
+
+  'click .challenged-name h3'(event) {
+    const target = event.target;
+    Session.set('currentUser', 'challengedDebater');
+    console.log(Session.get('currentUser'));
   }
+
+
 });
