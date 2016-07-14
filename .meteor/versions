@@ -14,6 +14,7 @@ caching-html-compiler@1.0.6
 callback-hook@1.0.9
 check@1.2.3
 chrisbutler:typed.js@1.1.1
+chuangbo:cookie@1.1.0
 ddp@1.2.5
 ddp-client@1.2.8_1
 ddp-common@1.2.6
@@ -66,7 +67,6 @@ reactive-var@1.0.10
 reload@1.1.10
 retry@1.0.8
 routepolicy@1.0.11
-session@1.1.6
 spacebars@1.0.12
 spacebars-compiler@1.0.12
 standard-minifier-css@1.0.7_1

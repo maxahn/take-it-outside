@@ -23,7 +23,7 @@ Template.index.helpers({
 
     var data = {
       "books": [
-        { "name": "Seeking Wisdom: From Darwin to Munger", "creator": "Peter Bevelin" }
+        { "name": "Viwer chat", "creator": "Peter Bevelin" }
         
       ],
       "movies": [
@@ -41,12 +41,42 @@ Template.index.helpers({
 });
 
 Template.index.events({
-  'click .nav-pills li': function( event, template ) {
+  'click .nav-wrapper li a': function( event, template ) {
     var currentTab = $( event.target ).closest( "li" );
 
     currentTab.addClass( "active" );
-    $( ".nav-pills li" ).not( currentTab ).removeClass( "active" );
+    $( ".nav-wrapper li a" ).not( currentTab ).removeClass( "active" );
 
     template.currentTab.set( currentTab.data( "template" ) );
   }
 });
+
+
+
+//.................... For slide out panel .....................//
+
+Template.slideOutThing.events({
+  'click button#clicker': function( event, template ) {
+    $('#slide-out').toggleClass('show-slider');   
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

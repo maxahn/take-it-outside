@@ -91,3 +91,25 @@ width: 200px;
 
 
 }
+
+
+#slide-out {
+
+left: -100%;
+float: left;
+position: relative;
+height: 100%;
+width: 25%;
+transition: all 0.4s ease;
+
+}
+
+
+#slide-out.show-slider {
+
+	left: 0;
+	position: relative;
+
+
+}
+
