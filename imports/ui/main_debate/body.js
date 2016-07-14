@@ -5,6 +5,10 @@ import './body.css';
 import './body.html';
 
 Template.trumpRoom.helpers({
+  getUrl() {
+    // console.log('/' + Template.instance().data.roomName);
+    return '/' + Template.instance().data.roomName;
+  },
   room(url) {
     return Rooms.findOne({url: url});
   },
