@@ -17,7 +17,7 @@ Router.route('/form', function() {
 });
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
-  console.log(roomName);
+  //console.log(roomName);
   this.render('debateRoom', {
     data : {
       roomName: roomName
