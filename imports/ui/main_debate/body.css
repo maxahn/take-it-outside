@@ -1,3 +1,7 @@
+body {
+  background-color: #666666;  
+} 
+
 .debate-room {
   margin-left: 100px;
   margin-right: 100px;
@@ -8,38 +12,40 @@
   font-style: bold;
   text-align: center;
   padding: 20px;
+  color: white;
 }
 .creator-point {
-  background-color: red;
-  border-radius: 20px;
-  padding: 20px;
+  background-color: #41D4CF; 
+  /* border-radius: 20px; */
+  /* padding: 20px; */
   position: inline;
   float: left;
   max-width: 500px;
   clear: both;
+  color: white;
 }
 .challenged-point {
-  background-color: grey;
-  border-radius: 20px;
-  padding: 20px;
+  background-color: #EFEFEF;  
+  /* border-radius: 20px; */
+  /* padding: 20px; */
   position: inline;
   float: right;
   max-width: 500px;
   clear: both;
+  color: dimgrey; 
 }
 .creator-name {
   float: left;
-  color: red;
+  color: #41D4CF; 
 }
 .challenged-name {
   float: right;
-  color: grey;
+  color: #EFEFEF;  
 }
 .point {
   clear: both;
 }
-
 .debater-names h3:hover {
-  color: darkblue;
+  color: grey;
   cursor: pointer;
 }
