@@ -3,11 +3,13 @@ import { Rooms } from '../../api/rooms';
 
 import './viewer_chat.html';
 import './viewer_chat.css';
+Messages = new Mongo.Collection( 'messages' );
 
 
 
 
-// For dynamic tabs
+
+//................... For dynamic tabs.........................//
 
 
 Template.index.onCreated( function() {
@@ -23,7 +25,7 @@ Template.index.helpers({
 
     var data = {
       "books": [
-        { "name": "Viwer chat", "creator": "Peter Bevelin" }
+        { "name": "Viewer chat", "creator": "Peter Bevelin" }
         
       ],
       "movies": [
@@ -63,12 +65,40 @@ Template.slideOutThing.events({
 
 
 
+//.................... To keep username clean .....................//
+
+export default function( value ) {
+  return value.replace( /[^A-Za-z0-9\s]/g, '' ).toLowerCase().trim();
+}
 
 
 
+//....................  For messaging .........................//
 
+Template.messages.helpers({
+        messages: function() {
+            return Messages.find({}, { sort: { time: -1}});
+        }
+    });
 
+Template.input.events = {
+      'keydown input#message' : function (event) {
+        if (event.which == 13) { // 13 is the enter key event + add code for user session!!
+            var name = 'Anonymous';
+          var message = document.getElementById('message');
+          if (message.value != '') {
+            Messages.insert({
+              name: name,
+              message: message.value,
+              time: Date.now(),
+            });
 
+            document.getElementById('message').value = '';
+            message.value = '';
+          }
+        }
+      }
+    }
 
 
 
