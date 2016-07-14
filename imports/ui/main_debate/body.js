@@ -1,32 +1,20 @@
 import { Template } from 'meteor/templating';
-import { Rooms } from '../../api/rooms'
+import { Rooms } from '../../api/rooms';
+import { Session } from 'meteor/session';
 
 import './body.css';
 import './body.html';
 
-// Template.rooms.helpers({
-//   rooms() {
-//     return Rooms.find();
-//   },
-//
-//   findRoom(url) {
-//     return Rooms.find({url: url}); 
-//   }
-// });
-//
-Template.trumpRoom.helpers({
-  room(url) {
-    return Rooms.findOne({url: url});
+Template.debateRoom.helpers({
+  getUrl() {
+    // console.log('/' + Template.instance().data.roomName);
+    return '/' + Template.instance().data.roomName;
   },
-
-  // creatorArguments(url) {
-  //   return Rooms.findOne({url: url}).creator.comments;
-  //   // return room.creator.comments;
-  // },
-  //
-  // challengedArguments(url) {
-  //   return Rooms.findOne({url: url}).challengedDebater.comments;
-  // },
+  room(url) {
+    var roomId  = Rooms.findOne({url: url})._id;
+    Session.set('roomId', roomId);
+    return Rooms.findOne({_id: roomId}); 
+  },
 
   allArguments(url) {
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
@@ -53,17 +41,16 @@ Template.trumpRoom.helpers({
   },
 });
 
-Template.trumpRoom.events({
+Template.debateRoom.events({
   'submit .chat-input'(event) {
     event.preventDefault();
 
     const target = event.target;
     const text = target.text.value;
     
-    console.log(event);
     const user = 'creator';
     Rooms.update(
-      {_id: "eL3XzPhWeX2nLfcEN"}, 
+      {_id: Session.get('roomId')}, 
       {$push: 
         { 'challengedDebater.comments': { point: text, createdAt: new Date() }}
       });

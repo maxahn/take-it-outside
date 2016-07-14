@@ -11,11 +11,17 @@ import '../imports/ui/form_page/body.html'; //must require files to get recogniz
 Router.route ('/', function() {
   this.render('homepage');
 });
-
-Router.route('/test-room', function() {
-  this.render('trumpRoom');
-});
-
+//
 Router.route('/form', function() {
   this.render('form');
 });
+Router.route('/:roomname', function() {
+  var roomName = this.params.roomname;
+  console.log(roomName);
+  this.render('debateRoom', {
+    data : {
+      roomName: roomName
+    }
+  });
+});
+
