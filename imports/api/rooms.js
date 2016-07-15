@@ -6,7 +6,7 @@ export const Rooms = new Mongo.Collection('rooms');
 
 Meteor.methods({
 
-  'room.save' (topic) {
+  'room.save' (topic, creator) {
     
 
     // console.log(target);
@@ -15,6 +15,8 @@ Meteor.methods({
     var room = new Room();
     
     room.topic = topic;
+    room.creator = creator;
+
     room.save();
     
     }
@@ -34,7 +36,14 @@ Room = Class.create({
       // validator: [
       //   Validators.minLength(3)
       // ]
+    },
+    'creator': {
+      type: String
+      // validator: [
+      //   Validators.minLength(3)
+      // ]
     }
+
   }
 });
 

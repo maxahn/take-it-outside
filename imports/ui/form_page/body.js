@@ -16,12 +16,15 @@ Template.form.events({
 
 'submit .new-room'(event) {
   event.preventDefault();
+  alert('lsdkfjal');
 
   var target = event.target;
+  console.log(target);
   var topic = target.topic.value;
+  var creator = "Azadeh";//target.creator.value"";
   event.target.topic.value = '';
 
-  Meteor.call('room.save', topic);
+  Meteor.call('room.save', topic, creator);
   // console.log(target);
   // alert('topic' + topic);
  
