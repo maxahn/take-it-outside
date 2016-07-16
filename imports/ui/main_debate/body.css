@@ -1,4 +1,3 @@
-
 .debate-room {
   margin-left: 100px;
   margin-right: 100px;
@@ -9,107 +8,88 @@
   font-style: bold;
   text-align: center;
   padding: 20px;
+  color: grey;
 }
 .creator-point {
-  background-color: red;
-  border-radius: 20px;
-  padding: 20px;
+  background-color: #41D4CF; 
+  /* border-radius: 20px; */
+  /* padding: 20px; */
   position: inline;
   float: left;
   max-width: 500px;
   clear: both;
+  color: white;
 }
 .challenged-point {
-  background-color: grey;
-  border-radius: 20px;
-  padding: 20px;
+  background-color: #EFEFEF;  
+  /* border-radius: 20px; */
+  /* padding: 20px; */
   position: inline;
   float: right;
   max-width: 500px;
   clear: both;
+  color: dimgrey; 
 }
 .creator-name {
   float: left;
-  color: red;
+  color: #41D4CF; 
 }
 .challenged-name {
   float: right;
-  color: grey;
+  color: dimgrey;  
 }
 .point {
   clear: both;
 }
 
-div.col.s12.m8.l9{
-
-bottom: 20px;
-position: absolute;
-right: 20px;
-
-
+.debater-names h3:hover {
+  color: grey;
+  cursor: pointer;
 }
 
+div.col.s12.m8.l9{
+  bottom: 20px;
+  position: absolute;
+  right: 20px;
+}
 
 a.col.s12.m6.l3 {
-
-margin: 0;
-display: inline-block;
-width: 114px;
-padding: 0;
-
-
-
+  margin: 0;
+  display: inline-block;
+  width: 114px;
+  padding: 0;
 }
-
 
 ul.collection {
-
-height: 600px;
-width: 300px;
-
-
+  height: 600px;
+  width: 300px;
 }
 
-
-
 .collection .collection-item {
-
-
-border-style: solid ;
-border: 1px solid #000;
-height: 600px;
-width: 300px;
-left: 20px;
-margin-top: 30px;
-
-
+  border-style: solid ;
+  border: 1px solid #000;
+  height: 600px;
+  width: 300px;
+  left: 20px;
+  margin-top: 30px;
 }
 
 ul.row {
-
-width: 200px;
-
-
+  width: 200px;
 }
 
 
 #slide-out {
-
-left: -100%;
-float: left;
-position: relative;
-height: 100%;
-width: 25%;
-transition: all 0.4s ease;
-
+  left: -100%;
+  float: left;
+  position: relative;
+  height: 100%;
+  width: 25%;
+  transition: all 0.4s ease;
 }
 
 
 #slide-out.show-slider {
-
 	left: 0;
 	position: relative;
-
-
 }
-

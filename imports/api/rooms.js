@@ -19,12 +19,20 @@ export const Rooms = new Mongo.Collection('rooms');
 //       { 
 //         'point': 'just look at em, they\'re so adorable!',
 //         'createdAt': new Date(),
-//         'reactions': []
+//         'reactions': {
+//           ad_hominem: 0,    //default 0
+//           boo: 0,
+//           whoo: 0
+//         } 
 //       },
 //       { 
 //         'point': 'when a kitty mews, no man or woman can resist them',
 //         'createdAt': new Date(),
-//         'reactions': []
+//         'reactions': { 
+//           ad_hominem: 0,    //default 0
+//           boo: 0,
+//           whoo: 0
+//         } 
 //       }
 //     ],
 //     'creatorFlag': true,
@@ -35,7 +43,11 @@ export const Rooms = new Mongo.Collection('rooms');
 //       { 
 //         'point': 'puppies are loyal, kitties will just scratch and bite you.',
 //         'createdAt': new Date(),
-//         'reactions': []
+//         'reactions': {
+//           ad_hominem: 0,    //default 0
+//           boo: 0,
+//           whoo: 0
+//         }
 //       }
 //     ],
 //     'creatorFlag': false,
@@ -53,12 +65,20 @@ export const Rooms = new Mongo.Collection('rooms');
 //       { 
 //         'point': 'Trump has horrible hair. If he can\'t even take care of his hair, how will he take care of this country?', 
 //         'createdAt': new Date(),
-//         'reactions': []
+//         'reactions': {
+//           ad_hominem: 0,    //default 0
+//           boo: 0,
+//           whoo: 0
+//         } 
 //       },
 //       { 
 //         'point': 'Every time Trump speaks, a baby dies somewhere in the world.',
 //         'createdAt': new Date(),
-//         'reactions': []
+//         'reactions': {
+//           ad_hominem: 0,    //default 0
+//           boo: 0,
+//           whoo: 0
+//         } 
 //       }
 //     ],
 //     'creatorFlag': true,
@@ -69,13 +89,17 @@ export const Rooms = new Mongo.Collection('rooms');
 //       { 
 //         'point': 'Trump is a great man. He is the only man for this job.',
 //         'createdAt': new Date(),
-//         'reactions': []
+//         'reactions': { 
+//           ad_hominem: 0,    //default 0
+//           boo: 0,
+//           whoo: 0
+//         } 
 //       }
 //     ],
 //     'creatorFlag': false,
 //   }
 // };
-
+//
 // Rooms.insert(kittyRoom);
 // Rooms.insert(trumpRoom);
-
+//
