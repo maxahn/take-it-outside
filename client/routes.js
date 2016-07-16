@@ -8,6 +8,8 @@ import '../imports/ui/main_debate/body.html';
 import '../imports/ui/form_page/body.js';
 import '../imports/ui/form_page/body.html'; //must require files to get recognized by router
 
+import { Rooms } from '../imports/api/rooms';
+
 import '../imports/ui/viewer_chat/viewer_chat.js';
 import '../imports/ui/viewer_chat/viewer_chat.html';
 
@@ -17,11 +19,29 @@ Router.route ('/', function() {
 });
 
 Router.route('/form', function() {
-  this.render('form');
+  this.render('form',{
+    data : {
+      room: new ReactiveVar(new Room())
+    }
+  });
 });
+
+Router.route('/rooms', {
+  name: 'newRoom',
+  template: 'rooms', 
+  // data: {
+  //   rooms: Rooms.find()
+  // }
+  // this.render('rooms',{
+  //   data : {
+  //     rooms: Rooms.find()
+  //   }
+});
+
+
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
-  console.log(roomName);
+  //console.log(roomName);
   this.render('debateRoom', {
     data : {
       roomName: roomName
@@ -29,7 +49,4 @@ Router.route('/:roomname', function() {
   });
 });
 
-Router.route('/test-room', function() {
-  this.render('trumpRoom');
 
-});
