@@ -5,58 +5,63 @@ import { Meteor } from 'meteor/meteor';
 import './body.html';
 
 Template.form.events({
-// 'click .submit': function(){
-	// Rooms.insert({
-	// 	topic: $('.the_topic').val(),
-	// 	url: $('.the_topic').val(),
-	// 	creator: $('.the_topic').val(),
-	// 	challenger: $('.the_topic').val()
-	// });
-// }
-
-'submit .new-room'(event) {
+'submit .new-room'(event) { ////new-room is the form class
   event.preventDefault();
-  alert('lsdkfjal');
-
   var target = event.target;
-  console.log(target);
-  var topic = target.topic.value;
-  var creator = "Azadeh";//target.creator.value"";
-  event.target.topic.value = '';
 
-  Meteor.call('room.save', topic, creator);
-  // console.log(target);
-  // alert('topic' + topic);
- 
+  var room = new Room();
+  room.topic = target.topic.value;
+  room.url = target.url.value;
+
+  var creator = new RoomUser();
+  creator.name = target.creator.value; //get it from facebook api
+  creator.userType = "creator";
+
+  var challengedPerson = new RoomUser();
+  challengedPerson.name = target.challengedPerson.value;
+  challengedPerson.userType = "challenged";
+
+
+  Meteor.call('saveForm', room, creator, challengedPerson);
+
+  target.topic.value = "";
+  target.challengedPerson.value = "";
+  target.url.value = "";
+
 }
 
-
-// 'click [name=save]': function(e, tmpl) {
-//     var room = tmpl.data.rooms.get();
-//     var topic = 
-//     // Meteor.call('rooms.save', room);
- 
-//     Meteor.call('room.save', room);
-//     console.log('clicked');
-
-//     Router.go('newRoom');
-//       // Router.routes['asghar']
-//     // if (user.validate()) {
-//     //   Meteor.call('/user/save', user, function(err) {
-//     //     if (!err) {
-//     //       Router.go('users');
-//     //     } else {
-//     //       user.catchValidationException(err);
-//     //     }
-//     //   });
-//     // }
+// "change #challengedId": function(event){
+//   var challengedId = $("#challengedId").val();//document.getElementById("challengedId")
+//   var confirmChallengedId = $("#confirmChallengedId").val()//document.getElementById("confirmChallengedId");
+//   if(confirmChallengedId != challengedId) {
+//     alert("ksjdcksjdh");
+//     //confirmChallengedId.setCustomValidity("challenged names Don't Match");
+//   } else {
+// alert("aaaaaaaa");
+//     //confirmChallengedId.setCustomValidity('');
 //   }
+// },
+
+// "change #confirmChallengedId": function(event){
+
+//   var challengedId = $("#challengedId").val();//document.getElementById("challengedId")
+//   var confirmChallengedId = $("#confirmChallengedId").val()//document.getElementById("confirmChallengedId");
+//   if(confirmChallengedId != challengedId) {
+//     alert("ksjdcksjdh");
+//     //confirmChallengedId.setCustomValidity("challenged names Don't Match");
+//   } else {
+// alert("aaaaaaaa");
+//     //confirmChallengedId.setCustomValidity('');
+//   }
+// }
+
+
+
 
 
 
 
 
 });
-
 
 

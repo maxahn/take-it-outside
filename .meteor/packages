@@ -24,3 +24,7 @@ iron:router
 session
 jagi:astronomy
 reactive-dict
+accounts-facebook
+accounts-ui
+accounts-password
+jagi:astronomy-timestamp-behavior
