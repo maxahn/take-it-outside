@@ -63,6 +63,8 @@ a.col.s12.m6.l3 {
 ul.collection {
   height: 600px;
   width: 300px;
+  overflow: scroll;
+
 }
 
 .collection .collection-item {
@@ -72,6 +74,7 @@ ul.collection {
   width: 300px;
   left: 20px;
   margin-top: 30px;
+  overflow: scroll;
 }
 
 ul.row {

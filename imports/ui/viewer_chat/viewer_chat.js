@@ -7,6 +7,7 @@ Messages = new Mongo.Collection( 'messages' );
 User = new Mongo.Collection( 'user' );
 Accounts = new Meteor.Collection('accounts');
 
+var moment = require('moment');
 
 
 //................... For dynamic tabs.........................//
@@ -76,10 +77,17 @@ export default function( value ) {
 //....................  For messaging .........................//
 
 Template.messages.helpers({
-        messages: function() {
-            return Messages.find({}, { sort: { time: -1}});
-        }
-    });
+  messages: function() {
+    return Messages.find({}, { sort: { date_created: -1}});
+  },
+
+  formatDate(date) {
+    if (date) {return moment(date).fromNow()};
+  }
+});
+
+
+
 
 //..................... for handle ..................//
 
