@@ -1,26 +1,32 @@
 <template name="form">
 	<h1> form page </h1>
-	<div class="row">
-	    <form class="col s6">
-	    	<div class="input-field col s6">
-	          <input id="email" type="email" class="the_topic">
-	          <label for="email">Topic</label>
-	          </div>
-	          <div class="input-field col s6">
-	          <input id="email" type="email" class="the_url">
-	          <label for="email">URL</label>
-	          </div>
-	          <div class="input-field col s6">
-	          <input id="email" type="email" class="the_creator">
-	          <label for="email">Creator</label>
-	          </div>
-	          <div class="input-field col s6">
-	          <input id="email" type="email" class="the_challenger">
-	          <label for="email">Challenger</label>
-	          </div>
-	           <div class="col m12">
-                         <p class="right-align"><button class="btn btn-large submit" type="button" name="action">Enter Room</button></p>
-                </div>
-	    </form>
-	</div>    
+	{{> loginButtons}}
+
+
+  <div id="container">
+    <form class='new-room'>
+    <!-- {{#with room}} -->
+    <!-- <input type="text" id="tId" value="{{topic}}" /> -->
+
+      <div> <input type='text' name='creator' value="{{currentUser.profile.name}}"/></div>
+    	<div> <input type='text' name='topic' placeholder='Enter topic here'/></div>
+    	<div>	<input type='text' name='url' placeholder='Enter url here'/> </div>
+    	<div>	<input type='text' id="challengedId" name='challengedPerson' placeholder='Enter the challanged facebook name here' /> </div>
+    	<!-- <div>	<input type='text' id="confirmChallengedId" name='confirmChallengedPerson' placeholder='Confirm the challanged facebook name here' /> </div> -->
+
+    	<input type='submit' name='save'/>
+    	<!-- {{/with}} -->
+    </form>
+  </div>
+  
+
+</template>
+
+<template name="rooms">
+  <div id="container_a">
+    <h1>List of rooms</h1>
+    {{#each rooms}}
+      {{> room}}
+    {{/each}}
+  </div>
 </template>
