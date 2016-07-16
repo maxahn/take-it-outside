@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Rooms } from '../../api/rooms';
 import { Session } from 'meteor/session';
+
 var moment = require('moment');
 
 import './body.css';
@@ -8,8 +9,7 @@ import './body.html';
 
 Template.debateRoom.helpers({
   getUrl() {
-    // console.log('/' + Template.instance().data.roomName);
-    return '/' + Template.instance().data.roomName;
+   if (Template.instance().data.roomName)  {return '/' + Template.instance().data.roomName;}
   },
   room(url) {
     var roomId  = Rooms.findOne({url: url})._id;
@@ -17,12 +17,13 @@ Template.debateRoom.helpers({
     return Rooms.findOne({_id: roomId}); 
   },
   formatDate(date) {
-    return moment(date).fromNow();
+    if (date) {return moment(date).fromNow()};
   },
 
   allArguments(url) {
     var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
     var challengedCommentObjects = [];
+
     for (let counter = 0; counter < challengedComments.length; counter++) {
       let challengedObject = {comment: challengedComments[counter], debater: 'challenged'};
       challengedCommentObjects.push(challengedObject);
