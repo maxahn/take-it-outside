@@ -1,29 +1,42 @@
+<body> {{> debateRoom}}</body>
+
 <template name='debateRoom'>
   <div class='debate-room'>
-    {{#with room getUrl}}
-      <div class='topic'>
-        <h2>{{topic}}</h2>
-      </div>
-      <div class='debater-names'>
-        <div class='creator-name'>
-          <h3>{{creator.debaterName}}</h3>
+    {{#if room getUrl}}
+      {{#with room getUrl}}
+        <div class='topic'>
+          <h2>{{topic}}</h2>
         </div>
-        <div class='challenged-name'>
-          <h3>{{challengedDebater.debaterName}}</h3>
-        </div>
-      </div>
-      <div>
-        {{#each allArguments getUrl}}
-          <div class= '{{debater}}-point'>
-            {{comment.point}}-{{comment.createdAt}}<br>
+        <div class='debater-names'>
+          <div class='creator-name'>
+            <h3>{{creator.debaterName}}</h3>
           </div>
-        {{/each}}
-      </div>
-      <form class='chat-input'>
-        <input type='text' name ='text' placeholder='Enter argument here'>
-      </form>
-    {{else}}
-      <p>Room not found!</p>
-    {{/with}}
+          <div class='challenged-name'>
+            <h3>{{challengedDebater.debaterName}}</h3>
+          </div>
+        </div>
+        <div>
+          {{#each allArguments getUrl}}
+            <div class= '{{debater}}-point card-panel hoverable'> 
+              {{comment.point}}-{{formatDate comment.createdAt}}<br>
+            </div>
+          {{/each}}
+        </div>
+        <form class='chat-input'>
+          <input type='text' name ='text' placeholder='Enter argument here'>
+        </form>
+      {{else}}
+        <p>Room not found!</p>
+     {{/with}}
+   {{/if}}
   </div>
+
+
+      <div class = 'col s12 m4 l3'>
+        {{> slideOutThing}}
+        {{> index}}
+      </div>
+
+      
 </template>
+

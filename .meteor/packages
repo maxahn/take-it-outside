@@ -21,6 +21,7 @@ autopublish             # Publish all data to the clients (for prototyping)
 materialize:materialize
 chrisbutler:typed.js
 iron:router
+chuangbo:cookie
 session
 jagi:astronomy
 reactive-dict
@@ -28,3 +29,5 @@ accounts-facebook
 accounts-ui
 accounts-password
 jagi:astronomy-timestamp-behavior
+accounts-password
+accounts-ui

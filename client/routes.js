@@ -10,10 +10,14 @@ import '../imports/ui/form_page/body.html'; //must require files to get recogniz
 
 import { Rooms } from '../imports/api/rooms';
 
+import '../imports/ui/viewer_chat/viewer_chat.js';
+import '../imports/ui/viewer_chat/viewer_chat.html';
+
+
 Router.route ('/', function() {
   this.render('homepage');
 });
-//
+
 Router.route('/form', function() {
   this.render('form',{
     data : {
@@ -37,7 +41,7 @@ Router.route('/rooms', {
 
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
-  console.log(roomName);
+  //console.log(roomName);
   this.render('debateRoom', {
     data : {
       roomName: roomName
@@ -45,19 +49,4 @@ Router.route('/:roomname', function() {
   });
 });
 
-// Router.route('/', {
-//   name: 'users',
-//   template: 'Users',
-//   waitOn: function() {
-//     return Meteor.subscribe('users');
-//   },
-//   data: function() {
-//     return {
-//       users: Users.find({}, {
-//         sort: {
-//           age: -1
-//         }
-//       })
-//     };
-//   }
-// });
+
