@@ -2,6 +2,12 @@ import { Mongo } from 'meteor/mongo';
 
 export const Rooms = new Mongo.Collection('rooms');
 
+
+
+
+
+
+
 // var kittyRoom = 
 // {
 //   'url': '/kitty-room',
@@ -47,7 +53,7 @@ export const Rooms = new Mongo.Collection('rooms');
 //     'creatorFlag': false,
 //   }
 // };
-//
+
 // var trumpRoom = 
 // {
 //   'url': '/trump',
