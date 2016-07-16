@@ -27,6 +27,14 @@
       <p>Room not found!</p>
     {{/with}}
   </div>
+
+
+      <div class = 'col s12 m4 l3'>
+        {{> slideOutThing}}
+        {{> index}}
+      </div>
+
+      
 </template>
 
   <template name='rooms'>
@@ -47,63 +55,4 @@
     </div>
   </template>
 
-  <template name='trumpRoom'>
-    <div class = "row">
-
-
-
-
-      
-      <div class = 'col s12 m4 l3'>
-        {{> slideOutThing}}
-        {{> index}}
-      </div>
-
-
-
-
-       <div class="col s12 m8 l9">
-
-          <div class='topic'>
-            {{topic}}
-          </div>
-        <!-- {{#each allArguments '/trump'}} -->
-        <!-- {{point}}&#45;{{createdAt}}<br> -->
-        <!-- {{/each}} -->
-        {{#with room '/trump'}}
-          <div class='topic'>
-            {{topic}}
-          </div>    
-          <div class='creator-name'>
-            {{creator.debaterName}}
-          </div>
-            <ul>
-            {{#each creatorArguments '/trump'}}
-              <div class='creator-debate-points'>
-                <li>{{this.debaterName}}  {{point}} - {{createdAt}}</li>
-              </div>
-            {{/each}}
-            </ul>
-            <div class='challenged-name'>
-            {{challengedDebater.debaterName}}
-            </div>
-            <ul>
-              {{#each challengedArguments '/trump'}}
-                <div class='challenged-debate-points'>
-                  <li>{{point}} - {{createdAt}}</li>
-                </div>
-              {{/each}}
-            {{#each allArguments '/trump'}}
-              <li>{{point}} - {{createdAt}}</li>
-            {{/each}}
-            </ul>
-        {{else}}
-          <p>Room not found!</p>
-        {{/with}}
-        <form class='chat-input'>
-          <input type='text' name ='text' placeholder='Enter argument here'>
-        </form>
-      </div>
-    </div>  
- </template>
-
+ 

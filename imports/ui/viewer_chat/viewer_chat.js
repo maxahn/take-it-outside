@@ -5,7 +5,7 @@ import './viewer_chat.html';
 import './viewer_chat.css';
 Messages = new Mongo.Collection( 'messages' );
 User = new Mongo.Collection( 'user' );
-
+Accounts = new Meteor.Collection('accounts');
 
 
 
@@ -26,7 +26,7 @@ Template.index.helpers({
     var data = {
 
       "books": [
-        { "name": "Viewer chat", "creator": "Peter Bevelin" }
+        { "name": "Viewer chat", "creator": "Eamonn" }
         
       ],
       "movies": [
@@ -73,30 +73,6 @@ export default function( value ) {
 }
 
 
-
-//......................... Cookie Setup........................//
-
-
-document.cookie = 'user';
-
-Cookie.get('user');
-
-// Some function code 
-
-Cookie.set('user');
-
-// Cookie.set('bar', 4, {
-//     domain: 'example.com',
-//     path: '/',
-//     expires: 30
-// });
-
-
-// need method for date time possibly if using method above
-
-Cookie.remove('user');
-
-
 //....................  For messaging .........................//
 
 Template.messages.helpers({
@@ -105,27 +81,35 @@ Template.messages.helpers({
         }
     });
 
-Template.input.events = {
-      'keydown input#message' : function (event) {
-        if (event.which == 13) { // 13 is the enter key event + add code for user session!!
-            var name = 'Anonymous';
-          var message = document.getElementById('message');
-          if (message.value != '') {
-            Messages.insert({
-              name: name,
-              message: message.value,
-              time: Date.now(),
-            });
+//..................... for handle ..................//
 
-            document.getElementById('message').value = '';
-            message.value = '';
-          }
-        }
+
+Template.register.events({
+  'submit form': function(event) {
+      event.preventDefault();
+      var handle = event.target.registerHandle.value;
+       Cookie.set('handle', handle);  // need to set experiation on it
+  },
+  'keydown input#message' : function (event) {
+    if (event.which == 13) {
+      if (Meteor.user())
+          var handle = event.target.registerHandle.value;
+        else // 13 is the enter key event + add code for user session!!
+      var handle = Cookie.get("handle");
+      var message = document.getElementById('message');
+      if (message.value != '') {
+        Messages.insert({
+          handle: handle,
+          message: message.value,
+          time: Date.now(),
+        });
+
+        document.getElementById('message').value = '';
+        message.value = '';
       }
     }
-
-
-
+  }
+});
 
 
 

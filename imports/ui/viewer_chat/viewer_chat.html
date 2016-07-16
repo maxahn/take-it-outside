@@ -33,9 +33,7 @@
       <li class="section scrollspy"><strong>{{name}}</strong> by {{creator}}
   <div id="introduction" class="section scrollspy">
     {{ > messages }}
-    {{  > input  }}
-    <h1>Enter your handle!</h1>
-    {{ > signup}}
+    {{  > register  }}
     </div>
         </li>
       {{/each}}
@@ -95,11 +93,11 @@
 </template> -->
 
 
-<template name="signup">
+<!-- <template name="signup">
 
  <p>Handle: @ <input type="text" id="handle"></p>
 </template>
-
+ -->
 
 
 
@@ -109,12 +107,20 @@
 
 <template name="messages">
   {{#each messages}}
-    <strong>{{name}}:</strong> {{message}}<br>
+    <strong>{{handle}}:</strong> {{message}}<br>
   {{/each}}
 </template>
 
-<template name="input">
-  <p>Message: <input type="text" id="message"></p>
+<template name="register">
+
+  <form>
+  {{#unless currentUser}}
+    <p>Handle: @ <input type="text" name ="registerHandle" ></p>
+    <p><input type="submit" value="Register" id = "handle"></p>
+    {{ /unless}}
+  </form>
+
+    <p>Message: <input type="text" id="message"></p>
 </template>
 
 

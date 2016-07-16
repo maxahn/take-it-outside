@@ -41,7 +41,7 @@ export const Rooms = new Mongo.Collection('rooms');
 //     'creatorFlag': false,
 //   }
 // };
-//
+
 // var trumpRoom = 
 // {
 //   'url': '/trump',
