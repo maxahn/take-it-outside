@@ -77,7 +77,7 @@ export default function( value ) {
 
 Template.messages.helpers({
         messages: function() {
-            return Messages.find({}, { sort: { time: -1}});
+            return Messages.find({}, { sort: { date_created: -1}});
         }
     });
 
