@@ -22,4 +22,7 @@ insecure                # Allow all DB writes from clients (for prototyping)
 materialize:materialize
 chrisbutler:typed.js
 iron:router
+chuangbo:cookie
 session
+accounts-password
+accounts-ui

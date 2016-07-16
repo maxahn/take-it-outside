@@ -1,3 +1,4 @@
+
 .debate-room {
   margin-left: 100px;
   margin-right: 100px;
@@ -38,3 +39,77 @@
 .point {
   clear: both;
 }
+
+div.col.s12.m8.l9{
+
+bottom: 20px;
+position: absolute;
+right: 20px;
+
+
+}
+
+
+a.col.s12.m6.l3 {
+
+margin: 0;
+display: inline-block;
+width: 114px;
+padding: 0;
+
+
+
+}
+
+
+ul.collection {
+
+height: 600px;
+width: 300px;
+
+
+}
+
+
+
+.collection .collection-item {
+
+
+border-style: solid ;
+border: 1px solid #000;
+height: 600px;
+width: 300px;
+left: 20px;
+margin-top: 30px;
+
+
+}
+
+ul.row {
+
+width: 200px;
+
+
+}
+
+
+#slide-out {
+
+left: -100%;
+float: left;
+position: relative;
+height: 100%;
+width: 25%;
+transition: all 0.4s ease;
+
+}
+
+
+#slide-out.show-slider {
+
+	left: 0;
+	position: relative;
+
+
+}
+
