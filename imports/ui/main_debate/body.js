@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 import { Rooms } from '../../api/rooms';
 import { Session } from 'meteor/session';
+import { RoomUsers } from '../../api/rooms';
+import { Arguments } from '../../api/rooms';
 
 var moment = require('moment');
 
@@ -22,6 +24,11 @@ Template.debateRoom.helpers({
       Session.set('roomId', room._id);
       return room;
     }
+  },
+  debaters() {
+    var roomId = Session.get('roomId');
+    // console.log(roomId);
+    return RoomUsers.find({userRoomId: roomId});
   },
   formatDate(date) {
     if (date) {return moment(date).fromNow()};
