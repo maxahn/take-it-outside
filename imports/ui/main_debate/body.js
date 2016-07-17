@@ -38,36 +38,9 @@ Template.debateRoom.helpers({
   },
   allArguments() {
     var roomId = Session.get('roomId');
-    // var creatorId = RoomUsers.findOne({userRoomId: roomId});
     var creatorId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'creator'}]})._id;
-    // var challengedId = RoomUsers.findOne({userRoomId: roomId});
-    console.log('creatorId: ' + creatorId);
     var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
-    console.log('challengedId: ' + challengedId);
     return Arguments.find({$or: [{argRoomUserId: creatorId}, {argRoomUserId: challengedId}]});
-    
-    // var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
-    // var challengedCommentObjects = [];
-    //
-    // for (let counter = 0; counter < challengedComments.length; counter++) {
-    //   let challengedObject = {comment: challengedComments[counter], debater: 'challenged'};
-    //   challengedCommentObjects.push(challengedObject);
-    // }
-    //
-    // var creatorComments = Rooms.findOne({url: url}).creator.comments;
-    // var creatorCommentObjects = [];
-    // for (let counter = 0; counter < creatorComments.length; counter++) {
-    //   let creatorObject = {comment: creatorComments[counter], debater: 'creator'};
-    //   creatorCommentObjects.push(creatorObject);
-    // }
-    //  
-    // var allComments = challengedComments.concat(creatorComments);
-    // var allCommentsObjects = challengedCommentObjects.concat(creatorCommentObjects);
-    // // return allCommentsObjects;
-    //
-    // return allCommentsObjects.sort(function(commentA, commentB) {           //sorting from most recent to latest 
-    //   return commentA.comment.createdAt > commentB.comment.createdAt ? 1 : commentA.comment.createdAt < commentB.comment.createdAt ? -1 : 0;
-    // });
   },
 });
 
@@ -77,25 +50,8 @@ Template.debateRoom.events({
 
     const target = event.target;
     const text = target.text.value;
-    // const id = Session.get('roomId');
     const userId = Cookie.get('userId');
 
-
-    // if (user === 'creator') {
-    //   Rooms.update(
-    //     {_id: id}, 
-    //     {$push: 
-    //       { 'creator.comments' : { point: text, createdAt: new Date() }}
-    //     }
-    //   );
-    // } else if (user == 'challengedDebater') {
-    //   Rooms.update(
-    //     {_id: id}, 
-    //     {$push: 
-    //       { 'challengedDebater.comments' : { point: text, createdAt: new Date() }}
-    //     }
-    //   );
-    // }
     Meteor.call('saveDebateArgument', text, userId, function(err, result) {
       if (err) {
         console.log('Error caused by saveDebateArgument Meteor method');
