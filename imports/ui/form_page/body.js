@@ -28,6 +28,16 @@ Template.form.events({
   target.challengedPerson.value = "";
   target.url.value = "";
 
+  // var creator = new RoomUser();
+  // creator.name = "test"
+  // creator.userType = "viewer";
+  // creator.userRoomId = "123";
+
+  // var arg =  new Argument();
+  // arg.message = "test";
+
+  // Meteor.call('saveViewerComment', creator, arg);
+
 }
 
 // "change #challengedId": function(event){
