@@ -11,17 +11,11 @@
               <h3>{{name}}</h3>
             </div>
           {{/each}}
-          <!-- <div class='creator&#45;name'> -->
-          <!--   <h3>{{creator.debaterName}}</h3> -->
-          <!-- </div> -->
-          <!-- <div class='challenged&#45;name'> -->
-          <!--   <h3>{{challengedDebater.debaterName}}</h3> -->
-          <!-- </div> -->
         </div>
         <div>
-          {{#each allArguments getUrl}}
-            <div class= '{{debater}}-point card-panel hoverable'> 
-              {{comment.point}}-{{formatDate comment.createdAt}}<br>
+          {{#each allArguments}}
+            <div class= '{{getUserType argRoomUserId}}-point card-panel hoverable'> 
+              {{message}}-{{formatDate createdAt}}<br>
             </div>
           {{/each}}
         </div>

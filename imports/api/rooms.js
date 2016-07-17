@@ -98,7 +98,7 @@ Argument = Class.create({
     },
     argRoomUserId: {
       type :String
-    }
+    },
   },
   behaviors: {
     timestamp: {
