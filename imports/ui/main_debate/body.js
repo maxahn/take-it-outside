@@ -8,41 +8,49 @@ import './body.css';
 import './body.html';
 
 Template.debateRoom.helpers({
+  setSession() {
+    var url = Template.instance().data.roomName;
+    Session.set('roomUrl', url);
+  },
   getUrl() {
    if (Template.instance().data.roomName)  {return '/' + Template.instance().data.roomName;}
   },
-  room(url) {
-    var roomId  = Rooms.findOne({url: url})._id;
-    Session.set('roomId', roomId);
-    return Rooms.findOne({_id: roomId}); 
+  room() {
+    var url = Session.get('roomUrl');
+    var room = Rooms.findOne({url: url});
+    if (room) { 
+      Session.set('roomId', room._id);
+      return room;
+    }
   },
   formatDate(date) {
     if (date) {return moment(date).fromNow()};
   },
 
   allArguments(url) {
-    var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
-    var challengedCommentObjects = [];
-
-    for (let counter = 0; counter < challengedComments.length; counter++) {
-      let challengedObject = {comment: challengedComments[counter], debater: 'challenged'};
-      challengedCommentObjects.push(challengedObject);
-    }
-
-    var creatorComments = Rooms.findOne({url: url}).creator.comments;
-    var creatorCommentObjects = [];
-    for (let counter = 0; counter < creatorComments.length; counter++) {
-      let creatorObject = {comment: creatorComments[counter], debater: 'creator'};
-      creatorCommentObjects.push(creatorObject);
-    }
-     
-    var allComments = challengedComments.concat(creatorComments);
-    var allCommentsObjects = challengedCommentObjects.concat(creatorCommentObjects);
-    // return allCommentsObjects;
-
-    return allCommentsObjects.sort(function(commentA, commentB) {           //sorting from most recent to latest 
-      return commentA.comment.createdAt > commentB.comment.createdAt ? 1 : commentA.comment.createdAt < commentB.comment.createdAt ? -1 : 0;
-    });
+    
+    // var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
+    // var challengedCommentObjects = [];
+    //
+    // for (let counter = 0; counter < challengedComments.length; counter++) {
+    //   let challengedObject = {comment: challengedComments[counter], debater: 'challenged'};
+    //   challengedCommentObjects.push(challengedObject);
+    // }
+    //
+    // var creatorComments = Rooms.findOne({url: url}).creator.comments;
+    // var creatorCommentObjects = [];
+    // for (let counter = 0; counter < creatorComments.length; counter++) {
+    //   let creatorObject = {comment: creatorComments[counter], debater: 'creator'};
+    //   creatorCommentObjects.push(creatorObject);
+    // }
+    //  
+    // var allComments = challengedComments.concat(creatorComments);
+    // var allCommentsObjects = challengedCommentObjects.concat(creatorCommentObjects);
+    // // return allCommentsObjects;
+    //
+    // return allCommentsObjects.sort(function(commentA, commentB) {           //sorting from most recent to latest 
+    //   return commentA.comment.createdAt > commentB.comment.createdAt ? 1 : commentA.comment.createdAt < commentB.comment.createdAt ? -1 : 0;
+    // });
   },
 });
 
@@ -86,6 +94,4 @@ Template.debateRoom.events({
     Session.set('currentUser', 'challengedDebater');
     console.log(Session.get('currentUser'));
   }
-
-
 });
