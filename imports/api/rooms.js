@@ -18,6 +18,11 @@ Meteor.methods({
     creator.save();
     challenged.userRoomId = roomId;
     challenged.save();
+    return {
+      room: room,
+      creator: creator,
+    }
+
   },
 
   'saveViewerComment' (viewer, comment) {
