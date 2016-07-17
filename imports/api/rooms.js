@@ -22,20 +22,24 @@ Meteor.methods({
       room: room,
       creator: creator,
     }
-
   },
 
   'saveViewerComment' (viewer, comment) {
     var viewerId;
-    
     viewer.save(function(err, id) {
       viewerId = id;
     });
     comment.argRoomUserId = viewerId;
     comment.save();
+  },
 
+  'saveDebateArgument'(msg, userId) {
+    var argument = new Argument();
+    argument.argRoomUserId = userId;
+    argument.message = msg;
+    argument.createdAt = new Date();
+    argument.save();
   }
-
 });
 
 
@@ -62,7 +66,6 @@ Room = Class.create({
       //   Validators.minLength(3)
       // ]
     }
-
   },
 
   behaviors: {

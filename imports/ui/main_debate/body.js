@@ -74,25 +74,32 @@ Template.debateRoom.events({
 
     const target = event.target;
     const text = target.text.value;
-    
-    const id = Session.get('roomId');
-    const userid = Cookie.get('userId');
+    // const id = Session.get('roomId');
+    const userId = Cookie.get('userId');
 
-    if (user === 'creator') {
-      Rooms.update(
-        {_id: id}, 
-        {$push: 
-          { 'creator.comments' : { point: text, createdAt: new Date() }}
-        }
-      );
-    } else if (user == 'challengedDebater') {
-      Rooms.update(
-        {_id: id}, 
-        {$push: 
-          { 'challengedDebater.comments' : { point: text, createdAt: new Date() }}
-        }
-      );
-    }
+
+    // if (user === 'creator') {
+    //   Rooms.update(
+    //     {_id: id}, 
+    //     {$push: 
+    //       { 'creator.comments' : { point: text, createdAt: new Date() }}
+    //     }
+    //   );
+    // } else if (user == 'challengedDebater') {
+    //   Rooms.update(
+    //     {_id: id}, 
+    //     {$push: 
+    //       { 'challengedDebater.comments' : { point: text, createdAt: new Date() }}
+    //     }
+    //   );
+    // }
+    Meteor.call('saveDebateArgument', text, userId, function(err, result) {
+      if (err) {
+        console.log('Error caused by saveDebateArgument Meteor method');
+      } else {
+      
+      }
+    });
     event.target.text.value = '';
   },
 
