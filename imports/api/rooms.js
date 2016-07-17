@@ -10,16 +10,25 @@ Meteor.methods({
 
   'saveForm' (room, creator, challenged) {
     var roomId;
-    var a = new Date();
-    room.expiryTime = a;
-    debugger;
+    room.expiryTime = new Date();
     room.save(function(err, id) {
       roomId = id;
     });
-    creator.roomId = roomId;
+    creator.userRoomId = roomId;
     creator.save();
-    challenged.roomId = roomId;
+    challenged.userRoomId = roomId;
     challenged.save();
+  },
+
+  'saveViewerComment' (viewer, comment) {
+    var viewerId;
+    
+    viewer.save(function(err, id) {
+      viewerId = id;
+    });
+    comment.argRoomUserId = viewerId;
+    comment.save();
+
   }
 
 });
@@ -69,7 +78,7 @@ RoomUser = Class.create({
     userType: {
       type: String
     },
-    roomId:{
+    userRoomId:{
       type: String
     }
   }
@@ -82,11 +91,8 @@ Argument = Class.create({
     message: {
       type: String
     },
-    userId: {
-      type: String
-    },
-    roomId:{
-      type: String
+    argRoomUserId: {
+      type :String
     }
   },
   behaviors: {
