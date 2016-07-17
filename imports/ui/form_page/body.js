@@ -21,13 +21,19 @@ Template.form.events({
   challengedPerson.name = target.challengedPerson.value;
   challengedPerson.userType = "challenged";
 
+  Meteor.call('saveForm', room, creator, challengedPerson, function(err, result) {
+    if (err) {
+      console.log('error with saveForm Meteor method');
+    } else {
+      Router.go('/' + room.url);
+    }
+  });
 
-  Meteor.call('saveForm', room, creator, challengedPerson);
-
-  target.topic.value = "";
-  target.challengedPerson.value = "";
-  target.url.value = "";
-
+  // target.topic.value = "";
+  // target.challengedPerson.value = "";
+  // target.url.value = "";
+  //
+  // Router.go('/' + room.url);
   // var creator = new RoomUser();
   // creator.name = "test"
   // creator.userType = "viewer";
