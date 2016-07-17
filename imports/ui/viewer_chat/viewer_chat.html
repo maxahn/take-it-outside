@@ -107,7 +107,7 @@
 
 <template name="messages">
   {{#each messages}}
-    <strong>{{handle}}:</strong> {{message}} about: {{formatDate time }}<br>
+    <strong>{{handle}}:</strong> {{argument.message}} about: {{formatDate time }}<br>
   {{/each}}
 </template>
 
@@ -119,8 +119,8 @@
     <p><input type="submit" value="Register" id = "handle"></p>
     {{ /unless}}
   </form>
+  <p>Message: <input type="text" id="message"></p>
 
-    <p>Message: <input type="text" id="message"></p>
 </template>
 
 

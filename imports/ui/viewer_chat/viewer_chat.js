@@ -1,11 +1,14 @@
 import { Template } from 'meteor/templating';
 import { Rooms } from '../../api/rooms';
+import { Meteor } from 'meteor/meteor';
+
 
 import './viewer_chat.html';
 import './viewer_chat.css';
-Messages = new Mongo.Collection( 'messages' );
-User = new Mongo.Collection( 'user' );
-Accounts = new Meteor.Collection('accounts');
+
+// Messages = new Mongo.Collection( 'messages' );
+// User = new Mongo.Collection( 'user' );
+// Accounts = new Meteor.Collection('accounts');
 
 var moment = require('moment');
 
@@ -79,7 +82,7 @@ export default function( value ) {
 Template.messages.helpers({
 
   messages: function() {
-    return Messages.find({}, { sort: { date_created: -1}});
+    return arguments.find({userId: "65h4GHvbC4nJ3qKTF"}, { sort: { date_created: -1}});
   },
 
   formatDate(date) {
@@ -101,21 +104,22 @@ Template.register.events({
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
-      if (Meteor.user())
-          var handle = event.target.registerHandle.value;
-        else // 13 is the enter key event + add code for user session!!
-      var handle = Cookie.get("handle");
-      var message = document.getElementById('message');
-      if (message.value != '') {
-        Messages.insert({
-          handle: handle,
-          message: message.value,
-          time: Date.now(),
-        });
-
+      // if (Meteor.user())
+      //     var handle = event.target.registerHandle.value;
+        // else // 13 is the enter key event + add code for user session!!
+        if (document.getElementById('message').value != "") {
+      var viewer = new RoomUser();
+      viewer.name = Cookie.get("handle");
+      viewer.userType = "viewer";
+      viewer.roomId = "1";
+      var argument = new Argument();
+      argument.message = document.getElementById('message').value;
+      argument.roomId = "1";
+      Meteor.call('saveViewerComment', viewer, argument);
+      }
         document.getElementById('message').value = '';
         message.value = '';
-      }
+      
     }
   }
 });

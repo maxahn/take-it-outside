@@ -12,7 +12,6 @@ Meteor.methods({
     var roomId;
     var a = new Date();
     room.expiryTime = a;
-    debugger;
     room.save(function(err, id) {
       roomId = id;
     });
@@ -20,6 +19,23 @@ Meteor.methods({
     creator.save();
     challenged.roomId = roomId;
     challenged.save();
+  },
+
+    'saveViewerComment' (viewer, argument) {
+   // var viewerId;
+    // viewer.save(function(err, id) {
+
+    //   viewerId = id;
+    // });
+    // argument.userId = viewerId;
+    // argument.save(function(err, id) {
+    //   console.log(err);
+    //   viewerId = id;
+    // });
+    var argument = new Argument();
+    argument.message = "Hello";
+    argument.userId = "123";
+    argument.save();
   }
 
 });
