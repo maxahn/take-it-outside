@@ -27,7 +27,6 @@ Template.debateRoom.helpers({
   },
   debaters() {
     var roomId = Session.get('roomId');
-    // console.log(roomId);
     return RoomUsers.find({userRoomId: roomId});
   },
   formatDate(date) {
@@ -39,8 +38,12 @@ Template.debateRoom.helpers({
   },
   allArguments() {
     var roomId = Session.get('roomId');
-    var creatorId = RoomUsers.findOne({$and: [{roomUserId: Session.get('roomId')}, {userType: 'creator'}]});
-    var challengedId = RoomUsers.findOne({$and: [{roomUserId: Session.get('roomId')}, {userType: 'challenged'}]});
+    // var creatorId = RoomUsers.findOne({userRoomId: roomId});
+    var creatorId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'creator'}]})._id;
+    // var challengedId = RoomUsers.findOne({userRoomId: roomId});
+    console.log('creatorId: ' + creatorId);
+    var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
+    console.log('challengedId: ' + challengedId);
     return Arguments.find({$or: [{argRoomUserId: creatorId}, {argRoomUserId: challengedId}]});
     
     // var challengedComments = Rooms.findOne({url: url}).challengedDebater.comments;
