@@ -96,9 +96,9 @@ Template.messages.helpers({
 
 Template.register.events({
   'submit form': function(event) {
-      event.preventDefault();
-      var handle = event.target.registerHandle.value;
-       Cookie.set('handle', handle);  // need to set experiation on it
+    event.preventDefault();
+    var handle = event.target.registerHandle.value;
+    Cookie.set('handle', handle);  // need to set experiation on it
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {

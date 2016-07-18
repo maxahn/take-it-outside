@@ -5,10 +5,7 @@ export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
 export const Votes = new Mongo.Collection('votes')
-
 export const Views = new Mongo.Collection('views');
-
-
 
 Meteor.methods({
 

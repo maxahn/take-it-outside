@@ -3,8 +3,6 @@ import { Rooms } from '../../api/rooms';
 import { Meteor } from 'meteor/meteor';
 //import { Router } from '../../../client/routes';
 import './body.html';
-
-
 // Template.form.helpers({
 //   getCountDown() {
 //   var expiryDate = new Date();
@@ -23,12 +21,12 @@ Template.form.events({
   event.preventDefault();
 
 //checkConfirm();
-
+  // debugger;
   var target = event.target;
 
   var room = new Room();
   room.topic = target.topic.value;
-  room.url = target.url.value;
+  room.url = target.url.value.match(/[^\/]*$/)[0];
 
   var creator = new RoomUser();
   creator.name = target.creator.value; //get it from facebook api
@@ -38,17 +36,21 @@ Template.form.events({
   challengedPerson.name = target.challengedPerson.value;
   challengedPerson.userType = "challenged";
 
+  Meteor.call('saveForm', room, creator, challengedPerson, function(err, result) {
+    if (err) {
+      console.log('error with saveForm Meteor method');
+    } else {
+      Cookie.set('userId', result.creator._id); //sets creator id on creator's browswer
+    }
+  });
+  Router.go('/' + room.url);
   target.topic.value = "";
   target.challengedPerson.value = "";
   target.url.value = "";
   target.confirmChallengedPerson.value = "";
-
-
 },
 
-
 "keyup #topic": function(event){
-
   var topic = $("#topic").val();//document.getElementById("challengedId")
   var url = creatRoomUrl(topic);
   $("#url").val(url);
@@ -113,15 +115,16 @@ alert("aaaaaaaa");
     //confirmChallengedId.setCustomValidity('');
   }};
 
-
 //   //---------------------------------------- countdown
 
   function creatRoomUrl(topic){
 
     var url = "";
-    topic = topic.replace(/\s+/g, '');
-    topic = topic.substring(0,4); 
+    topic = topic.replace(/\s+/g, '-');
+    // topic = topic.substring(0,4); 
+    topic = topic.toLowerCase();
     url = "http://localhost:3000/"+topic;
+    //TODO: parse out any punctuation from stored url
     return url;
   };
 
