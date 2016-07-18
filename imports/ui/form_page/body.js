@@ -38,9 +38,6 @@ Template.form.events({
   challengedPerson.name = target.challengedPerson.value;
   challengedPerson.userType = "challenged";
 
-
-  Meteor.call('saveForm', room, creator, challengedPerson);
-
   target.topic.value = "";
   target.challengedPerson.value = "";
   target.url.value = "";
@@ -49,12 +46,30 @@ Template.form.events({
 
 },
 
+
 "keyup #topic": function(event){
 
   var topic = $("#topic").val();//document.getElementById("challengedId")
   var url = creatRoomUrl(topic);
   $("#url").val(url);
 },
+
+  // Meteor.call('saveForm', room, creator, challengedPerson, function(err, result) {
+  //   if (err) {
+  //     console.log('error with saveForm Meteor method');
+  //   } else {
+  //     Cookie.set('userId', result.creator._id);
+  //     Router.go('/' + room.url);
+  //   }
+  // });
+
+  // //
+  // // Router.go('/' + room.url);
+  // // var creator = new RoomUser();
+  // // creator.name = "test"
+  // // creator.userType = "viewer";
+  // // creator.userRoomId = "123";
+
 
 
 

@@ -43,9 +43,12 @@ Router.route('/rooms', {
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
   //console.log(roomName);
+  var room = Rooms.findOne({url: roomName});
+  var roomId = room._id;
   this.render('debateRoom', {
     data : {
-      roomName: roomName
+      roomName: roomName,
+      roomId : roomId
     }
   });
 });
