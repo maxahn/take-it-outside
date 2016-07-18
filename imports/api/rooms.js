@@ -4,20 +4,29 @@ import { Class } from 'meteor/jagi:astronomy';
 export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
+export const Views = new Mongo.Collection('views');
+
 
 
 Meteor.methods({
 
   'saveForm' (room, creator, challenged) {
     var roomId;
-    room.expiryTime = new Date();
+    var expiryDate = new Date();
+    var numberOfDaysToAdd = 7;
+    expiryDate.setDate(expiryDate.getDate() + numberOfDaysToAdd); 
+
+    room.expiryTime = expiryDate;
     room.save(function(err, id) {
       roomId = id;
     });
+
     creator.userRoomId = roomId;
     creator.save();
+
     challenged.userRoomId = roomId;
     challenged.save();
+
   },
 
   'saveViewerComment' (viewer, comment) {
@@ -93,6 +102,25 @@ Argument = Class.create({
     },
     argRoomUserId: {
       type :String
+    }
+  },
+  behaviors: {
+    timestamp: {
+      hasCreatedField: true,
+      createdFieldName: 'createdAt',
+    }
+ }
+});
+
+View = Class.create({
+  name: 'View',
+  collection: Views,
+  fields: {
+    totalView: {
+      type: Number
+    },
+    viewRoomId: {
+      type : String
     }
   },
   behaviors: {
