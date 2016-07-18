@@ -1,18 +1,6 @@
 <template name="form">
 
 
-
-<nav>
-   <div class="nav-wrapper">
-     <a href="#" class="brand-logo">Logo</a>
-    
-     <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li class="countdown"><a href="sass.html">{{getCountDown}}</a></li>
-   
-     </ul>
-   </div>
- </nav>
-
 	<h1> form page </h1>
 	{{> loginButtons}}
 
@@ -22,11 +10,11 @@
     <!-- {{#with room}} -->
     <!-- <input type="text" id="tId" value="{{topic}}" /> -->
 
-      <div> <input type='text' name='creator' value="{{currentUser.profile.name}}" required="true"/></div>
-    	<div> <input type='text' name='topic' id="topic" placeholder='Enter topic here' minlength="5" required="true"/></div>
-    	<div>	<input type='text' name='url' id="url"  disabled="true" /> </div>
-    	<div>	<input type='text' id="challengedId" name='challengedPerson' placeholder='Enter the challanged facebook name here' minlength="3" required="true"/> </div>
-    	<div>	<input type='text'     id="confirmChallengedId" name='confirmChallengedPerson' placeholder='Confirm the challanged facebook name here' minlength="3" required="true" /> </div>
+      <div><span>Creator Name: </span> <input type='text' name='creator' value="{{currentUser.profile.name}}" required="true"/></div>
+    	<div><span>Topic: </span> <input type='text' name='topic' id="topic" placeholder='Enter topic here' minlength="5" required="true"/></div>
+    	<div>	<span>URL: </span> <input type='text' name='url' id="url"  disabled="true" /> </div>
+    	<div>	<span>Challenged Name: </span> <input type='text' id="challengedId" name='challengedPerson' placeholder='Enter the challanged facebook name here' minlength="3" required="true"/> </div>
+    	<div>	<span>Confirm Challenged Name:</span> <input type='text'     id="confirmChallengedId" name='confirmChallengedPerson' placeholder='Confirm the challanged facebook name here' minlength="3" required="true" /> </div>
 
     	<input type='submit' name='save'/>
     	<!-- {{/with}} -->

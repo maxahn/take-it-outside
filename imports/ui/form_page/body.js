@@ -5,14 +5,16 @@ import { Meteor } from 'meteor/meteor';
 import './body.html';
 
 
-Template.form.helpers({
-  getCountDown() {
-  var expiryDate = new Date();
-  var numberOfDaysToAdd = 7;
-  return expiryDate.setDate(expiryDate.getDate() + numberOfDaysToAdd);}
+// Template.form.helpers({
+//   getCountDown() {
+//   var expiryDate = new Date();
+//   var numberOfDaysToAdd = 7;
+//   return expiryDate.setDate(expiryDate.getDate() + numberOfDaysToAdd,);
+
+// }
 
 
-});
+// });
 
 
 
@@ -42,16 +44,8 @@ Template.form.events({
   target.topic.value = "";
   target.challengedPerson.value = "";
   target.url.value = "";
+  target.confirmChallengedPerson.value = "";
 
-  // var creator = new RoomUser();
-  // creator.name = "test"
-  // creator.userType = "viewer";
-  // creator.userRoomId = "123";
-
-  // var arg =  new Argument();
-  // arg.message = "test";
-
-  // Meteor.call('saveViewerComment', creator, arg);
 
 },
 

@@ -4,8 +4,6 @@ import { Class } from 'meteor/jagi:astronomy';
 export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
-export const Views = new Mongo.Collection('views');
-
 
 
 Meteor.methods({
@@ -112,24 +110,6 @@ Argument = Class.create({
  }
 });
 
-View = Class.create({
-  name: 'View',
-  collection: Views,
-  fields: {
-    totalView: {
-      type: Number
-    },
-    viewRoomId: {
-      type : String
-    }
-  },
-  behaviors: {
-    timestamp: {
-      hasCreatedField: true,
-      createdFieldName: 'createdAt',
-    }
- }
-});
 
 
 
