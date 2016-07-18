@@ -28,7 +28,7 @@ Template.form.events({
 
   var room = new Room();
   room.topic = target.topic.value;
-  room.url = target.url.value;
+  room.url = target.url.value.match(/[^\/]*$/)[0];
 
   var creator = new RoomUser();
   creator.name = target.creator.value; //get it from facebook api
@@ -40,7 +40,7 @@ Template.form.events({
 
   Meteor.call('saveForm', room, creator, challengedPerson, function(err, result) {
     if (err) {
-      console.log('error with ')
+      console.log('error with saveForm Meteor method');
     } else {
       Cookie.set('userId', result.creator._id); //sets creator id on creator's browswer
     }
@@ -49,8 +49,6 @@ Template.form.events({
   target.challengedPerson.value = "";
   target.url.value = "";
   target.confirmChallengedPerson.value = "";
-
-
 },
 
 
@@ -126,7 +124,7 @@ alert("aaaaaaaa");
   function creatRoomUrl(topic){
 
     var url = "";
-    topic = topic.replace(/\s+/g, '');
+    topic = topic.replace(/\s+/g, '-');
     topic = topic.substring(0,4); 
     url = "http://localhost:3000/"+topic;
     return url;
