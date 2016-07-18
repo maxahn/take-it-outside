@@ -30,11 +30,8 @@ Meteor.methods({
       viewerId = id;
     });
     comment.argRoomUserId = viewerId;
-    Cookie.set("viewerId", viewerId);
     comment.save();
-
   },
-
 
   'saveDebateArgument'(msg, userId) {
     var argument = new Argument();

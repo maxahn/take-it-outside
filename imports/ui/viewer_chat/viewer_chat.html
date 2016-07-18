@@ -5,34 +5,32 @@
 
 <template name = "slideOutThing">
   
-  
-   <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" id = "clicker"></span>
-  
+  <button id = "clicker"> Click for slider </button>
 
 </template>
 
 
-<!--.................... for slide out chat box ................. -->
 
+
+<!-- for side bar -->
 
 <template name="index">
-  <div class = "tab-box" id = "slide-out">
-    <ul class="nav nav-pills">
-      <li data-template="chatbox" role="presentation" class="active"><a href="#">Chat-box</a></li>
-      <li data-template="Analytics" role="presentation"><a href="#">Analytics</a></li>
-      <li data-template="FAQ" role="presentation"><a href="#">FAQ</a></li>
-    </ul>
-    {{> Template.dynamic template=tab data=tabData}}
-  </div>
+	<div class = "nav-wrapper" id = "slide-out">
+	  <ul id="nav-mobile" class="left hide-on-med-and-down">
+	    <li data-template="books" role="presentation" class="active"><a href="#" id = "chat-tab"  > ChatBox </a></li>
+	    <li data-template="movies" role="presentation"><a href="#"  >Analytics</a></li>
+	    <li data-template="games" role="presentation"><a href="#"  >FAQ</a></li>
+	  </ul>
+	  {{> Template.dynamic template=tab data=tabData}}
+	</div> 
 </template>
 
 
-<template name="chatbox" id = "chatbox">
+<template name="books">
   <!-- <h3 class="page-header">Books</h3> -->
-
-  <ul class="list-group">
+  <ul class="collection">
     {{#each this}}
-      <li class="list-group-item"><strong>{{name}}</strong> by {{creator}}
+      <li class="section scrollspy"><strong>{{name}}</strong> by {{creator}}
   <div id="introduction" class="section scrollspy">
     {{ > messages }}
     {{  > register  }}
@@ -44,56 +42,98 @@
 
 
 
-<template name="Analytics">
+<template name="movies">
  <!--  <h3 class="page-header">Movies</h3> -->
 
-  <ul class="list-group">
+  <ul class="collection">
     {{#each this}}
-      <li class="list-group-item"><strong>{{name}}</strong> by {{creator}}</li>
+      <li class="section scrollspy"><strong>{{name}}</strong> by {{creator}}</li>
     {{/each}}
   </ul>
 </template>
 
-<template name="FAQ">
+<template name="games">
   <!-- <h3 class="page-header">Games</h3> For head tags -->
 
-  <ul class="list-group">
+  <ul class="collection">
     {{#each this}}
-      <li class="list-group-item"><strong>{{name}}</strong> by {{creator}}</li>
+      <li class="section scrollspy"><strong>{{name}}</strong> by {{creator}}</li>
     {{/each}}
   </ul>
 </template>
 
 
+<!-- .....................For new viewer chat....................  --> 
 
-<!--....................For messaging view box and submit.........--> 
+<!-- <template name="signup">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <h4 class="footer">Pick a handle!</h4>
+      <form id="signup" class="signup">
+        <div class="row">
+          <div class="col-xs-6">
+
+            <div class="form-group">
+            <label for="username">Username</label>
+            <div class="input-group username">
+              <div class="input-group-addon">@</div>
+              <input type="text" class="form-control" name="username" placeholder="username">
+            </div>
+          </div>
+
+        <div class="form-group">
+          <input type="submit" class="btn btn-success" value="Create handle">
+        </div>
+       </div> 
+       </div>
+      </form>
+      <p>Already have an account? <a href="{{pathFor 'login'}}">Log In</a>.</p>
+    </div>
+  </div>
+</template> -->
+
+
+<!-- <template name="signup">
+
+ <p>Handle: @ <input type="text" id="handle"></p>
+</template>
+ -->
+
+
+
+<!--.......................For messaging view box and submit..............--> 
 
 
 
 <template name="messages">
   {{#each messages}}
-    <strong>{{handle}}:</strong> {{message}} about: {{formatDate time }}<br>
+    <strong>{{handle}}:</strong> {{message}}<br>
   {{/each}}
 </template>
 
 <template name="register">
 
   <form>
-  <!-- {{#unless currentUser}}
+  {{#unless currentUser}}
     <p>Handle: @ <input type="text" name ="registerHandle" ></p>
     <p><input type="submit" value="Register" id = "handle"></p>
-    {{ /unless}} -->
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">@</span>
-      <input type="text" class="form-control" placeholder="Joebuck12" aria-describedby="basic-addon1"  id = "handle" name ="registerHandle">
-    </div>
-
+    {{ /unless}}
   </form>
 
-    <!-- <p>Message: <input type="text" id="message"></p> -->
-    <div class="form-group">
-    <label for="exampleInputEmail1"></label>
-    <span class="input-group-addon glyphicon glyphicon-pencil"></span> 
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="I disagree because ..." aria-describedby="input-group-addon glyphicon glyphicon-pencil">
-  </div>
+    <p>Message: <input type="text" id="message"></p>
 </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
