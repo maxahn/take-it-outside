@@ -1,16 +1,8 @@
-
-
 <!-- For button to bring out side bar --> 
 
-
 <template name = "slideOutThing">
-  
   <button id = "clicker"> Click for slider </button>
-
 </template>
-
-
-
 
 <!-- for side bar -->
 
@@ -25,26 +17,22 @@
 	</div> 
 </template>
 
-
 <template name="books">
   <!-- <h3 class="page-header">Books</h3> -->
   <ul class="collection">
     {{#each this}}
       <li class="section scrollspy"><strong>{{name}}</strong> by {{creator}}
-  <div id="introduction" class="section scrollspy">
-    {{ > messages }}
-    {{  > register  }}
-    </div>
-        </li>
-      {{/each}}
+        <div id="introduction" class="section scrollspy">
+          {{ > messages }}
+          {{ > register }}
+        </div>
+      </li>
+    {{/each}}
   </ul>
 </template>
 
-
-
 <template name="movies">
  <!--  <h3 class="page-header">Movies</h3> -->
-
   <ul class="collection">
     {{#each this}}
       <li class="section scrollspy"><strong>{{name}}</strong> by {{creator}}</li>
@@ -54,14 +42,12 @@
 
 <template name="games">
   <!-- <h3 class="page-header">Games</h3> For head tags -->
-
   <ul class="collection">
     {{#each this}}
       <li class="section scrollspy"><strong>{{name}}</strong> by {{creator}}</li>
     {{/each}}
   </ul>
 </template>
-
 
 <!-- .....................For new viewer chat....................  --> 
 
@@ -92,18 +78,13 @@
   </div>
 </template> -->
 
-
 <!-- <template name="signup">
 
  <p>Handle: @ <input type="text" id="handle"></p>
 </template>
  -->
 
-
-
 <!--.......................For messaging view box and submit..............--> 
-
-
 
 <template name="messages">
   {{#each messages}}
@@ -112,28 +93,11 @@
 </template>
 
 <template name="register">
-
   <form>
-  {{#unless currentUser}}
-    <p>Handle: @ <input type="text" name ="registerHandle" ></p>
-    <p><input type="submit" value="Register" id = "handle"></p>
+    {{#unless currentUser}}
+      <p>Handle: @ <input type="text" name ="registerHandle" ></p>
+      <p><input type="submit" value="Register" id = "handle"></p>
     {{ /unless}}
   </form>
-
-    <p>Message: <input type="text" id="message"></p>
+  <p>Message: <input type="text" id="message"></p>
 </template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
