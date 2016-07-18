@@ -1,11 +1,11 @@
 import { Template } from 'meteor/templating';
 import { Rooms } from '../../api/rooms';
+import { Meteor } from 'meteor/meteor';
+import { Arguments } from '../../api/rooms';
+import { RoomUsers } from '../../api/rooms';
 
 import './viewer_chat.html';
 import './viewer_chat.css';
-Messages = new Mongo.Collection( 'messages' );
-User = new Mongo.Collection( 'user' );
-Accounts = new Meteor.Collection('accounts');
 
 var moment = require('moment');
 
@@ -14,7 +14,7 @@ var moment = require('moment');
 
 
 Template.index.onCreated( function() {
-  this.currentTab = new ReactiveVar( "books" );
+  this.currentTab = new ReactiveVar( "chatbox" );
 });
 
 Template.index.helpers({
@@ -25,16 +25,15 @@ Template.index.helpers({
     var tab = Template.instance().currentTab.get();
 
     var data = {
-
-      "books": [
-        { "name": "Viewer chat", "creator": "Eamonn" }
+      "chatbox": [
+        { "name": "Viewer chat here: From Darwin to Munger", "creator": "Peter Bevelin" }
         
       ],
-      "movies": [
+      "Analytics": [
         { "name": "Ghostbusters", "creator": "Dan Aykroyd" },
         
       ],
-      "games": [
+      "FAQ": [
         { "name": "Grand Theft Auto V", "creator": "Rockstar Games" },
         
       ]
@@ -45,11 +44,11 @@ Template.index.helpers({
 });
 
 Template.index.events({
-  'click .nav-wrapper li a': function( event, template ) {
+  'click .nav-pills li': function( event, template ) {
     var currentTab = $( event.target ).closest( "li" );
 
     currentTab.addClass( "active" );
-    $( ".nav-wrapper li a" ).not( currentTab ).removeClass( "active" );
+    $( ".nav-pills li" ).not( currentTab ).removeClass( "active" );
 
     template.currentTab.set( currentTab.data( "template" ) );
   }
@@ -60,11 +59,10 @@ Template.index.events({
 //.................... For slide out panel .....................//
 
 Template.slideOutThing.events({
-  'click button#clicker': function( event, template ) {
-    $('#slide-out').toggleClass('show-slider');   
+  'click span#clicker': function( event, template ) {
+    $('#slide-out').toggleClass('show-slider');  
   }
 });
-
 
 
 //.................... To keep username clean currently not working .....................//
@@ -77,8 +75,12 @@ export default function( value ) {
 //....................  For messaging .........................//
 
 Template.messages.helpers({
+
   messages: function() {
-    return Messages.find({}, { sort: { date_created: -1}});
+     // Cookie.set("viewerId", "aGgiWZdAzokJQjkrz");
+
+     
+    return Arguments.find({argRoomUserId: Cookie.get("viewerId") }, { sort: { date_created: -1}});
   },
 
   formatDate(date) {
@@ -100,29 +102,22 @@ Template.register.events({
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
-      if (Meteor.user())
-          var handle = event.target.registerHandle.value;
-        else // 13 is the enter key event + add code for user session!!
-      var handle = Cookie.get("handle");
-      var message = document.getElementById('message');
-      if (message.value != '') {
-        Messages.insert({
-          handle: handle,
-          message: message.value,
-          time: Date.now(),
-        });
-
+      // if (Meteor.user())
+      //     var handle = event.target.registerHandle.value;
+        // else // 13 is the enter key event + add code for user session!!
+        if (document.getElementById('message').value != "") {
+      var viewer = new RoomUser();
+      viewer.name = Cookie.get("handle");
+      viewer.userType = "viewer";
+      viewer.userRoomId = "1";
+      var argument = new Argument();
+      argument.message = document.getElementById('message').value;
+      argument.argRoomUserId = "1";
+      Meteor.call('saveViewerComment', viewer, argument);
+      }
         document.getElementById('message').value = '';
         message.value = '';
-      }
+      
     }
   }
 });
-
-
-
-
-
-
-
-

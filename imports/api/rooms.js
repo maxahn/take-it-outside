@@ -27,7 +27,9 @@ Meteor.methods({
       viewerId = id;
     });
     comment.argRoomUserId = viewerId;
+    Cookie.set("viewerId", viewerId);
     comment.save();
+    
 
   }
 

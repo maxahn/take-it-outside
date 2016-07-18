@@ -1,6 +1,7 @@
 .debate-room {
   margin-left: 100px;
   margin-right: 100px;
+  background-color: grey;
   /* max-width: 700px; */
 }
 .topic {
@@ -95,4 +96,31 @@ ul.row {
 #slide-out.show-slider {
 	left: 0;
 	position: relative;
+
 }
+
+
+span#clicker{
+
+  transition: all .2s ease-in-out;
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 2.5%;   
+
+}
+span#clicker.flip{
+  -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+    transform: rotate(7deg);
+}
+
+
+span#clicker:hover {
+
+transform: scale(2);
+}
+
+
+/* for shimmer effect */ 
+
+
+
