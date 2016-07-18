@@ -11,18 +11,26 @@ Meteor.methods({
 
   'saveForm' (room, creator, challenged) {
     var roomId;
-    room.expiryTime = new Date();
+    var expiryDate = new Date();
+    var numberOfDaysToAdd = 7;
+    expiryDate.setDate(expiryDate.getDate() + numberOfDaysToAdd); 
+
+    room.expiryTime = expiryDate;
     room.save(function(err, id) {
       roomId = id;
     });
+
     creator.userRoomId = roomId;
     creator.save();
+
     challenged.userRoomId = roomId;
     challenged.save();
+
     return {
       room: room,
       creator: creator,
     }
+
   },
 
   'saveViewerComment' (viewer, comment) {
@@ -136,6 +144,7 @@ View = Class.create({
     }
  }
 });
+
 
 
 

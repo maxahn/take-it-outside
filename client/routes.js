@@ -20,6 +20,7 @@ Router.route ('/', function() {
 
 Router.route('/form', function() {
   this.render('form',{
+    
     data : {
       room: new ReactiveVar(new Room())
     }
