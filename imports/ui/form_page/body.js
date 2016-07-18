@@ -3,8 +3,6 @@ import { Rooms } from '../../api/rooms';
 import { Meteor } from 'meteor/meteor';
 //import { Router } from '../../../client/routes';
 import './body.html';
-
-
 // Template.form.helpers({
 //   getCountDown() {
 //   var expiryDate = new Date();
@@ -53,7 +51,6 @@ Template.form.events({
 },
 
 "keyup #topic": function(event){
-
   var topic = $("#topic").val();//document.getElementById("challengedId")
   var url = creatRoomUrl(topic);
   $("#url").val(url);
@@ -118,7 +115,6 @@ alert("aaaaaaaa");
     //confirmChallengedId.setCustomValidity('');
   }};
 
-
 //   //---------------------------------------- countdown
 
   function creatRoomUrl(topic){
@@ -128,6 +124,7 @@ alert("aaaaaaaa");
     // topic = topic.substring(0,4); 
     topic = topic.toLowerCase();
     url = "http://localhost:3000/"+topic;
+    //TODO: parse out any punctuation from stored url
     return url;
   };
 

@@ -21,7 +21,6 @@ Meteor.methods({
       roomId = id;
     });
 
-    debugger;
     creator.userRoomId = roomId;
     creator.save();
 
