@@ -4,12 +4,16 @@ import { Class } from 'meteor/jagi:astronomy';
 export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
+<<<<<<< HEAD
+export const Votes = new Mongo.Collection('votes')
+=======
 export const Views = new Mongo.Collection('views');
 
+>>>>>>> da76ac6e500e8a8425bb4f5f3fb79a50d169b030
 
 Meteor.methods({
 
-  'saveForm' (room, creator, challenged) {
+  'saveForm' (room, creator, challenged) { // saveform is the method created, 3 params put in
     var roomId;
     var expiryDate = new Date();
     var numberOfDaysToAdd = 7;
@@ -48,6 +52,13 @@ Meteor.methods({
     argument.message = msg;
     argument.createdAt = new Date();
     argument.save();
+
+  },
+
+  'saveVote'(vote) {
+  	vote.save();
+  
+
   }, 
 
   'saveViewRoom'(view) {
@@ -144,6 +155,48 @@ View = Class.create({
     }
  }
 });
+
+Vote = Class.create({
+	name: 'Vote',
+	collection: Votes,
+	fields: {
+		voteDebaterId: {
+			type: String
+		},
+		vote: {
+			type:Boolean
+		}
+		
+
+	},
+	behaviors: {
+	    timestamp: {
+	      hasCreatedField: true,
+	      createdFieldName: 'createdAt',
+	    }
+ }});
+
+//  View = Class.create({
+// 	name: 'View',
+// 	collection: Views,
+// 	fields: {
+// 		totalNumber: {
+// 			type: String
+// 		},
+// 		vote: {
+// 			type:Boolean
+// 		}
+
+// 	},
+// 	behaviors: {
+// 	    timestamp: {
+// 	      hasCreatedField: true,
+// 	      createdFieldName: 'createdAt',
+// 	    }
+//  }
+
+
+// })
 
 
 
