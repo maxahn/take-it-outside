@@ -45,12 +45,12 @@ Template.form.events({
       Cookie.set('userId', result.creator._id); //sets creator id on creator's browswer
     }
   });
+  Router.go('/' + room.url);
   target.topic.value = "";
   target.challengedPerson.value = "";
   target.url.value = "";
   target.confirmChallengedPerson.value = "";
 },
-
 
 "keyup #topic": function(event){
 
@@ -125,7 +125,8 @@ alert("aaaaaaaa");
 
     var url = "";
     topic = topic.replace(/\s+/g, '-');
-    topic = topic.substring(0,4); 
+    // topic = topic.substring(0,4); 
+    topic = topic.toLowerCase();
     url = "http://localhost:3000/"+topic;
     return url;
   };
