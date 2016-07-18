@@ -1,13 +1,70 @@
-col.s12.m4.l3 {
-  border-color: green;
+/* col.s12.m4.l3 { */
+/*   border-color: green; */
+/* } */
+/*  */
+/* div.input-field.col.s6 { */
+/*   width: 200px; */
+/*   color: black; */
+/* } */
+/*  */
+/* #chat-tab { */
+/*   color:  green; */
+/*   overflow: scroll; */
+/* } */
+
+.nav-wrapper ul li {
+  position: inline;
+  float: left;
+  padding: 5px;
 }
 
-div.input-field.col.s6 {
+.show-slider {
+  width: 20%;
+  height: 100%;
+  background-color: green;
+}
+
+div.col.s12.m8.l9{
+  bottom: 20px;
+  position: absolute;
+  right: 20px;
+}
+
+a.col.s12.m6.l3 {
+  margin: 0;
+  display: inline-block;
+  width: 114px;
+  padding: 0;
+}
+
+ul.collection {
+  height: 600px;
+  width: 300px;
+}
+
+.collection .collection-item {
+  border-style: solid ;
+  border: 1px solid #000;
+  height: 600px;
+  width: 300px;
+  left: 20px;
+  margin-top: 30px;
+}
+
+ul.row {
   width: 200px;
-  color: black;
 }
 
-#chat-tab {
-  color:  green;
-  overflow: scroll;
+#slide-out {
+  left: -100%;
+  float: left;
+  position: relative;
+  height: 100%;
+  width: 25%;
+  transition: all 0.4s ease;
+}
+
+#slide-out.show-slider {
+	left: 0;
+	position: relative;
 }

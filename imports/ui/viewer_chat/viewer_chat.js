@@ -60,24 +60,24 @@ export default function( value ) {
 //....................  For messaging .........................//
 
 Template.messages.helpers({
-        messages: function() {
-            return Messages.find({}, { sort: { time: -1}});
-        }
-    });
+  messages: function() {
+    return Messages.find({}, { sort: { time: -1}});
+  }
+});
 
 //..................... for handle ..................//
 
 Template.register.events({
   'submit form': function(event) {
-      event.preventDefault();
-      var handle = event.target.registerHandle.value;
-       Cookie.set('handle', handle);  // need to set experiation on it
+    event.preventDefault();
+    var handle = event.target.registerHandle.value;
+    Cookie.set('handle', handle);  // need to set experiation on it
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
       if (Meteor.user())
-          var handle = event.target.registerHandle.value;
-        else // 13 is the enter key event + add code for user session!!
+        var handle = event.target.registerHandle.value;
+      else // 13 is the enter key event + add code for user session!!
       var handle = Cookie.get("handle");
       var message = document.getElementById('message');
       if (message.value != '') {
@@ -86,7 +86,6 @@ Template.register.events({
           message: message.value,
           time: Date.now(),
         });
-
         document.getElementById('message').value = '';
         message.value = '';
       }
