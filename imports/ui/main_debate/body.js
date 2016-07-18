@@ -27,7 +27,10 @@ Template.debateRoom.helpers({
   },
   debaters() {
     var roomId = Session.get('roomId');
-    return RoomUsers.find({userRoomId: roomId});
+    
+    var debaters = RoomUsers.find({userRoomId: roomId});
+    console.log(debaters);
+    return debaters;
   },
   formatDate(date) {
     if (date) {return moment(date).fromNow()};
@@ -42,6 +45,18 @@ Template.debateRoom.helpers({
     var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
     return Arguments.find({$or: [{argRoomUserId: creatorId}, {argRoomUserId: challengedId}]});
   },
+  getCreator(){
+    var roomId = Session.get('roomId');
+    return RoomUsers.findOne({$and: [{userRoomId: roomId},{userType:"creator"}]});
+  },
+
+    getChallenged(){
+    var roomId = Session.get('roomId');
+    return RoomUsers.findOne({$and: [{userRoomId: roomId},{userType:"challenged"}]});
+  }
+
+
+  
 });
 
 Template.debateRoom.events({
@@ -73,5 +88,44 @@ Template.debateRoom.events({
     const target = event.target;
     Session.set('currentUser', 'challengedDebater');
     console.log(Session.get('currentUser'));
+  },
+
+  'click .voteCreator'(event){
+    var firstVote = new Vote();
+    firstVote.voteDebaterId = $(".voteCreator").val();
+    firstVote.vote = true;
+    var roomId = Session.get('roomId');
+    var cookielabel = "voted" + roomId;
+    if (Cookie.get(cookielabel)){
+    var secondVote = new Vote();
+    secondVote.voteDebaterId = $(".voteChallenger").val();
+    secondVote.vote = false;
+    }
+    else {
+      Cookie.set(cookielabel, true); //true is value, voted is key
+    }
+
+    Meteor.call('saveVote', firstVote);
+    Meteor.call('saveVote', secondVote);
+  },
+
+  'click .voteChallenger'(event){
+    var firstVote = new Vote();
+    firstVote.voteDebaterId = $(".voteChallenger").val();
+    firstVote.vote = true;
+    var cookielabel = "voted" + roomId;
+    
+    if (Cookie.get(cookielabel)){
+    var secondVote = new Vote();
+    secondVote.voteDebaterId = $(cookielabel).val();
+    secondVote.vote = false;
+    }
+    else {
+      Cookie.set("voted", true); //true is value, voted is key
+    }
+
+    Meteor.call('saveVote', firstVote);
+    Meteor.call('saveVote', secondVote);
   }
+
 });

@@ -1,17 +1,40 @@
 <template name='debateRoom'>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Topic: {{room.topic}}</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        
+        <li><a href="badges.html">Total viewers</a></li>
+        <li><a href="collapsible.html">Time left</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="switch-toggle switch-3 switch-candy">
+   
+            <input id="on" name="state-d" value="{{getCreator._id}}" type="radio" checked="" class="voteCreator">
+            <label for="on" onclick="">{{getCreator.name}}</label>
+
+            <input id="na" name="state-d" type="radio" disabled checked="checked">
+                <label for="na" onclick="">VOTE</label>
+
+            <input id="off" name="state-d" value="{{getChallenged._id}}" type="radio" class="voteChallenger">
+            <label for="off" onclick="">{{getChallenged.name}}</label>
+
+            <a></a>
+        </div>
   <div class='debate-room'>
+
     {{setSession}}
       {{#if room}}
-        <div class='topic'>
-          <h2>{{room.topic}}</h2>
-        </div>
-        <div class='debater-names'>
+      
+        
+        <!-- <div class='debater-names'>
           {{#each debaters}}
             <div class='{{userType}}-name'>
               <h3>{{name}}</h3>
             </div>
           {{/each}}
-        </div>
+        </div> -->
         <div>
           {{#each allArguments}}
             <div class= '{{getUserType argRoomUserId}}-point card-panel hoverable'> 
@@ -30,5 +53,7 @@
         {{> slideOutThing}}
         {{> index}}
       </div>
-</template>
 
+
+
+</template>

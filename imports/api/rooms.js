@@ -4,11 +4,11 @@ import { Class } from 'meteor/jagi:astronomy';
 export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
-
+export const Votes = new Mongo.Collection('votes')
 
 Meteor.methods({
 
-  'saveForm' (room, creator, challenged) {
+  'saveForm' (room, creator, challenged) { // saveform is the method created, 3 params put in
     var roomId;
     room.expiryTime = new Date();
     room.save(function(err, id) {
@@ -39,7 +39,12 @@ Meteor.methods({
     argument.message = msg;
     argument.createdAt = new Date();
     argument.save();
+  },
+
+  'saveVote'(vote) {
+  	vote.save();
   }
+
 });
 
 
@@ -110,6 +115,48 @@ Argument = Class.create({
     }
  }
 });
+
+Vote = Class.create({
+	name: 'Vote',
+	collection: Votes,
+	fields: {
+		voteDebaterId: {
+			type: String
+		},
+		vote: {
+			type:Boolean
+		}
+		
+
+	},
+	behaviors: {
+	    timestamp: {
+	      hasCreatedField: true,
+	      createdFieldName: 'createdAt',
+	    }
+ }});
+
+//  View = Class.create({
+// 	name: 'View',
+// 	collection: Views,
+// 	fields: {
+// 		totalNumber: {
+// 			type: String
+// 		},
+// 		vote: {
+// 			type:Boolean
+// 		}
+
+// 	},
+// 	behaviors: {
+// 	    timestamp: {
+// 	      hasCreatedField: true,
+// 	      createdFieldName: 'createdAt',
+// 	    }
+//  }
+
+
+// })
 
 
 
