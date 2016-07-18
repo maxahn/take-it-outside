@@ -13,6 +13,11 @@ Template.debateRoom.helpers({
   setSession() {
     var url = Template.instance().data.roomName;
     Session.set('roomUrl', url);
+    // alert('setSession');
+    var room = Rooms.findOne({url: url});
+    Session.set('roomId', room._id);
+    // alert('after set session: ' + Session.get('roomId'));
+
   },
   getUrl() {
    if (Template.instance().data.roomName)  {return '/' + Template.instance().data.roomName;}
@@ -20,8 +25,8 @@ Template.debateRoom.helpers({
   room() {
     var url = Session.get('roomUrl');
     var room = Rooms.findOne({url: url});
+    // alert('room');
     if (room) { 
-      Session.set('roomId', room._id);
       return room;
     }
   },
@@ -75,3 +80,24 @@ Template.debateRoom.events({
     console.log(Session.get('currentUser'));
   }
 });
+
+
+Template.debateRoom.rendered = function(){
+  if (!this.rendered){
+
+     var roomId = Template.instance().data.roomId;
+     var viewCookiLable = "view"+roomId;
+
+     if(!Cookie.get(viewCookiLable)){
+
+        alert("save view");
+        var view = new View();
+        view.viewFlag = true;
+        view.viewRoomId = roomId;
+        Meteor.call('saveViewRoom', view);
+        Cookie.set(viewCookiLable,true);
+     }
+    
+    this.rendered = true;
+  }
+};
