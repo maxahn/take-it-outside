@@ -4,12 +4,9 @@ import { Class } from 'meteor/jagi:astronomy';
 export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
-<<<<<<< HEAD
 export const Votes = new Mongo.Collection('votes')
-=======
 export const Views = new Mongo.Collection('views');
 
->>>>>>> da76ac6e500e8a8425bb4f5f3fb79a50d169b030
 
 Meteor.methods({
 

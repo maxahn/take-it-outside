@@ -23,7 +23,7 @@ Template.form.events({
   event.preventDefault();
 
 //checkConfirm();
-
+  // debugger;
   var target = event.target;
 
   var room = new Room();
@@ -38,6 +38,13 @@ Template.form.events({
   challengedPerson.name = target.challengedPerson.value;
   challengedPerson.userType = "challenged";
 
+  Meteor.call('saveForm', room, creator, challengedPerson, function(err, result) {
+    if (err) {
+      console.log('error with ')
+    } else {
+      Cookie.set('userId', result.creator._id); //sets creator id on creator's browswer
+    }
+  });
   target.topic.value = "";
   target.challengedPerson.value = "";
   target.url.value = "";
