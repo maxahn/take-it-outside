@@ -4,6 +4,7 @@ import { Class } from 'meteor/jagi:astronomy';
 export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
+export const Views = new Mongo.Collection('views');
 
 
 Meteor.methods({
@@ -39,7 +40,13 @@ Meteor.methods({
     argument.message = msg;
     argument.createdAt = new Date();
     argument.save();
-  }
+  }, 
+
+  'saveViewRoom'(view) {
+    
+    view.save();
+  }, 
+
 });
 
 
@@ -101,7 +108,26 @@ Argument = Class.create({
     },
     argRoomUserId: {
       type :String
+    }
+  },
+  behaviors: {
+    timestamp: {
+      hasCreatedField: true,
+      createdFieldName: 'createdAt',
+    }
+ }
+});
+
+View = Class.create({
+  name: 'View',
+  collection: Views,
+  fields: {
+    viewFlag: {
+      type: Boolean
     },
+    viewRoomId: {
+      type: String
+    }
   },
   behaviors: {
     timestamp: {
