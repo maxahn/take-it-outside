@@ -7,6 +7,7 @@ export const Arguments = new Mongo.Collection('arguments');
 export const Votes = new Mongo.Collection('votes')
 export const Views = new Mongo.Collection('views');
 
+
 Meteor.methods({
 
   'saveForm' (room, creator, challenged) { // saveform is the method created, 3 params put in
