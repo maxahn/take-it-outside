@@ -3,6 +3,8 @@ import { Rooms } from '../../api/rooms';
 import { Session } from 'meteor/session';
 import { RoomUsers } from '../../api/rooms';
 import { Arguments } from '../../api/rooms';
+import { Views } from '../../api/rooms';
+import { Votes } from '../../api/rooms';
 
 var moment = require('moment');
 
@@ -58,7 +60,19 @@ Template.debateRoom.helpers({
     getChallenged(){
     var roomId = Session.get('roomId');
     return RoomUsers.findOne({$and: [{userRoomId: roomId},{userType:"challenged"}]});
-  }
+  },
+
+  getTotalView(){
+    var roomId = Session.get('roomId');
+    return Views.find({$and: [{viewRoomId: roomId},{viewFlag:true}]}).count();
+  },
+
+  //   getTotalVotes(){
+  //   var roomId = Session.get('roomId');
+  //   return Votes.find({$and: [{viewRoomId: roomId},{vote:true}]}).count();
+  
+  // } 
+
 
 
   
@@ -143,8 +157,6 @@ Template.debateRoom.rendered = function(){
      var viewCookiLable = "view"+roomId;
 
      if(!Cookie.get(viewCookiLable)){
-
-        alert("save view");
         var view = new View();
         view.viewFlag = true;
         view.viewRoomId = roomId;

@@ -53,7 +53,6 @@ Meteor.methods({
 
   'saveVote'(vote) {
   	vote.save();
-  
 
   }, 
 
