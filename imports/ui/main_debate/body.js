@@ -19,7 +19,6 @@ Template.debateRoom.helpers({
     var room = Rooms.findOne({url: url});
     Session.set('roomId', room._id);
     // alert('after set session: ' + Session.get('roomId'));
-
   },
   getUrl() {
    if (Template.instance().data.roomName)  {return '/' + Template.instance().data.roomName;}
@@ -31,6 +30,34 @@ Template.debateRoom.helpers({
     if (room) { 
       return room;
     }
+  },
+  isDebater(currentUserName) {     //i'm so sorry for this atrocity 
+    var debaters = RoomUsers.find({userRoomId: Session.get('roomId')});
+    var creator;
+    var challenged;
+    // for (let counter = 0; counter < debaters.length; counter++) {   //iterates and sets the creator and challenged debater belonging to room
+    //   if (debaters[counter].userType === 'creator') {
+    //     creator = debaters[counter];
+    //   } else if (debaters[counter].userType === 'challenged') {
+    //     challenged = debaters[counter];
+    //   }
+    // }
+    debaters.forEach(function(user) { 
+      if (user.userType === 'creator') {
+        creator = user; 
+      } else if (user.userType === 'challenged') {
+        challenged = user;
+      }
+    }); 
+//    debugger;
+    if (creator && currentUserName === creator.name) {
+      Cookie.set('userId', creator._id);
+      return true;
+    } else if (challenged && currentUserName === challenged.name) {
+      Cookie.set('userId', challenged._id);
+      return true;
+    }
+    return user && user.userType === 'creator' || user.userType === 'challenged';
   },
   debaters() {
     var roomId = Session.get('roomId');
@@ -46,6 +73,7 @@ Template.debateRoom.helpers({
   getUserType(userId) {
     return RoomUsers.findOne({_id: userId}).userType;
   },
+
   allArguments() {
     var roomId = Session.get('roomId');
     var creatorId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'creator'}]})._id;
@@ -110,18 +138,16 @@ Template.debateRoom.events({
     event.target.text.value = '';
   },
 
-  'click .creator-name h3'(event) {
-    const target = event.target;
-    console.log(target);
-    Session.set('currentUser', 'creator');
-    console.log(Session.get('currentUser'));
-  },
-
-  'click .challenged-name h3'(event) {
-    const target = event.target;
-    Session.set('currentUser', 'challengedDebater');
-    console.log(Session.get('currentUser'));
-  },
+  // 'click .creator-name h3'(event) {
+  //   const target = event.target;
+  //   Session.set('currentUser', 'creator');
+  // },
+  //
+  // 'click .challenged-name h3'(event) {
+  //   const target = event.target;
+  //   Session.set('currentUser', 'challengedDebater');
+  //   console.log(Session.get('currentUser'));
+  // },
 
   'click .voteCreator'(event){
     var firstVote = new Vote();
@@ -144,6 +170,7 @@ Template.debateRoom.events({
 
   'click .voteChallenger'(event){
     var firstVote = new Vote();
+    var roomId = Session.get('roomId');
     firstVote.voteDebaterId = $(".voteChallenger").val();
     firstVote.vote = true;
     var cookielabel = "voted" + roomId;
