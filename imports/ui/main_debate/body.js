@@ -3,6 +3,8 @@ import { Rooms } from '../../api/rooms';
 import { Session } from 'meteor/session';
 import { RoomUsers } from '../../api/rooms';
 import { Arguments } from '../../api/rooms';
+import { Views } from '../../api/rooms';
+import { Votes } from '../../api/rooms';
 
 var moment = require('moment');
 
@@ -86,7 +88,33 @@ Template.debateRoom.helpers({
     getChallenged(){
     var roomId = Session.get('roomId');
     return RoomUsers.findOne({$and: [{userRoomId: roomId},{userType:"challenged"}]});
-  }
+  },
+
+  getTotalView(){
+    var roomId = Session.get('roomId');
+    return Views.find({$and: [{viewRoomId: roomId},{viewFlag:true}]}).count();
+  },
+
+    getTotalVotes(){
+    var roomId = Session.get('roomId');
+    // go to roomUser table and grab creator and challenged based on room id
+    return Votes.find({$and: [{viewRoomId: roomId},{vote:true}]}).count();
+  
+  } 
+
+// items.find({
+//     created_at: {
+//         $gte:"Mon May 30 18:47:00 +0000 2015",
+//         $lt: "Sun May 30 20:40:36 +0000 2010"
+//     }
+// })
+
+// items.find({
+//     created_at: {
+//         $gte: ISODate("2010-04-29T00:00:00.000Z"),
+//         $lt: ISODate("2010-05-01T00:00:00.000Z")
+//     }
+// })
 
 
   
@@ -163,6 +191,55 @@ Template.debateRoom.events({
 });
 
 
+var CountDownTimer = function (dt, id)
+{
+   var end = new Date(dt);
+   
+   var _second = 1000;
+   var _minute = _second * 60;
+   var _hour = _minute * 60;
+   var _day = _hour * 24;
+   var timer;
+   
+   function showRemaining() {
+       var now = new Date();
+       var distance = end - now;
+       if (distance < 0) {
+           
+           clearInterval(timer);
+           document.getElementById(id).innerHTML = 'EXPIRED!';
+           
+           return;
+       }
+       var days = Math.floor(distance / _day);
+       var hours = Math.floor((distance % _day) / _hour);
+       var minutes = Math.floor((distance % _hour) / _minute);
+       var seconds = Math.floor((distance % _minute) / _second);
+       
+       
+       if (String(hours).length < 2){
+           hours = 0 + String(hours);
+       }
+       if (String(minutes).length < 2){
+           minutes = 0 + String(minutes);
+       }
+       if (String(seconds).length < 2){
+           seconds = 0 + String(seconds);
+       }
+       
+       
+       var datestr = days + ' days ' + 
+                     hours + ' hrs ' + 
+                     minutes + ' mins ' + 
+                     seconds + ' secs';
+       
+       document.getElementById(id).innerHTML = datestr;
+   }
+   
+   timer = setInterval(showRemaining, 1000);
+}
+
+
 Template.debateRoom.rendered = function(){
   if (!this.rendered){
 
@@ -170,15 +247,14 @@ Template.debateRoom.rendered = function(){
      var viewCookiLable = "view"+roomId;
 
      if(!Cookie.get(viewCookiLable)){
-
-        alert("save view");
         var view = new View();
         view.viewFlag = true;
         view.viewRoomId = roomId;
         Meteor.call('saveViewRoom', view);
         Cookie.set(viewCookiLable,true);
      }
-    
+     
+    CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
   }
 };
