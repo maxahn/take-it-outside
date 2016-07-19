@@ -67,12 +67,26 @@ Template.debateRoom.helpers({
     return Views.find({$and: [{viewRoomId: roomId},{viewFlag:true}]}).count();
   },
 
-  //   getTotalVotes(){
-  //   var roomId = Session.get('roomId');
-  //   return Votes.find({$and: [{viewRoomId: roomId},{vote:true}]}).count();
+    getTotalVotes(){
+    var roomId = Session.get('roomId');
+    // go to roomUser table and grab creator and challenged based on room id
+    return Votes.find({$and: [{viewRoomId: roomId},{vote:true}]}).count();
   
-  // } 
+  } 
 
+// items.find({
+//     created_at: {
+//         $gte:"Mon May 30 18:47:00 +0000 2015",
+//         $lt: "Sun May 30 20:40:36 +0000 2010"
+//     }
+// })
+
+// items.find({
+//     created_at: {
+//         $gte: ISODate("2010-04-29T00:00:00.000Z"),
+//         $lt: ISODate("2010-05-01T00:00:00.000Z")
+//     }
+// })
 
 
   
