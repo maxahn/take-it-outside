@@ -156,3 +156,9 @@ Template.debateRoom.rendered = function(){
     this.rendered = true;
   }
 };
+
+
+
+
+
+

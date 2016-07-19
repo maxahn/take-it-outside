@@ -62,7 +62,7 @@ Meteor.methods({
     view.save();
   }, 
 
-   
+
 
 });
 

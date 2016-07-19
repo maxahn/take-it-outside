@@ -1,6 +1,8 @@
 <!-- For button to bring out side bar --> 
 
 
+
+
 <template name = "slideOutThing">
   
    <a class="btn-floating btn-large waves-effect waves-light red"> <i class="material-icons">trending_flat</i></a>
@@ -62,11 +64,11 @@
 </template>
 
 
-<!--.......................For messaging view box and submit..............--> 
+<!--........For messaging view box and submit.....--> 
 
 <template name="messages">
   {{#each messages}}
-    <strong>{{handle}}:</strong> {{message}} about: {{formatDate time }}<br>
+    <strong>{{handle}}:</strong> {{argument}} about: {{formatDate time }}<br>
   {{/each}}
 </template>
 

@@ -9,6 +9,8 @@ import './viewer_chat.css';
 
 var moment = require('moment');
 
+// Messages = new Meteor.Collection('messages');
+
 
 //................... For dynamic tabs.........................//
 
@@ -114,8 +116,11 @@ Template.register.events({
         argument.message = document.getElementById('message').value;
         argument.argRoomUserId = "1";
         Meteor.call('saveViewerComment', viewer, argument, function(err, result) {
-          
-
+              if (err) {
+            console.log('error with saveForm Meteor method');
+          } else {
+            Cookie.set('handle', handle); //sets creator id on creator's browswer
+          }
         });
         document.getElementById('message').value = '';
         message.value = '';
