@@ -13,6 +13,9 @@ import { Rooms } from '../imports/api/rooms';
 import '../imports/ui/viewer_chat/viewer_chat.js';
 import '../imports/ui/viewer_chat/viewer_chat.html';
 
+import '../imports/ui/chart_page/body.js';
+import '../imports/ui/chart_page/body.html';
+
 
 Router.route ('/', function() {
   this.render('homepage');
@@ -39,6 +42,10 @@ Router.route('/rooms', {
   //   }
 });
 
+Router.route('/chart', function() {
+  // debugger;
+  this.render('chart');
+});
 
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
@@ -52,5 +59,4 @@ Router.route('/:roomname', function() {
     }
   });
 });
-
 
