@@ -186,7 +186,22 @@ Template.debateRoom.events({
 
     Meteor.call('saveVote', firstVote);
     Meteor.call('saveVote', secondVote);
-  }
+  }, 
+  'click #facebook-logout'(event) {
+    Meteor.logout(function(err) {
+      if (err) {
+        throw new Meteor.error('Logout failed');
+      } 
+    })
+  },
+
+  'click #facebook-login'(event) {
+    Meteor.loginWithFacebook({}, function(err) {
+      if (err) {
+        throw new Meteor.error('Could not login');
+      } 
+    })
+  },
 
 });
 
