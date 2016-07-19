@@ -144,6 +144,7 @@ Template.debateRoom.events({
 
   'click .voteChallenger'(event){
     var firstVote = new Vote();
+    var roomId = Session.get('roomId');
     firstVote.voteDebaterId = $(".voteChallenger").val();
     firstVote.vote = true;
     var cookielabel = "voted" + roomId;
