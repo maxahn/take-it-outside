@@ -10,11 +10,7 @@ import './body.html';
 //   return expiryDate.setDate(expiryDate.getDate() + numberOfDaysToAdd,);
 
 // }
-
-
 // });
-
-
 
 Template.form.events({
 'submit .new-room'(event) { ////new-room is the form class
@@ -44,10 +40,10 @@ Template.form.events({
     }
   });
   Router.go('/' + room.url);
-  target.topic.value = "";
-  target.challengedPerson.value = "";
-  target.url.value = "";
-  target.confirmChallengedPerson.value = "";
+  //----these may not be needed if we redirect ----//
+  // target.challengedPerson.value = "";
+  // target.url.value = "";
+  // target.confirmChallengedPerson.value = "";
 },
 
 "keyup #topic": function(event){

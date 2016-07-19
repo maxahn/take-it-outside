@@ -13,6 +13,9 @@ import { Rooms } from '../imports/api/rooms';
 import '../imports/ui/viewer_chat/viewer_chat.js';
 import '../imports/ui/viewer_chat/viewer_chat.html';
 
+import '../imports/ui/chart_page/body.js';
+import '../imports/ui/chart_page/body.html';
+
 
 Router.route ('/', function() {
   this.render('homepage');
@@ -39,18 +42,23 @@ Router.route('/rooms', {
   //   }
 });
 
+Router.route('/chart', function() {
+  // debugger;
+  this.render('chart');
+});
 
 Router.route('/:roomname', function() {
   var roomName = this.params.roomname;
   //console.log(roomName);
   var room = Rooms.findOne({url: roomName});
   var roomId = room._id;
+  var expiryTime = room.expiryTime;
   this.render('debateRoom', {
     data : {
       roomName: roomName,
-      roomId : roomId
+      roomId : roomId,
+      expiryTime : expiryTime
     }
   });
 });
-
 
