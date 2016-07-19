@@ -1,34 +1,35 @@
-
 <template name='debateRoom'>
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">Topic: {{room.topic}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        
-        <li><a href="badges.html">Total viewers</a></li>
-        <li><a href="collapsible.html">Time left</a></li>
+        <li>Creator votes : {{getCreatorVotes}}</li>
+        <li>Challenged votes : {{getChallengedVotes}}</li>                                            
+        <li>Total viewers : {{getTotalView}}</li>
+        <!-- <li><a href="collapsible.html">Time left</a></li> -->
+        <li id="countdown"></li>
+<!--         <li><a href="badges.html">Total viewers</a></li>
+        <li><a href="collapsible.html">Time left</a></li> -->
       </ul>
     </div>
   </nav>
   <div class="switch-toggle switch-3 switch-candy">
    
-            <input id="on" name="state-d" value="{{getCreator._id}}" type="radio" checked="" class="voteCreator">
-            <label for="on" onclick="">{{getCreator.name}}</label>
+    <input id="on" name="state-d" value="{{getCreator._id}}" type="radio" checked="" class="voteCreator">
+    <label for="on" onclick="">{{getCreator.name}}</label>
 
-            <input id="na" name="state-d" type="radio" disabled checked="checked">
-                <label for="na" onclick="">VOTE</label>
+    <input id="na" name="state-d" type="radio" disabled checked="checked">
+    <label for="na" onclick="">VOTE</label>
 
-            <input id="off" name="state-d" value="{{getChallenged._id}}" type="radio" class="voteChallenger">
-            <label for="off" onclick="">{{getChallenged.name}}</label>
+    <input id="off" name="state-d" value="{{getChallenged._id}}" type="radio" class="voteChallenger">
+    <label for="off" onclick="">{{getChallenged.name}}</label>
 
-            <a></a>
-        </div>
+    <a></a>
+  </div>
   <div class='debate-room'>
 
     {{setSession}}
       {{#if room}}
-      
-        
         <!-- <div class='debater-names'>
           {{#each debaters}}
             <div class='{{userType}}-name'>
@@ -39,18 +40,24 @@
         <div>
           {{#each allArguments}}
             <div class= '{{getUserType argRoomUserId}}-point card-panel hoverable'> 
-              {{message}}-{{formatDate createdAt}}<br>
+              {{message}}
+              <div class='created-at'>
+                {{formatDate createdAt}}
+              </div>
             </div>
           {{/each}}
         </div>
-        <form class='chat-input'>
-          <input type='text' name ='text' placeholder='Enter argument here'>
-        </form>
+        {{#if isDebater currentUser.profile.name}}
+          <form class='chat-input'>
+            <input type='text' name ='text' placeholder='Enter argument here'>
+          </form>
+        {{/if}}
       {{else}}
         <p>Room not found!</p>
      {{/if}}
 
   </div>
+
 
   
     <div class = "container">
@@ -61,6 +68,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="../../dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 
 
 </template>
