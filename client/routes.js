@@ -52,10 +52,12 @@ Router.route('/:roomname', function() {
   //console.log(roomName);
   var room = Rooms.findOne({url: roomName});
   var roomId = room._id;
+  var expiryTime = room.expiryTime;
   this.render('debateRoom', {
     data : {
       roomName: roomName,
-      roomId : roomId
+      roomId : roomId,
+      expiryTime : expiryTime
     }
   });
 });
