@@ -59,7 +59,7 @@ Template.index.events({
 //.................... For slide out panel .....................//
 
 Template.slideOutThing.events({
-  'click span#clicker': function( event, template ) {
+  'click i.material-icons': function( event, template ) {
     $('#slide-out').toggleClass('show-slider');  
   }
 });
@@ -105,19 +105,22 @@ Template.register.events({
       // if (Meteor.user())
       //     var handle = event.target.registerHandle.value;
         // else // 13 is the enter key event + add code for user session!!
-        if (document.getElementById('message').value != "") {
-      var viewer = new RoomUser();
-      viewer.name = Cookie.get("handle");
-      viewer.userType = "viewer";
-      viewer.userRoomId = "1";
-      var argument = new Argument();
-      argument.message = document.getElementById('message').value;
-      argument.argRoomUserId = "1";
-      Meteor.call('saveViewerComment', viewer, argument);
-      }
+      if (document.getElementById('message').value != "") {
+        var viewer = new RoomUser();
+        viewer.name = Cookie.get("handle");
+        viewer.userType = "viewer";
+        viewer.userRoomId = "1";
+        var argument = new Argument();
+        argument.message = document.getElementById('message').value;
+        argument.argRoomUserId = "1";
+        Meteor.call('saveViewerComment', viewer, argument, function(err, result) {
+          
+
+        });
         document.getElementById('message').value = '';
         message.value = '';
-      
+        
+      }
     }
   }
 });
