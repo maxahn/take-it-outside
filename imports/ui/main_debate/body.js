@@ -48,10 +48,10 @@ Template.debateRoom.helpers({
       }
     }); 
 //    debugger;
-    if (currentUserName === creator.name) {
+    if (creator && currentUserName === creator.name) {
       Cookie.set('userId', creator._id);
       return true;
-    } else if (currentUserName === challenged.name) {
+    } else if (challenged && currentUserName === challenged.name) {
       Cookie.set('userId', challenged._id);
       return true;
     }
@@ -110,18 +110,16 @@ Template.debateRoom.events({
     event.target.text.value = '';
   },
 
-  'click .creator-name h3'(event) {
-    const target = event.target;
-    console.log(target);
-    Session.set('currentUser', 'creator');
-    console.log(Session.get('currentUser'));
-  },
-
-  'click .challenged-name h3'(event) {
-    const target = event.target;
-    Session.set('currentUser', 'challengedDebater');
-    console.log(Session.get('currentUser'));
-  },
+  // 'click .creator-name h3'(event) {
+  //   const target = event.target;
+  //   Session.set('currentUser', 'creator');
+  // },
+  //
+  // 'click .challenged-name h3'(event) {
+  //   const target = event.target;
+  //   Session.set('currentUser', 'challengedDebater');
+  //   console.log(Session.get('currentUser'));
+  // },
 
   'click .voteCreator'(event){
     var firstVote = new Vote();

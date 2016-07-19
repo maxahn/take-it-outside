@@ -54,12 +54,9 @@ Meteor.methods({
 
   'saveVote'(vote) {
   	vote.save();
-  
-
   }, 
 
   'saveViewRoom'(view) {
-    
     view.save();
   }, 
 
