@@ -75,8 +75,9 @@
 
   
     <div class = "container">
-      {{> slideOutThing}}
-
+      {{#unless isDebater currentUser.profile.name}}
+        {{> slideOutThing}}
+      {{/unless}}
     </div>
 
  <!-- CSS  -->
