@@ -8,7 +8,9 @@
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
         <li id="countdown"></li>
         <li><a class="waves-effect btn modal-trigger" href="#modal1">STATS</a></li>
-
+        {{#unless isDebater currentUser.profile.name}}
+        <li><a class="waves-effect btn modal-trigger2" href="#modal2">Chat</a></li>
+         {{/unless}}
 
                                                   
         <li>Total viewers : {{getTotalView}}</li>
@@ -74,11 +76,6 @@
 
 
   
-    <div class = "container">
-      {{#unless isDebater currentUser.profile.name}}
-        {{> slideOutThing}}
-      {{/unless}}
-    </div>
 
  <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -100,6 +97,20 @@
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div>
+
+
+  <div id="modal2" class="modal bottom-sheet">
+    <div class="modal-content">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+     </ul>
+     
+     {{ > chatbox}}
+     
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div> 
 
 </template>
 
