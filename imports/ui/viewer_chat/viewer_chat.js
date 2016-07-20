@@ -115,16 +115,16 @@ Template.register.events({
     var handle = event.target.registerHandle.value;
     Cookie.set('handle', handle);  // need to set experiation on it
     
-    
     Meteor.call('saveViewer', Cookie.get('handle'), Session.get('roomId'), function(err, viewer) {
       if (err) {
         console.log('error with Meteor method saveViewer');
       } else {
-        alert(viewer._id);
-        Cookie.set("userId", viewer._id);
+        var viewerId = viewer._id;
+        Cookie.set('userId', viewerId);
       }
 
     });
+
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
