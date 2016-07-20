@@ -9,6 +9,8 @@ import './viewer_chat.css';
 
 var moment = require('moment');
 
+// Messages = new Meteor.Collection('messages');
+
 
 //................... For dynamic tabs.........................//
 
@@ -59,7 +61,7 @@ Template.index.events({
 //.................... For slide out panel .....................//
 
 Template.slideOutThing.events({
-  'click span#clicker': function( event, template ) {
+  'click i.material-icons': function( event, template ) {
     $('#slide-out').toggleClass('show-slider');  
   }
 });
@@ -77,10 +79,29 @@ export default function( value ) {
 Template.messages.helpers({
 
   messages: function() {
-     // Cookie.set("viewerId", "aGgiWZdAzokJQjkrz");
+  // debugger;
+  //var viewers = RoomUsers.find({ $and:[{userRoomId: Session.get('roomId')}, {userType: 'viewer'}] });
+  var roomId = Session.get('roomId');
+  var viewers = RoomUsers.find({$and: [{userRoomId: roomId}, {userType: 'viewer'}]});
+  // var viewers = RoomUsers.find({});
+  var rooms = Rooms.find({});
+  var viewerIds = [];
+  // debugger;
+  // for each (let viewer in viewers) {
+  //     viewerIds.push(viewer._id);
+  // }
+  // debugger;
+  // for (let counter = 0; viewers.length < viewers.length; counter++) {
+  //   viewerIds.push(viewers[counter]._id);
+  // }
+  
 
-     
-    return Arguments.find({argRoomUserId: Cookie.get("viewerId") }, { sort: { date_created: -1}});
+  viewers.forEach(function(viewer) {
+    viewerIds.push(viewer._id);
+  });
+  // debugger;
+  return Arguments.find({argRoomUserId: {$in: viewerIds}}, { sort: { date_created: -1}});
+   // return Arguments.find({});
   },
 
   formatDate(date) {
@@ -99,25 +120,37 @@ Template.register.events({
     event.preventDefault();
     var handle = event.target.registerHandle.value;
     Cookie.set('handle', handle);  // need to set experiation on it
+    
+    Meteor.call('saveViewer', Cookie.get('handle'), Session.get('roomId'), function(err, viewer) {
+      if (err) {
+        console.log('error with Meteor method saveViewer');
+      } else {
+        var viewerId = viewer._id;
+        Cookie.set('userId', viewerId);
+      }
+
+    });
+
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
       // if (Meteor.user())
       //     var handle = event.target.registerHandle.value;
         // else // 13 is the enter key event + add code for user session!!
-        if (document.getElementById('message').value != "") {
-      var viewer = new RoomUser();
-      viewer.name = Cookie.get("handle");
-      viewer.userType = "viewer";
-      viewer.userRoomId = "1";
-      var argument = new Argument();
-      argument.message = document.getElementById('message').value;
-      argument.argRoomUserId = "1";
-      Meteor.call('saveViewerComment', viewer, argument);
-      }
+      if (document.getElementById('message').value != "") {
+        var argument = new Argument();
+        argument.message = document.getElementById('message').value;
+        argument.argRoomUserId = Cookie.get('userId');
+        
+        Meteor.call('saveViewerComment', argument, function(err, result) {
+          if (err) {
+            console.log('error with saveForm Meteor method');
+          }
+        });
         document.getElementById('message').value = '';
         message.value = '';
-      
+        
+      }
     }
   }
 });

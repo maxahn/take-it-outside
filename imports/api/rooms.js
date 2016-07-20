@@ -5,7 +5,7 @@ export const Rooms = new Mongo.Collection('rooms');
 export const RoomUsers = new Mongo.Collection('roomUsers');
 export const Arguments = new Mongo.Collection('arguments');
 export const Votes = new Mongo.Collection('votes')
-export const Views = new Mongo.Collection('views');
+export const Views = new Mongo.Collection('views'); // everything exported is hopefully accessed by imports on other pages
 
 
 Meteor.methods({
@@ -33,14 +33,25 @@ Meteor.methods({
     }
 
   },
-
-  'saveViewerComment' (viewer, comment) {
-    var viewerId;
-    viewer.save(function(err, id) {
-      viewerId = id;
+  'saveViewer' (name, roomId) {
+    var viewer = new RoomUser();
+    viewer.name = name;
+    viewer.userType = "viewer";
+    viewer.userRoomId = roomId;
+    viewer.save(function(err) {
+      if (err) {
+        console.log('error with saving viewer');
+      } 
     });
-    comment.argRoomUserId = viewerId;
-    comment.save();
+    return viewer;
+  },
+
+  'saveViewerComment' (comment) {
+    comment.save(function(err) {
+      if (err) {
+        console.log('error with saving comment');
+      }
+    });
   },
 
   'saveDebateArgument'(msg, userId) {
@@ -60,6 +71,8 @@ Meteor.methods({
   'saveViewRoom'(view) {
     view.save();
   }, 
+
+
 
 });
 

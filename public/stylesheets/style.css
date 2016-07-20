@@ -1,9 +1,4 @@
-/* Custom Stylesheet */
-/**
- *
- * Made By Joash Pereira
- * Thanks for MaterializeCSS.com
- */
+
 
 .default_color{background-color: #2B1657 !important}
 
@@ -17,30 +12,32 @@
 
 
 #index-banner {
-    min-height: 632px;
-    max-height: 864px;
-    position: relative;
-  background: linear-gradient(89deg, #7b6bb0, #150740, #150740, #150740, #7b6bb0, #150740);
-background-size: 1200% 1200%;
+      min-height: 632px;
+      max-height: 864px;
+      position: relative;
+      background: linear-gradient(306deg, #29cfde, #2ebbcf, #30a5cd);
+  background-size: 600% 600%;
 
--webkit-animation: AnimationName 53s ease infinite;
--moz-animation: AnimationName 53s ease infinite;
-animation: AnimationName 53s ease infinite;
-}
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
-}
-@keyframes AnimationName { 
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+
+  }
+  @-webkit-keyframes AnimationName {
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
+  @-moz-keyframes AnimationName {
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
+  @keyframes AnimationName { 
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
 }
 
 
@@ -870,49 +867,73 @@ top: 60px;
 /*end of long votebar css thankyou*/
 
 nav {
-    background: linear-gradient(89deg, #7b6bb0, #150740, #150740, #150740, #7b6bb0, #150740);
-background-size: 1200% 1200%;
 
--webkit-animation: AnimationName 53s ease infinite;
--moz-animation: AnimationName 53s ease infinite;
-animation: AnimationName 53s ease infinite;
-}
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
-}
-@keyframes AnimationName { 
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
+  background: linear-gradient(306deg, #29cfde, #2ebbcf, #30a5cd);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+
+  }
+  @-webkit-keyframes AnimationName {
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
+  @-moz-keyframes AnimationName {
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
+  @keyframes AnimationName { 
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
 }
 
 .gradientColor {
-    background: linear-gradient(89deg, #7b6bb0, #150740, #150740, #150740, #7b6bb0, #150740);
-background-size: 1200% 1200%;
 
--webkit-animation: AnimationName 53s ease infinite;
--moz-animation: AnimationName 53s ease infinite;
-animation: AnimationName 53s ease infinite;
+
+    background: linear-gradient(306deg, #29cfde, #2ebbcf, #30a5cd);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+
+  }
+  @-webkit-keyframes AnimationName {
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
+  @-moz-keyframes AnimationName {
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
+  @keyframes AnimationName { 
+      0%{background-position:13% 0%}
+      50%{background-position:88% 100%}
+      100%{background-position:13% 0%}
+  }
+    }
+
+
+
+.row .col.s6 {
+
+  position: absolute;
+  left: 70%;
 }
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
+
+a.input-field.col.s6.fix-form {
+
+  left: 70%;
+  position: absolute;
+
 }
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
-}
-@keyframes AnimationName { 
-    0%{background-position:0% 57%}
-    50%{background-position:100% 44%}
-    100%{background-position:0% 57%}
-}
+
+
