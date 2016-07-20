@@ -8,9 +8,15 @@
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
         <li id="countdown"></li>
         <li><a class="waves-effect btn modal-trigger" href="#modal1">STATS</a></li>
+
         {{#unless isDebater currentUser.profile.name}}
         <li><a class="waves-effect btn modal-trigger2" href="#modal2">Chat</a></li>
          {{/unless}}
+
+        <li><a class="waves-effect btn modal-trigger2" href="#modal2">CHAT</a></li>
+
+
+
 
                                                   
         <li>Total viewers : {{getTotalView}}</li>
@@ -99,6 +105,7 @@
   </div>
 
 
+
   <div id="modal2" class="modal bottom-sheet">
     <div class="modal-content">
     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -111,6 +118,10 @@
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div> 
+
+
+
+
 
 </template>
 
