@@ -8,8 +8,9 @@ import { Votes } from '../../api/rooms';
 
 var moment = require('moment');
 
-import './body.css';
+
 import './body.html';
+import './body.css';
 
 Template.debateRoom.helpers({
   setSession() {
@@ -290,3 +291,9 @@ Template.debateRoom.rendered = function(){
     this.rendered = true;
   }
 };
+
+
+
+
+
+
