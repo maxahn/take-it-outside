@@ -1,0 +1,7 @@
+{
+  "galaxy.meteor.com": { 
+       "env": { 
+              "MONGO_URL": "mongodb://debateadmin:doyouevenargue33@ds023445.mlab.com:23445/debatedb"
+            } 
+     }
+}
