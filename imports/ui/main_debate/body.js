@@ -275,7 +275,7 @@ var CountDownTimer = function (dt, id)
 
 
 Template.debateRoom.rendered = function(){
-  if (!this.rendered){
+  if (!this.rendered){      //things in this rendered are only run once, as its needed for cookies
 
      var roomId = Template.instance().data.roomId;
      var viewCookiLable = "view"+roomId;
@@ -303,8 +303,12 @@ Template.debateRoom.rendered = function(){
      }
     CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
-    }
-  };
+
+  }
+  $('.modal-trigger').leanModal();
+};
+
+
 
 
 
