@@ -103,7 +103,7 @@ Template.debateRoom.helpers({
     var positiveVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:true}]}).count();
     var negativeVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:false}]}).count();
     // debugger;
-    return (positiveVotesCreator - negativeVotesCreator)
+    return (positiveVotesCreator - negativeVotesCreator);
     // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
 
   }, 
@@ -115,7 +115,7 @@ Template.debateRoom.helpers({
     var positiveVotesChallenged  = Votes.find({$and: [{voteDebaterId: ChallengedId},{vote:true}]}).count();
     var negativeVotesChallenged  = Votes.find({$and: [{voteDebaterId: ChallengedId},{vote:false}]}).count();
     // debugger;
-    return (positiveVotesChallenged - negativeVotesChallenged)
+    return (positiveVotesChallenged - negativeVotesChallenged);
     // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
 
   } 
@@ -167,12 +167,12 @@ Template.debateRoom.events({
   //   console.log(Session.get('currentUser'));
   // },
 
-  'click .voteCreator'(event){
+  'change .voteCreator'(event){
     var firstVote = new Vote();
     firstVote.voteDebaterId = $(".voteCreator").val();
     firstVote.vote = true;
-    var roomId = Session.get('roomId');
-    var cookielabel = "voted" + roomId;
+    // var roomId = Session.get('roomId');
+    var cookielabel = "voted" + Template.instance().data.challengedId;
     if (Cookie.get(cookielabel)){
     var secondVote = new Vote();
     secondVote.voteDebaterId = $(".voteChallenger").val();
@@ -184,18 +184,19 @@ Template.debateRoom.events({
 
     Meteor.call('saveVote', firstVote);
     Meteor.call('saveVote', secondVote);
+
   },
 
-  'click .voteChallenger'(event){
+  'change .voteChallenger'(event){
     var firstVote = new Vote();
-    var roomId = Session.get('roomId');
+    
     firstVote.voteDebaterId = $(".voteChallenger").val();
     firstVote.vote = true;
-    var cookielabel = "voted" + roomId;
+    var cookielabel = "voted" + Template.instance().data.creatorId;;
     
     if (Cookie.get(cookielabel)){
     var secondVote = new Vote();
-    secondVote.voteDebaterId = $(cookielabel).val();
+    secondVote.voteDebaterId = $(".voteCreator").val();
     secondVote.vote = false;
     }
     else {
@@ -274,7 +275,7 @@ var CountDownTimer = function (dt, id)
 
 
 Template.debateRoom.rendered = function(){
-  if (!this.rendered){
+  if (!this.rendered){      //things in this rendered are only run once, as its needed for cookies
 
      var roomId = Template.instance().data.roomId;
      var viewCookiLable = "view"+roomId;
@@ -286,11 +287,28 @@ Template.debateRoom.rendered = function(){
         Meteor.call('saveViewRoom', view);
         Cookie.set(viewCookiLable,true);
      }
-     
+
+    var creatorId = Template.instance().data.creatorId;
+    var challengedId = Template.instance().data.challengedId;
+    var creatorVoteCookie = "vote" + creatorId;
+    var challengedVoteCookie = "vote" + challengedId;
+
+    if(Cookie.get(creatorVoteCookie)){
+      console.log("now set the button to creator");
+    }
+
+
+    if(Cookie.get(challengedVoteCookie)){
+      console.log("now set the button to challenged");
+     }
     CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
+
   }
+  $('.modal-trigger').leanModal();
 };
+
+
 
 
 
