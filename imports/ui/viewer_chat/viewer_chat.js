@@ -114,6 +114,17 @@ Template.register.events({
     event.preventDefault();
     var handle = event.target.registerHandle.value;
     Cookie.set('handle', handle);  // need to set experiation on it
+    
+    
+    Meteor.call('saveViewer', Cookie.get('handle'), Session.get('roomId'), function(err, viewer) {
+      if (err) {
+        console.log('error with Meteor method saveViewer');
+      } else {
+        alert(viewer._id);
+        Cookie.set("userId", viewer._id);
+      }
+
+    });
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
@@ -121,18 +132,13 @@ Template.register.events({
       //     var handle = event.target.registerHandle.value;
         // else // 13 is the enter key event + add code for user session!!
       if (document.getElementById('message').value != "") {
-        var viewer = new RoomUser();
-        viewer.name = Cookie.get("handle");
-        viewer.userType = "viewer";
-        viewer.userRoomId = Session.get('roomId');
         var argument = new Argument();
         argument.message = document.getElementById('message').value;
-        argument.argRoomUserId = "1";
-        Meteor.call('saveViewerComment', viewer, argument, function(err, result) {
-              if (err) {
+        argument.argRoomUserId = Cookie.get('userId');
+        
+        Meteor.call('saveViewerComment', argument, function(err, result) {
+          if (err) {
             console.log('error with saveForm Meteor method');
-          } else {
-            Cookie.set('handle', handle); //sets creator id on creator's browswer
           }
         });
         document.getElementById('message').value = '';
