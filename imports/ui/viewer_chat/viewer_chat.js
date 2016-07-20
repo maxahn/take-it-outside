@@ -79,23 +79,29 @@ export default function( value ) {
 Template.messages.helpers({
 
   messages: function() {
-     // Cookie.set("viewerId", "aGgiWZdAzokJQjkrz");
-    //var viewers = RoomUsers.find({ $and:[{userRoomId: Session.get('roomId')}, {userType: 'viewer'}] });
-   //  var viewers = RoomUsers.find({});
-   //  var rooms = Rooms.find({});
-   //  var viewerIds = [];
+  // debugger;
+  //var viewers = RoomUsers.find({ $and:[{userRoomId: Session.get('roomId')}, {userType: 'viewer'}] });
+  var roomId = Session.get('roomId');
+  var viewers = RoomUsers.find({$and: [{userRoomId: roomId}, {userType: 'viewer'}]});
+  // var viewers = RoomUsers.find({});
+  var rooms = Rooms.find({});
+  var viewerIds = [];
+  // debugger;
+  // for each (let viewer in viewers) {
+  //     viewerIds.push(viewer._id);
+  // }
+  // debugger;
+  // for (let counter = 0; viewers.length < viewers.length; counter++) {
+  //   viewerIds.push(viewers[counter]._id);
+  // }
+  
 
-   //  // for each (let viewer in viewers) {
-   //  //     viewerIds.push(viewer._id);
-   //  // }
-   //    debugger;
-   //  for (let counter = 0; viewers.length < viewers.length; counter++) {
-   //    viewerIds.push(viewers[counter]._id);
-
-   //  }
-
-   // return Arguments.find({argRoomUserId: {$in: viewerIds}}, { sort: { date_created: -1}});
-    // return Arguments.find({});
+  viewers.forEach(function(viewer) {
+    viewerIds.push(viewer._id);
+  });
+  // debugger;
+  return Arguments.find({argRoomUserId: {$in: viewerIds}}, { sort: { date_created: -1}});
+   // return Arguments.find({});
   },
 
   formatDate(date) {
