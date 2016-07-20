@@ -274,4 +274,5 @@ Template.debateRoom.rendered = function(){
     CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
   }
+  $('.modal-trigger').leanModal();
 };

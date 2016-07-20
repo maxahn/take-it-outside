@@ -1,13 +1,12 @@
 <template name='debateRoom'>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Topic: {{room.topic}}</a>
+      <a href="#" class="brand-logo center">{{room.topic}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>Creator votes : {{getCreatorVotes}}</li>
-        <li>Challenged votes : {{getChallengedVotes}}</li>                                            
-        <li>Total viewers : {{getTotalView}}</li>
+        
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
         <li id="countdown"></li>
+        <li><a class="waves-effect btn modal-trigger" href="#modal1">STATS</a></li>
 <!--         <li><a href="badges.html">Total viewers</a></li>
         <li><a href="collapsible.html">Time left</a></li> -->
       </ul>
@@ -60,5 +59,19 @@
         {{> slideOutThing}}
         {{> index}}
       </div>
+
+     <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+     <li>Creator votes : {{getCreatorVotes}}</li>
+        <li>Challenged votes : {{getChallengedVotes}}</li>                                            
+        <li>Total viewers : {{getTotalView}}</li>
+    </ul>
+    {{> chart}}
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
 
 </template>
