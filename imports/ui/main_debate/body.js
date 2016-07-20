@@ -95,11 +95,28 @@ Template.debateRoom.helpers({
     return Views.find({$and: [{viewRoomId: roomId},{viewFlag:true}]}).count();
   },
 
-    getTotalVotes(){
-    var roomId = Session.get('roomId');
+  getCreatorVotes(){
     // go to roomUser table and grab creator and challenged based on room id
-    return Votes.find({$and: [{viewRoomId: roomId},{vote:true}]}).count();
-  
+    var roomId = Session.get('roomId');
+    var creatorId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'creator'}]})._id;
+    var positiveVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:true}]}).count();
+    var negativeVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:false}]}).count();
+    // debugger;
+    return (positiveVotesCreator - negativeVotesCreator)
+    // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
+
+  }, 
+
+    getChallengedVotes(){
+    // go to roomUser table and grab creator and challenged based on room id
+    var roomId = Session.get('roomId');
+    var ChallengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
+    var positiveVotesChallenged  = Votes.find({$and: [{voteDebaterId: ChallengedId},{vote:true}]}).count();
+    var negativeVotesChallenged  = Votes.find({$and: [{voteDebaterId: ChallengedId},{vote:false}]}).count();
+    // debugger;
+    return (positiveVotesChallenged - negativeVotesChallenged)
+    // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
+
   } 
 
 // items.find({
