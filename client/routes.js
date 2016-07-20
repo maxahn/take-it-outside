@@ -15,6 +15,7 @@ import '../imports/ui/viewer_chat/viewer_chat.html';
 
 import '../imports/ui/chart_page/body.js';
 import '../imports/ui/chart_page/body.html';
+import {RoomUsers} from '../imports/api/rooms'; //make sure to import collections when creating variables using collections.
 
 
 Router.route ('/', function() {
@@ -53,8 +54,12 @@ Router.route('/:roomname', function() {
   var room = Rooms.findOne({url: roomName});
   var roomId = room._id;
   var expiryTime = room.expiryTime;
+  var creatorId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'creator'}]})._id;
+  var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
   this.render('debateRoom', {
     data : {
+      creatorId: creatorId,
+      challengedId: challengedId,
       roomName: roomName,
       roomId : roomId,
       expiryTime : expiryTime
