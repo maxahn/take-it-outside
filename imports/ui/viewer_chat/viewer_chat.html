@@ -74,8 +74,12 @@
   <div class="row">
     <form class="col s12">   
       <div class="row">
-        <p>Handle: @ <input type="text" name ="registerHandle" ></p>
+
+      {{#unless getCookie}}
+        <p>Handle: @ <input type="text" name ="registerHandle" minlength="3"></p>
         <p><input type="submit" value="Register" id = "handle"></p>
+        {{/unless}}
+
           <div class="input-field col s6">
             <input id="message" type="text" class="validate" placeholder="Suuh dude...">
             <label for="message">Message</label>
