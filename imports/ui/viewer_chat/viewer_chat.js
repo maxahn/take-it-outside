@@ -3,6 +3,8 @@ import { Rooms } from '../../api/rooms';
 import { Meteor } from 'meteor/meteor';
 import { Arguments } from '../../api/rooms';
 import { RoomUsers } from '../../api/rooms';
+import { Votes } from '../../api/rooms';
+import { Views } from '../../api/rooms';
 
 import './viewer_chat.html';
 import './viewer_chat.css';
@@ -111,6 +113,20 @@ Template.messages.helpers({
 
 
 
+//..................... helper for handle so cannot set twice ..................//
+
+Template.register.helpers({
+    getCookie: function(name,value) {
+    var handle = event.target.registerHandle.value;
+    Cookie.set('handle', handle);
+      if(document.handle.indexOf(name) == 0) 
+          return -1<document.handle.indexOf(value?name+"="+value+";":name+"=")
+    }
+});
+
+// helper not exactly working yet
+
+
 
 //..................... for handle ..................//
 
@@ -130,6 +146,7 @@ Template.register.events({
       }
 
     });
+
 
   },
   'keydown input#message' : function (event) {
