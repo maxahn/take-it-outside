@@ -1,6 +1,14 @@
+img.icon {
+
+  max-height: 75px;
+}
 
 
-.default_color{background-color: #2B1657 !important}
+
+
+.default_color{
+  background-color: none;
+}
 
 .default_color_text{color: #2196F3 !important}
 
@@ -12,15 +20,15 @@
 
 
 #index-banner {
-      min-height: 632px;
-      max-height: 864px;
+      /*min-height: 632px;
+      max-height: 864px;*/
       position: relative;
-      background: linear-gradient(306deg, #29cfde, #2ebbcf, #30a5cd);
+      background: linear-gradient(300deg, #090738, #7775AC, #090738, #4F4C8E, #090738, #090738);
   background-size: 600% 600%;
 
-  -webkit-animation: AnimationName 6s ease infinite;
-  -moz-animation: AnimationName 6s ease infinite;
-  animation: AnimationName 6s ease infinite;
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
 
   }
   @-webkit-keyframes AnimationName {
@@ -867,13 +875,12 @@ top: 60px;
 /*end of long votebar css thankyou*/
 
 nav {
-
-  background: linear-gradient(306deg, #29cfde, #2ebbcf, #30a5cd);
+  background: linear-gradient(300deg, #090738, #7775AC, #090738, #4F4C8E, #090738, #090738);
   background-size: 600% 600%;
 
-  -webkit-animation: AnimationName 6s ease infinite;
-  -moz-animation: AnimationName 6s ease infinite;
-  animation: AnimationName 6s ease infinite;
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
 
   }
   @-webkit-keyframes AnimationName {
@@ -891,6 +898,9 @@ nav {
       50%{background-position:88% 100%}
       100%{background-position:13% 0%}
   }
+}
+
+
 }
 
 .gradientColor {

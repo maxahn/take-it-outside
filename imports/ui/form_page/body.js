@@ -124,6 +124,19 @@ alert("aaaaaaaa");
     return url;
   };
 
+  function checkPasswordMatch() {
+    var password = $("#challengedId").val();
+    var confirmPassword = $("#confirmChallengedId").val();
+
+    if (password != confirmPassword)
+        $("#message").html("Name does not match");
+    else {
+        $("#message").html("Successfully matched!");
+        $( "#book" ).toggle( "fast", function() {
+    // Animation complete.
+  });}
+};
+
 //   function getTimeRemaining(endtime) {
 //   var t = Date.parse(endtime) - Date.parse(new Date());
 //   var seconds = Math.floor((t / 1000) % 60);
@@ -165,3 +178,6 @@ alert("aaaaaaaa");
 
 
 
+Template.form.rendered = function(){
+   $("#confirmChallengedId").keyup(checkPasswordMatch);
+};
