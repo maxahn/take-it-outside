@@ -1,11 +1,12 @@
 <!-- For button to bring out side bar --> 
 
 
+
+
 <template name = "slideOutThing">
   
-  
-   <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" id = "clicker"></span>
-  
+   <a class="btn-floating btn-large waves-effect waves-light red"> <i class="material-icons">trending_flat</i></a>
+ {{> index }}
 
 </template>
 
@@ -63,7 +64,7 @@
 </template>
 
 
-<!--.......................For messaging view box and submit..............--> 
+<!--........For messaging view box and submit.....--> 
 
 <template name="messages">
   {{#each messages}}
@@ -73,10 +74,10 @@
 
 <template name="register">
   <form>
-    {{#unless currentUser}}
+    <!-- {{#unless currentUser}} -->
       <p>Handle: @ <input type="text" name ="registerHandle" ></p>
       <p><input type="submit" value="Register" id = "handle"></p>
-    {{ /unless}}
+    <!-- {{ /unless}} -->
   </form>
   <p>Message: <input type="text" id="message"></p>
 </template>

@@ -8,8 +8,9 @@ import { Votes } from '../../api/rooms';
 
 var moment = require('moment');
 
-import './body.css';
+
 import './body.html';
+import './body.css';
 
 Template.debateRoom.helpers({
   setSession() {
@@ -204,7 +205,22 @@ Template.debateRoom.events({
 
     Meteor.call('saveVote', firstVote);
     Meteor.call('saveVote', secondVote);
-  }
+  }, 
+  'click #facebook-logout'(event) {
+    Meteor.logout(function(err) {
+      if (err) {
+        throw new Meteor.error('Logout failed');
+      } 
+    })
+  },
+
+  'click #facebook-login'(event) {
+    Meteor.loginWithFacebook({}, function(err) {
+      if (err) {
+        throw new Meteor.error('Could not login');
+      } 
+    })
+  },
 
 });
 
@@ -289,4 +305,9 @@ Template.debateRoom.rendered = function(){
     this.rendered = true;
     }
   };
+
+
+
+
+
 
