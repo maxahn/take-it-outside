@@ -1,6 +1,3 @@
-<!-- For button to bring out side bar --> 
-
-
 
 
 <template name = "slideOutThing">
@@ -74,11 +71,36 @@
 </template>
 
 <template name="register">
-  <form>
-    <!-- {{#unless currentUser}} -->
-      <p>Handle: @ <input type="text" name ="registerHandle" ></p>
-      <p><input type="submit" value="Register" id = "handle"></p>
-    <!-- {{ /unless}} -->
-  </form>
-  <p>Message: <input type="text" id="message"></p>
+  <div class="row">
+    <form class="col s12">   
+      <div class="row">
+        <p>Handle: @ <input type="text" name ="registerHandle" ></p>
+        <p><input type="submit" value="Register" id = "handle"></p>
+          <div class="input-field col s6">
+            <input id="message" type="text" class="validate" placeholder="Suuh dude...">
+            <label for="message">Message</label>
+          </div>
+      </div>
+    </form>
+    <!-- <p>Message: <input type="text" id="message"></p> -->
+  </div>
 </template>
+
+<!--...................... new form field tests.............................. --> 
+
+
+
+<!-- <template name="register">
+<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">mode_edit</i>
+          <p>Handle: @ <input type="text" name ="registerHandle" ></p>
+      <p><input type="submit" value="Register" id = "handle"></p>
+          <label for="icon_prefix2">Handle</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</template> -->

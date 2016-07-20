@@ -3,6 +3,8 @@ import { Rooms } from '../../api/rooms';
 import { Meteor } from 'meteor/meteor';
 import { Arguments } from '../../api/rooms';
 import { RoomUsers } from '../../api/rooms';
+import { Votes } from '../../api/rooms';
+import { Views } from '../../api/rooms';
 
 import './viewer_chat.html';
 import './viewer_chat.css';
