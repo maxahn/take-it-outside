@@ -33,6 +33,8 @@ Template.debateRoom.helpers({
     }
   },
   isDebater(currentUserName) {     //i'm so sorry for this atrocity 
+    //this basically checks the name of the logged in facebook user and checks if it matches the names of either debaters
+    //if so, it sets or overwrites 
     var debaters = RoomUsers.find({userRoomId: Session.get('roomId')});
     var creator;
     var challenged;
@@ -50,7 +52,6 @@ Template.debateRoom.helpers({
         challenged = user;
       }
     }); 
-//    debugger;
     if (creator && currentUserName === creator.name) {
       Cookie.set('userId', creator._id);
       return true;
@@ -58,7 +59,7 @@ Template.debateRoom.helpers({
       Cookie.set('userId', challenged._id);
       return true;
     }
-    return user && user.userType === 'creator' || user.userType === 'challenged';
+    return false;// return user && user.userType === 'creator' || user.userType === 'challenged';
   },
   debaters() {
     var roomId = Session.get('roomId');
