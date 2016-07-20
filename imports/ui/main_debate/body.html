@@ -1,15 +1,29 @@
 <template name='debateRoom'>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Topic: {{room.topic}}</a>
+      <a href="#" class="brand-logo center">{{room.topic}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>Creator votes : {{getCreatorVotes}}</li>
-        <li>Challenged votes : {{getChallengedVotes}}</li>                                            
+
+        
+        <!-- <li><a href="collapsible.html">Time left</a></li> -->
+        <li id="countdown"></li>
+        <li><a class="waves-effect btn modal-trigger" href="#modal1">STATS</a></li>
+
+
+                                                  
         <li>Total viewers : {{getTotalView}}</li>
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
         <li id="countdown"></li>
+        {{#if currentUser}}
+          <!-- {{currentUser.name}} -->
+          <li><button id='facebook-logout'>Logout</button></li>
+        {{else}}
+          <li><button id='facebook-login'>Login with Facebook</button></li>
+        {{/if}}  
+
 <!--         <li><a href="badges.html">Total viewers</a></li>
         <li><a href="collapsible.html">Time left</a></li> -->
+
       </ul>
     </div>
   </nav>
@@ -55,10 +69,50 @@
       {{else}}
         <p>Room not found!</p>
      {{/if}}
+
   </div>
-      <div class = 'col s12 m4 l3'>
-        {{> slideOutThing}}
-        {{> index}}
-      </div>
+
+
+  
+    <div class = "container">
+      {{> slideOutThing}}
+
+    </div>
+
+ <!-- CSS  -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="../../dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+
+     <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+     <li>Creator votes : {{getCreatorVotes}}</li>
+        <li>Challenged votes : {{getChallengedVotes}}</li>                                            
+        <li>Total viewers : {{getTotalView}}</li>
+    </ul>
+    {{> chart}}
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
 
 </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
