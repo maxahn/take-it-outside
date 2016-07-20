@@ -162,7 +162,3 @@ alert("aaaaaaaa");
 //   updateClock();
 //   var timeinterval = setInterval(updateClock, 1000);
 // };
-
-Meteor.onConnection(function(conn) {
-    console.log(conn.clientAddress);
-});
