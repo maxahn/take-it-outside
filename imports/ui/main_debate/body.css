@@ -17,8 +17,10 @@
   position: inline;
   float: left;
   max-width: 500px;
+  height: auto;
   clear: both;
   color: white;
+  word-wrap: break-word;
 }
 .challenged-point {
   background-color: #EFEFEF;  
@@ -27,8 +29,10 @@
   position: inline;
   float: right;
   max-width: 500px;
+  height: auto;
   clear: both;
   color: dimgrey; 
+  word-wrap: break-word;
 }
 .creator-name {
   float: left;
