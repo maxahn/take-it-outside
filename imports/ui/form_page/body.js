@@ -119,7 +119,7 @@ alert("aaaaaaaa");
     topic = topic.replace(/\s+/g, '-');
     // topic = topic.substring(0,4); 
     topic = topic.toLowerCase();
-    url = "http://localhost:3000/"+topic;
+    url = "http://takeitoutside.meteorapp.com/"+topic;
     //TODO: parse out any punctuation from stored url
     return url;
   };
@@ -163,5 +163,6 @@ alert("aaaaaaaa");
 //   var timeinterval = setInterval(updateClock, 1000);
 // };
 
-
-
+Meteor.onConnection(function(conn) {
+    console.log(conn.clientAddress);
+});
