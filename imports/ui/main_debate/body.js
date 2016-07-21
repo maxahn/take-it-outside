@@ -8,6 +8,7 @@ import { Votes } from '../../api/rooms';
 
 var moment = require('moment');
 
+
 import './body.html';
 import './body.css';
 
@@ -139,7 +140,7 @@ Template.debateRoom.events({
       if (err) {
         console.log('Error caused by saveDebateArgument Meteor method');
       } else {
-        window.scrollTo(0,document.body.scrollHeight); //temporary fix 
+      
       }
     });
     event.target.text.value = '';
@@ -291,6 +292,13 @@ Template.debateRoom.rendered = function(){
   }
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();  
-  window.scrollTo(0,document.body.scrollHeight); //temp fix, shouldn't load all the messages
 
 };
+
+
+
+
+
+
+
+

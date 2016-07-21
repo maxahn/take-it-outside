@@ -116,7 +116,6 @@ alert("aaaaaaaa");
   function creatRoomUrl(topic){
 
     var url = "";
-    topic = topic.replace(/[^A-Za-z0-9_\s]+/g, '');
     topic = topic.replace(/\s+/g, '-');
     // topic = topic.substring(0,4); 
     topic = topic.toLowerCase();
