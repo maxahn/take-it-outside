@@ -53,9 +53,10 @@ Template.messages.helpers({
   var argumentCreatorHashes = []; 
  
   viewers.forEach(function(viewer){
-    
+    debugger;
     roomArguments.forEach(function(argument) {
       if (viewer._id ===  argument.argRoomUserId) {
+        debugger;
         var argumentCreatorHash = {
           message: argument.message,
           handle: viewer.name,

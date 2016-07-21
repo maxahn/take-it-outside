@@ -47,6 +47,7 @@ Meteor.methods({
   },
 
   'saveViewerComment' (comment) {
+    debugger;
     comment.save(function(err) {
       if (err) {
         console.log('error with saving comment');

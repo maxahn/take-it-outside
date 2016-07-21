@@ -290,7 +290,7 @@ Template.debateRoom.rendered = function(){
     CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
 
-    if (Cookie.set('handle', handle)) {
+    if (Cookie.get('handle')) {
       $(".formThing").hide();
       $('#messagewindow').css('bottom', '0');
     }  // for hiding handle when coming back to page
