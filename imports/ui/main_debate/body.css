@@ -1,7 +1,13 @@
 .debate-room {
-  margin-left: 20%;
-  margin-right: 20%;
+  
+  margin: 10px 13%;
   /* max-width: 700px; */
+}
+
+@media screen and (max-width: 768px) {
+  .debate-room {
+    margin: 10px 5%;
+  }
 }
 .topic {
   font-size: 20px;
@@ -10,29 +16,24 @@
   padding: 20px;
   color: grey;
 }
-.creator-point {
-  background-color: #41D4CF; 
-  /* border-radius: 20px; */
-  /* padding: 20px; */
+
+.debater-point{
   position: inline;
-  float: left;
-  max-width: 500px;
+  max-width: 70%;
   height: auto;
   clear: both;
-  color: white;
   word-wrap: break-word;
+}
+
+.creator-point {
+  background-color: #41D4CF; 
+  float: left;
+  color: white;
 }
 .challenged-point {
   background-color: #EFEFEF;  
-  /* border-radius: 20px; */
-  /* padding: 20px; */
-  position: inline;
-  float: right;
-  max-width: 500px;
-  height: auto;
-  clear: both;
   color: dimgrey; 
-  word-wrap: break-word;
+  float: right;
 }
 .creator-name {
   float: left;
