@@ -17,7 +17,15 @@
 <div id="chatwindow">
   <div id="messagewindow">
     {{#each messages}}
-      <strong>{{handle}}:</strong> {{message}} about: {{formatDate createdAt}}
+    <span class = "bubble">  
+      <span class = "user-handle"> {{handle}} </span>   
+      <span class="message">
+        {{message}}  
+      </span>
+      <span class="created-at subdued"> 
+        {{formatDate createdAt}} 
+      </span> 
+    </span><!--bubble-->
       <br>
     {{/each}}
     </div>
