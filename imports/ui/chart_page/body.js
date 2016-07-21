@@ -81,7 +81,7 @@ function drawChart(label,dataSet1,dataSet2){
     myChart.update();
 
 
-  }, 5000);
+  }, 1000);
 
 
 }
@@ -118,7 +118,7 @@ function getChartData(){
     var MS_PER_MINUTE = 60000;
 
      
-    for(i=10; i>0; i--){
+    for(i=5; i>0; i--){
       var newMiliSec = currentdateMili - (i * MS_PER_MINUTE);    
       fromDate = new Date(newMiliSec);
 
