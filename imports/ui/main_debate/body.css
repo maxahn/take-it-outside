@@ -1,14 +1,3 @@
-body::-webkit-scrollbar { 
-  display: none; 
-}
-.debate-wrapper {
-  padding-bottom: 200px;
-}
-.top-bar {
-  position: fixed;
-  top: 0px;
-  width: 100%;
-}
 .debate-room {
   margin-left: 20%;
   margin-right: 20%;
@@ -61,35 +50,4 @@ body::-webkit-scrollbar {
   color: grey;
   cursor: pointer;
 }
-.chat-input {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
 
-.fade_bottom {
-  position: fixed;
-  bottom: 0; /* top is also an option */
-  width:100%;
-  height: 5em; // or anything you want the height to be
-  background: -webkit-linear-gradient( /*for webkit based browsers */
-  rgba(255, 255, 255, 0) 0%,
-  rgba(255, 255, 255, 1) 100%
-  );
-  background-image: -moz-linear-gradient( /*for firefox*/
-  rgba(255, 255, 255, 0) 0%,
-  rgba(255, 255, 255, 1) 100%
-  );
-  background-image: -o-linear-gradient( /*opera browser*/
-  rgba(255, 255, 255, 0) 0%,
-  rgba(255, 255, 255, 1) 100%
-  );
-  background-image: linear-gradient(
-  rgba(255, 255, 255, 0) 0%,
-  rgba(255, 255, 255, 1) 100%
-  );
-  background-image: -ms-linear-gradient( /*microsoft ie*/
-  rgba(255, 255, 255, 0) 0%,
-  rgba(255, 255, 255, 1) 100%
-  );
-}
