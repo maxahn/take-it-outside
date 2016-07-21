@@ -210,6 +210,8 @@ Template.debateRoom.events({
     Meteor.logout(function(err) {
       if (err) {
         throw new Meteor.error('Logout failed');
+      } else {
+        Cookie.remove('userId');
       } 
     })
   },
