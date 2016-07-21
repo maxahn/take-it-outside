@@ -25,17 +25,17 @@
 </template>
 
 <template name="register">   
+      <div class='forms'>
       {{#unless getCookie}}
-      <form> 
-            <p>Handle: @ <input type="text" name ="registerHandle" minlength="3"></p>
-            <button class="btn waves-effect waves-light" type="submit" name="action" value="Register" id = "handle">Submit
-            <i class="material-icons right">send</i>
-            </button>
-      </form>
-        {{/unless}}
-       
-            <input id="message" type="text" class="validate" placeholder="Suuh dude...">
-            <label for="message">Message</label>
+        <form class='formThing'> 
+              <input class='myInput' type="text" name ="registerHandle" minlength="3" placeholder="Enter handle..">
+              <button type="submit" name="action" value="Register" id = "handle">Submit
+              </button>
+        </form>
+          {{/unless}}
+         
+              <input id="message" type="text" class="validate myInput" placeholder="Suuh dude...">
+      </div>
 </template>
 
 

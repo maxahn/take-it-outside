@@ -73,19 +73,20 @@ ul.row {
 
 #chatwindow{
     position:relative;
-    height:250px; 
+    height: 200px; 
 }
 #messagewindow, #inputcontainer{
     position: absolute;
     left:0;
     right:0;
-    border:1px solid #000;
+    background-color: white;
+   
 
 }
 #messagewindow{   
     overflow:auto;
     top:0;
-    bottom:3em;
+    bottom:2em;
 }
 #inputcontainer{
     display:block;
@@ -106,5 +107,40 @@ ul.row {
 }
 
 
+div.modal-content {
 
+position: relative !important;
+padding-top: 10px !important; 
+background-color: lightblue;
+
+
+}
+
+div.forms {
+
+  position: absolute !important;
+  bottom: 0;
+  width: 96% !important;
+  background-color: white;
+  
+}
+
+.myInput {
+    background-color: white !important; 
+     border: 1px solid black !important; 
+     /*border-bottom: none !important; */
+     border-radius: 3px !important;
+     /*outline: none; */
+     height: 2em !important; 
+    /*width: 100%;*/
+     font-size: 11px !important; 
+     margin: 0 !important; 
+     padding-left: 5px !important;
+     width: 94.695% !important;
+
+   /*  padding: 0; 
+     box-shadow: none; 
+     box-sizing: content-box;*/ 
+     /*transition: all 0.3s; */
+}
 
