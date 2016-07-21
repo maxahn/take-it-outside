@@ -1,28 +1,39 @@
 <template name='debateRoom'>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">{{room.topic}}</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+  <div class='top-bar'>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">{{room.topic}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <!-- <li><a href="collapsible.html">Time left</a></li> -->
+          <li>Total viewers : {{getTotalView}}</li>
+          <li><a></a></li>
+          <!-- <li><a href="collapsible.html">Time left</a></li> -->
+          <li id="countdown"></li>
+          <li><a></a></li>
+          <li><a><i class="fa fa-bar-chart modal-trigger" aria-hidden="true" href="#modal1"></i></a></li>
 
-        
-        <!-- <li><a href="collapsible.html">Time left</a></li> -->
-                                                   
-        <li>Total viewers : {{getTotalView}}</li>
-        <li><a></a></li>
-        <!-- <li><a href="collapsible.html">Time left</a></li> -->
-        <li id="countdown"></li>
-        <li><a></a></li>
-        <li><a><i class="fa fa-bar-chart modal-trigger" aria-hidden="true" href="#modal1"></i></a></li>
+          {{#unless isDebater currentUser.profile.name}}
+            <li><a><i class="fa fa-comments modal-trigger2" href="#modal2" aria-hidden="true"></i></a></li>
+          {{/unless}}
 
-        {{#unless isDebater currentUser.profile.name}}
-        <li><a><i class="fa fa-comments modal-trigger2" href="#modal2" aria-hidden="true"></i></a></li>
-         {{/unless}}
+          {{#if currentUser}}
+            <!-- {{currentUser.name}} -->
+            <li><button id='facebook-logout'>Logout</button></li>
+          {{else}}
+            <li><a><i id='facebook-login' class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
+          {{/if}}  
 
-    
+  <!--         <li><a href="badges.html">Total viewers</a></li>
+          <li><a href="collapsible.html">Time left</a></li> -->
+        </ul>
+      </div>
+    </nav>
+    <div class="switch-toggle switch-3 switch-candy"> <!--og votebar -->
+     
+      <input id="on" name="state-d" value="{{getCreator._id}}" type="radio" checked="" class="voteCreator">
+      <label for="on" onclick="">{{getCreator.name}}</label>
 
-
-
-
+<<<<<<< HEAD
        
         {{#if currentUser}}
           <!-- {{currentUser.name}} -->
@@ -30,12 +41,17 @@
         {{else}}
           <li><a><i id='facebook-login' class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
         {{/if}}  
+=======
+      <input id="na" name="state-d" type="radio" disabled checked="checked">
+      <label for="na" onclick="">VOTE</label>
+>>>>>>> master
 
-<!--         <li><a href="badges.html">Total viewers</a></li>
-        <li><a href="collapsible.html">Time left</a></li> -->
+      <input id="off" name="state-d" value="{{getChallenged._id}}" type="radio" class="voteChallenger">
+      <label for="off" onclick="">{{getChallenged.name}}</label>
 
-      </ul>
+      <a></a>
     </div>
+<<<<<<< HEAD
   </nav>
   <div id="votebar" class="switch-toggle switch-3 switch-candy switch-light"> <!--og votebar -->
    
@@ -49,6 +65,8 @@
     <label for="off" onclick="">{{getChallenged.name}}</label>
 
     <a></a>
+=======
+>>>>>>> master
   </div>
 
 <!--   <div class="switch-toggle switch-3 switch-candy">
@@ -64,10 +82,9 @@
     <a></a>
   </div> -->
 
-  <div class='debate-room'>
-
     {{setSession}}
       {{#if room}}
+  <div class='debate-room'>
         <!-- <div class='debater-names'>
           {{#each debaters}}
             <div class='{{userType}}-name'>
@@ -85,6 +102,8 @@
             </div>
           {{/each}}
         </div>
+  </div>
+        <div class='fade_bottom'></div>
         {{#if isDebater currentUser.profile.name}}
           <form class='chat-input'>
             <input type='text' name ='text' placeholder='Enter argument here'>
@@ -94,21 +113,14 @@
         <p>Room not found!</p>
      {{/if}}
 
-  </div>
-
-
-  
-
  <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="../../dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-
-
-     <div id="modal1" class="modal bottom-sheet">
+  <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
-    
+
     {{> chart}}
     </div>
     <div class="modal-footer">
@@ -116,38 +128,14 @@
     </div>
   </div>
 
-
-
   <div id="modal2" class="modal bottom-sheet">
     <div class="modal-content">
     <ul id="nav-mobile" class="right hide-on-med-and-down">
      </ul>
-     
      {{ > chatbox}}
-     
     </div>
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div> 
-
-
-
-
-
 </template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

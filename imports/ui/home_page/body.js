@@ -32,10 +32,11 @@ Template.homepage.events({
   },
 });
 
+	$('.modal-trigger').leanModal();
+
 
 Template.homepage.onRendered(function(){
  $('.modal-trigger').leanModal();
 
 });
-
 

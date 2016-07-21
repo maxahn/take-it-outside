@@ -8,7 +8,6 @@ import { Votes } from '../../api/rooms';
 
 var moment = require('moment');
 
-
 import './body.html';
 import './body.css';
 
@@ -19,6 +18,17 @@ Template.debateRoom.helpers({
     // alert('setSession');
     var room = Rooms.findOne({url: url});
     Session.set('roomId', room._id);
+    var debaters = RoomUsers.find({userRoomId: room._id});
+    
+    debaters.forEach(function(debater) {
+      console.log('================');
+      console.log(debater.name);
+      if (debater.userType === 'creator') {
+        Session.set('creatorId', debater._id);
+      } else if (debater.userType === 'challengedId') {
+        Session.set('challengedId', debater._id);
+      }
+    });
     // alert('after set session: ' + Session.get('roomId'));
   },
   getUrl() {
@@ -97,43 +107,22 @@ Template.debateRoom.helpers({
   },
 
   getCreatorVotes(){
-    // go to roomUser table and grab creator and challenged based on room id
-    var roomId = Session.get('roomId');
-    var creatorId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'creator'}]})._id;
+
+    var creatorId = Template.instance().data.creatorId;
     var positiveVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:true}]}).count();
     var negativeVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:false}]}).count();
-    // debugger;
     return (positiveVotesCreator - negativeVotesCreator);
-    // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
 
   }, 
 
     getChallengedVotes(){
-    // go to roomUser table and grab creator and challenged based on room id
-    var roomId = Session.get('roomId');
-    var ChallengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
-    var positiveVotesChallenged  = Votes.find({$and: [{voteDebaterId: ChallengedId},{vote:true}]}).count();
-    var negativeVotesChallenged  = Votes.find({$and: [{voteDebaterId: ChallengedId},{vote:false}]}).count();
-    // debugger;
+   
+    var challengedId = Template.instance().data.challengedId;
+    var positiveVotesChallenged  = Votes.find({$and: [{voteDebaterId: challengedId},{vote:true}]}).count();
+    var negativeVotesChallenged  = Votes.find({$and: [{voteDebaterId: challengedId},{vote:false}]}).count();
     return (positiveVotesChallenged - negativeVotesChallenged);
-    // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
 
   } 
-
-// items.find({
-//     created_at: {
-//         $gte:"Mon May 30 18:47:00 +0000 2015",
-//         $lt: "Sun May 30 20:40:36 +0000 2010"
-//     }
-// })
-
-// items.find({
-//     created_at: {
-//         $gte: ISODate("2010-04-29T00:00:00.000Z"),
-//         $lt: ISODate("2010-05-01T00:00:00.000Z")
-//     }
-// })
-
 
   
 });
@@ -150,66 +139,61 @@ Template.debateRoom.events({
       if (err) {
         console.log('Error caused by saveDebateArgument Meteor method');
       } else {
-      
+        window.scrollTo(0,document.body.scrollHeight); //temporary fix 
       }
     });
     event.target.text.value = '';
   },
 
-  // 'click .creator-name h3'(event) {
-  //   const target = event.target;
-  //   Session.set('currentUser', 'creator');
-  // },
-  //
-  // 'click .challenged-name h3'(event) {
-  //   const target = event.target;
-  //   Session.set('currentUser', 'challengedDebater');
-  //   console.log(Session.get('currentUser'));
-  // },
 
   'change .voteCreator'(event){
+    
     var firstVote = new Vote();
     firstVote.voteDebaterId = $(".voteCreator").val();
     firstVote.vote = true;
-    // var roomId = Session.get('roomId');
-    var cookielabel = "voted" + Template.instance().data.challengedId;
-    if (Cookie.get(cookielabel)){
+    Meteor.call('saveVote', firstVote);
+    var creatorCookiLable = "voted" + Template.instance().data.creatorId;
+    Cookie.set(creatorCookiLable, true);
+
+
+    var challengedCookiLable = "voted" + Template.instance().data.challengedId;
+
+    if (Cookie.get(challengedCookiLable)){
     var secondVote = new Vote();
     secondVote.voteDebaterId = $(".voteChallenger").val();
     secondVote.vote = false;
-    }
-    else {
-      Cookie.set(cookielabel, true); //true is value, voted is key
-    }
-
-    Meteor.call('saveVote', firstVote);
     Meteor.call('saveVote', secondVote);
-
+    }
+    
+   
   },
 
   'change .voteChallenger'(event){
-    var firstVote = new Vote();
     
+    var firstVote = new Vote();   
     firstVote.voteDebaterId = $(".voteChallenger").val();
     firstVote.vote = true;
-    var cookielabel = "voted" + Template.instance().data.creatorId;;
-    
-    if (Cookie.get(cookielabel)){
+    Meteor.call('saveVote', firstVote);
+    var challengedCookiLable = "voted" + Template.instance().data.challengedId;
+    Cookie.set(challengedCookiLable,true);
+
+    var creatorCookiLable = "voted" + Template.instance().data.creatorId;
+
+    if (Cookie.get(creatorCookiLable)){
     var secondVote = new Vote();
     secondVote.voteDebaterId = $(".voteCreator").val();
     secondVote.vote = false;
-    }
-    else {
-      Cookie.set("voted", true); //true is value, voted is key
-    }
-
-    Meteor.call('saveVote', firstVote);
     Meteor.call('saveVote', secondVote);
+    }
+ 
+
   }, 
   'click #facebook-logout'(event) {
     Meteor.logout(function(err) {
       if (err) {
         throw new Meteor.error('Logout failed');
+      } else {
+        Cookie.remove('userId');
       } 
     })
   },
@@ -290,30 +274,23 @@ Template.debateRoom.rendered = function(){
 
     var creatorId = Template.instance().data.creatorId;
     var challengedId = Template.instance().data.challengedId;
-    var creatorVoteCookie = "vote" + creatorId;
-    var challengedVoteCookie = "vote" + challengedId;
+    var creatorVoteCookie = "voted" + creatorId;
+    var challengedVoteCookie = "voted" + challengedId;
 
-    if(Cookie.get(creatorVoteCookie)){
-      console.log("now set the button to creator");
-    }
+    // if(Cookie.get(creatorVoteCookie)){
+    //   console.log("now set the button to creator");
+    // }
 
 
-    if(Cookie.get(challengedVoteCookie)){
-      console.log("now set the button to challenged");
-     }
+    // if(Cookie.get(challengedVoteCookie)){
+    //   console.log("now set the button to challenged");
+    //  }
     CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
 
   }
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();  
+  window.scrollTo(0,document.body.scrollHeight); //temp fix, shouldn't load all the messages
 
 };
-
-
-
-
-
-
-
-

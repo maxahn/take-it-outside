@@ -62,14 +62,14 @@ Template.messages.helpers({
 
 //..................... helper for handle so cannot set twice ..................//
 
-Template.register.helpers({
-    getCookie: function(name,value) {
-    var handle = event.target.registerHandle.value;
-    Cookie.set('handle', handle);
-      if(document.handle.indexOf(name) == 0) 
-          return -1<document.handle.indexOf(value?name+"="+value+";":name+"=")
-    }
-});
+// Template.register.helpers({
+//     getCookie: function(name,value) {
+//     var handle = event.target.registerHandle.value;
+//     Cookie.set('handle', handle);
+//       if(document.handle.indexOf(name) == 0) 
+//           return -1<document.handle.indexOf(value?name+"="+value+";":name+"=")
+//     }
+// });
 
 // helper not exactly working yet
 
@@ -101,6 +101,7 @@ Template.register.events({
       // if (Meteor.user())
       //     var handle = event.target.registerHandle.value;
         // else // 13 is the enter key event + add code for user session!!
+
       if (document.getElementById('message').value != "") {
         var argument = new Argument();
         argument.message = document.getElementById('message').value;
