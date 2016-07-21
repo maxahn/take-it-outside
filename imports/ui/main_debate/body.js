@@ -131,6 +131,7 @@ Template.debateRoom.helpers({
 Template.debateRoom.events({
   'submit .chat-input'(event) {
     event.preventDefault();
+    
 
     const target = event.target;
     const text = target.text.value;
