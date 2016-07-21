@@ -26,8 +26,8 @@ Template.debateRoom.helpers({
       console.log(debater.name);
       if (debater.userType === 'creator') {
         Session.set('creatorId', debater._id);
-      } else if (debater.userType === 'debater') {
-        Session.set('debaterId', debater._id);
+      } else if (debater.userType === 'challengedId') {
+        Session.set('challengedId', debater._id);
       }
     });
     // alert('after set session: ' + Session.get('roomId'));
@@ -108,45 +108,22 @@ Template.debateRoom.helpers({
   },
 
   getCreatorVotes(){
-    // go to roomUser table and grab creator and challenged based on room id
-    var roomId = Session.get('roomId');
-    //var creatorId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'creator'}]})._id;
-    var creatorId = Session.get('creatorId');
+
+    var creatorId = Template.instance().data.creatorId;
     var positiveVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:true}]}).count();
     var negativeVotesCreator  = Votes.find({$and: [{voteDebaterId: creatorId},{vote:false}]}).count();
-    // debugger;
     return (positiveVotesCreator - negativeVotesCreator);
-    // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
 
   }, 
 
     getChallengedVotes(){
-    // go to roomUser table and grab creator and challenged based on room id
-    var roomId = Session.get('roomId');
-    var challengedId = Session.get('challengedId');
-    //var ChallengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
+   
+    var challengedId = Template.instance().data.challengedId;
     var positiveVotesChallenged  = Votes.find({$and: [{voteDebaterId: challengedId},{vote:true}]}).count();
     var negativeVotesChallenged  = Votes.find({$and: [{voteDebaterId: challengedId},{vote:false}]}).count();
-    // debugger;
     return (positiveVotesChallenged - negativeVotesChallenged);
-    // var challengedId = RoomUsers.findOne({$and: [{userRoomId: roomId}, {userType: 'challenged'}]})._id;
 
   } 
-
-// items.find({
-//     created_at: {
-//         $gte:"Mon May 30 18:47:00 +0000 2015",
-//         $lt: "Sun May 30 20:40:36 +0000 2010"
-//     }
-// })
-
-// items.find({
-//     created_at: {
-//         $gte: ISODate("2010-04-29T00:00:00.000Z"),
-//         $lt: ISODate("2010-05-01T00:00:00.000Z")
-//     }
-// })
-
 
   
 });
@@ -169,52 +146,47 @@ Template.debateRoom.events({
     event.target.text.value = '';
   },
 
-  // 'click .creator-name h3'(event) {
-  //   const target = event.target;
-  //   Session.set('currentUser', 'creator');
-  // },
-  //
-  // 'click .challenged-name h3'(event) {
-  //   const target = event.target;
-  //   Session.set('currentUser', 'challengedDebater');
-  //   console.log(Session.get('currentUser'));
-  // },
 
   'change .voteCreator'(event){
+    
     var firstVote = new Vote();
     firstVote.voteDebaterId = $(".voteCreator").val();
     firstVote.vote = true;
-    var cookielabel = "voted" + Template.instance().data.challengedId;
     Meteor.call('saveVote', firstVote);
+    var creatorCookiLable = "voted" + Template.instance().data.creatorId;
+    Cookie.set(creatorCookiLable, true);
 
-    if (Cookie.get(cookielabel)){
+
+    var challengedCookiLable = "voted" + Template.instance().data.challengedId;
+
+    if (Cookie.get(challengedCookiLable)){
     var secondVote = new Vote();
     secondVote.voteDebaterId = $(".voteChallenger").val();
     secondVote.vote = false;
     Meteor.call('saveVote', secondVote);
     }
-    else {
-      Cookie.set(cookielabel, true); //true is value, voted is key
-    }
+    
    
   },
 
   'change .voteChallenger'(event){
+    
     var firstVote = new Vote();   
     firstVote.voteDebaterId = $(".voteChallenger").val();
     firstVote.vote = true;
-    var cookielabel = "voted" + Template.instance().data.creatorId;;
     Meteor.call('saveVote', firstVote);
+    var challengedCookiLable = "voted" + Template.instance().data.challengedId;
+    Cookie.set(challengedCookiLable,true);
 
-    if (Cookie.get(cookielabel)){
+    var creatorCookiLable = "voted" + Template.instance().data.creatorId;
+
+    if (Cookie.get(creatorCookiLable)){
     var secondVote = new Vote();
     secondVote.voteDebaterId = $(".voteCreator").val();
     secondVote.vote = false;
     Meteor.call('saveVote', secondVote);
     }
-    else {
-      Cookie.set(cookielabel, true); //true is value, voted is key
-    }
+ 
 
   }, 
   'click #facebook-logout'(event) {
@@ -304,14 +276,14 @@ Template.debateRoom.rendered = function(){
     var creatorVoteCookie = "voted" + creatorId;
     var challengedVoteCookie = "voted" + challengedId;
 
-    if(Cookie.get(creatorVoteCookie)){
-      console.log("now set the button to creator");
-    }
+    // if(Cookie.get(creatorVoteCookie)){
+    //   console.log("now set the button to creator");
+    // }
 
 
-    if(Cookie.get(challengedVoteCookie)){
-      console.log("now set the button to challenged");
-     }
+    // if(Cookie.get(challengedVoteCookie)){
+    //   console.log("now set the button to challenged");
+    //  }
     CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
 
