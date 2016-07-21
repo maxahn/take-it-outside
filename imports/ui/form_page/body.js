@@ -133,7 +133,7 @@ alert("aaaaaaaa");
         $("#message").html("Name does not match");
     else {
         $("#message").html("Successfully matched!");
-        $( "#book" ).toggle( "fast", function() {
+        $( "#book" ).toggle( "slow", function() {
     // Animation complete.
   });}
 };
