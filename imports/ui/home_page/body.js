@@ -37,7 +37,8 @@ Template.homepage.onRendered(function(){
  $('.modal-trigger').leanModal();
 
 
+	$('.modal-trigger').leanModal();
+
 
 });
-
 

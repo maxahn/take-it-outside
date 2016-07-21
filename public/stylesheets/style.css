@@ -1,3 +1,12 @@
+h2.text_h.center.header.cd-headline.letters.type {
+
+  width: 2000px;
+ left: 0% !important;
+
+}
+
+
+
 img.icon {
 
 
@@ -975,7 +984,7 @@ a.input-field.col.s6.fix-form {
   height:64px !important;
 }
 
-#myChart {
+/*#myChart {
   height: 200px !important;
 }
-
+*/
