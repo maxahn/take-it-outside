@@ -1,3 +1,8 @@
+.top-bar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
 .debate-room {
   margin-left: 20%;
   margin-right: 20%;
