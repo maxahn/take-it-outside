@@ -1,49 +1,24 @@
 <template name="form">
 	
-	
+	{{> loginButtons}}
 
 
  <div class="row">
-
-
-      <div class="col s6 panel">
-
+  <div class="col s12">
     <form class='new-room'>
     <!-- {{#with room}} -->
     <!-- <input type="text" id="tId" value="{{topic}}" /> -->
 
-
-      <div>
-      <label for="fbname">Your Facebook Name</label>
-        <input id="fbname" type='text' name='creator' value="{{currentUser.profile.name}}" required="true" disabled="true"/>
-      </div>
-
+      <div><input type='text' name='creator' value="{{currentUser.profile.name}}" required="true" disabled='true'/></div>
       
-    	<div>
-        <label for="topic">Topic</label>
-        <input type='text' name='topic' id="topic" placeholder='Name the debate' minlength="5" required="true"/>
-      </div>
-    	<div>	
-        <label for="url">Room Address</label>
-        <input type='text' name='url' id="url" disabled='true'/>
-      </div>
-    	<div>	
-        <label for="challengedId">Opponent Name</label>
-        <input type='text' id="challengedId" name='challengedPerson' placeholder='Their full name on Facebook' minlength="3" required="true"/>
-      </div>
-    	<div>	
-        <label for="confirmChallengedId">Confirm Opponent Name</label>
-        <input type='text' id="confirmChallengedId" name='confirmChallengedPerson' placeholder='Confirm their full name' minlength="3" required="true" />
-        <h5 id="message" for="confirmChallengedId"></h5> 
-      </div>
-
-
-
-
+    	<div><span>Topic: </span> <input type='text' name='topic' id="topic" placeholder='Enter topic here' minlength="5" required="true"/></div>
+    	<div>	<span>URL: </span> <input type='text' name='url' id="url" disabled='true'/> </div>
+    	<div>	<span>Challenged Name: </span> <input type='text' id="challengedId" name='challengedPerson' placeholder='Enter the challanged facebook name here' minlength="3" required="true"/> </div>
+    	<div>	<span>Confirm Challenged Name:</span> <input type='text' id="confirmChallengedId" name='confirmChallengedPerson' placeholder='Confirm the challenged facebook name here' minlength="3" required="true" /><h5 id="message" for="confirmChallengedId"></h5> </div>
       
       
 
-    	<button class="waves-effect waves-light btn" id="book" style="display: none" type='submit' name='save'>Enter Room</button>
+    	<a id="book" style="display: none" class="waves-effect waves-light btn" type='submit' name='save'>button</a>
     	<!-- {{/with}} -->
     </form>
   </div>
