@@ -9,9 +9,9 @@ h2.text_h.center.header.cd-headline.letters.type {
 
 img.icon {
 
+
   max-height: 75px;
 }
-
 
 
 
@@ -22,7 +22,7 @@ img.icon {
 .default_color_text{color: #2196F3 !important}
 
 .icon-block {
-    padding: 0 15px;
+    /*padding: 0 15px;*/
 }
 
 #intro, #work, #team {padding-top: 4rem;}
@@ -955,4 +955,6 @@ a.input-field.col.s6.fix-form {
 
 }
 
-
+#nav-mobile {
+  font-size: 18px;
+}
