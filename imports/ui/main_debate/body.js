@@ -241,7 +241,7 @@ var CountDownTimer = function (dt, id)
        if (distance < 0) {
            
            clearInterval(timer);
-           document.getElementById(id).innerHTML = 'EXPIRED!';
+           document.getElementById(id).innerHTML = 'Debate Closed';
            
            return;
        }
