@@ -14,59 +14,6 @@ var moment = require('moment');
 // Messages = new Meteor.Collection('messages');
 
 
-//................... For dynamic tabs.........................//
-
-
-Template.index.onCreated( function() {
-  this.currentTab = new ReactiveVar( "chatbox" );
-});
-
-Template.index.helpers({
-  tab: function() {
-    return Template.instance().currentTab.get();
-  },
-  tabData: function() {
-    var tab = Template.instance().currentTab.get();
-
-    var data = {
-      "chatbox": [
-        { "name": "Viewer chat here: From Darwin to Munger", "creator": "Peter Bevelin" }
-        
-      ],
-      "Analytics": [
-        { "name": "Ghostbusters", "creator": "Dan Aykroyd" },
-        
-      ],
-      "FAQ": [
-        { "name": "Grand Theft Auto V", "creator": "Rockstar Games" },
-        
-      ]
-    };
-
-    return data[ tab ];
-  }
-});
-
-Template.index.events({
-  'click .nav-pills li': function( event, template ) {
-    var currentTab = $( event.target ).closest( "li" );
-
-    currentTab.addClass( "active" );
-    $( ".nav-pills li" ).not( currentTab ).removeClass( "active" );
-
-    template.currentTab.set( currentTab.data( "template" ) );
-  }
-});
-
-
-
-//.................... For slide out panel .....................//
-
-Template.slideOutThing.events({
-  'click i.material-icons': function( event, template ) {
-    $('#slide-out').toggleClass('show-slider');  
-  }
-});
 
 
 //.................... To keep username clean currently not working .....................//
