@@ -9,23 +9,16 @@
       <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="../../dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <!-- <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
 
     </head>
 
 
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-     
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-     
-    </div>
 
     <!--Navigation-->
      <div class="navbar-fixed">
-        <nav id="nav_f" class="default_color" role="navigation"> 
-          <img src = "data:image/png;base64,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" class = "icon" > <a href="#" id="logo-container" class="brand-logo"> Take It Outside</a>
+        <nav id="nav_f" class="default_color brand-logo left" role="navigation"> 
+          <i class="fa fa-comments" aria-hidden="true"></i> Take It Outside
             <div class="container">
                 <div class="nav-wrapper">
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -49,23 +42,33 @@
             </h2>
 
 
+            <!-- submit form for url generation --> 
+                
+        </div>
+        
+          <div class="modal_button">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create a Room</a>
+          </div>
+
+
             <!-- submit form for url generation -->         
-            </div>
-
-      <a class="modal-trigger waves-effect waves-light btn" href="#modal3">Start</a>
-  </div>
-
-  <!-- Modal Structure -->
-  <div id="modal3" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      {{> form}}
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    </div>
-  </div>
+
 <!--  Scripts-->
 
+ <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Login to Facebook</h4>
+      <a><i id='facebook-login' class="fa fa-facebook-square fa-4x" aria-hidden="true"></i></a>
+      {{#if currentUser}}
+      <button style="align:left;" class="waves-effect waves-light btn" id='facebook-logout'>Logout</button>
+      
+      {{>form}}
+      {{/if}} 
+    </div>
+    </div>
+    
+          
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="../../bin/materialize.js"></script>
