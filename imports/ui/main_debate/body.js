@@ -307,6 +307,8 @@ Template.debateRoom.rendered = function(){
 
   }
   $('.modal-trigger').leanModal();
+  $('.modal-trigger2').leanModal();  
+
 };
 
 

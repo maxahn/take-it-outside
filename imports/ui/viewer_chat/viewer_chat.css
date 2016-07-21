@@ -55,7 +55,8 @@ ul.row {
   width: 200px;
 }
 
-#slide-out {
+
+/*#slide-out {
   left: -100%;
   float: left;
   position: relative;
@@ -67,4 +68,39 @@ ul.row {
 #slide-out.show-slider {
 	left: 0;
 	position: relative;
+}
+*/
+
+#chatwindow{
+    position:relative;
+    height:250px; 
+}
+#messagewindow, #inputcontainer{
+    position: absolute;
+    left:0;
+    right:0;
+    border:1px solid #000;
+
+}
+#messagewindow{   
+    overflow:auto;
+    top:0;
+    bottom:3em;
+}
+#inputcontainer{
+    display:block;
+    bottom:0;
+    height:1em;
+    padding:.5em;
+    margin-top:1em;
+}
+
+#inputcontainer > p{
+    margin:0;
+}
+
+#inputwindow{
+    position:relative;
+    height:50px;
+    bottom: 0; 
 }
