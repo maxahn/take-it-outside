@@ -43,16 +43,16 @@
 
     <a></a>
   </div>
-  <div class='debate-room'>
-    {{setSession}}
-      {{#if room}}
-        <!-- <div class='debater-names'>
-          {{#each debaters}}
-            <div class='{{userType}}-name'>
-              <h3>{{name}}</h3>
-            </div>
-          {{/each}}
-        </div> -->
+  {{setSession}}
+    {{#if room}}
+      <div class='debate-room'>
+      <!-- <div class='debater-names'>
+        {{#each debaters}}
+          <div class='{{userType}}-name'>
+            <h3>{{name}}</h3>
+          </div>
+        {{/each}}
+      </div> -->
         <div>
           {{#each allArguments}}
             <div class= '{{getUserType argRoomUserId}}-point card-panel hoverable'> 
@@ -63,17 +63,17 @@
             </div>
           {{/each}}
         </div>
-        <div>
-        {{#if isDebater currentUser.profile.name}}
-          <form class='chat-input'>
-            <input type='text' name ='text' placeholder='Enter argument here'>
-          </form>
-        {{/if}}
-        </div>
-      {{else}}
-        <p>Room not found!</p>
-     {{/if}}
-  </div>
+      </div>
+      <div>
+      {{#if isDebater currentUser.profile.name}}
+        <form class='chat-input'>
+          <input type='text' name ='text' placeholder='Enter argument here'>
+        </form>
+      {{/if}}
+      </div>
+   {{else}}
+      <p>Room not found!</p>
+   {{/if}}
 
  <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
