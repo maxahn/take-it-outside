@@ -193,6 +193,8 @@ Template.debateRoom.events({
     Meteor.logout(function(err) {
       if (err) {
         throw new Meteor.error('Logout failed');
+      } else {
+        Cookie.remove('userId');
       } 
     })
   },
@@ -224,7 +226,7 @@ var CountDownTimer = function (dt, id)
        if (distance < 0) {
            
            clearInterval(timer);
-           document.getElementById(id).innerHTML = 'EXPIRED!';
+           document.getElementById(id).innerHTML = 'Debate Closed';
            
            return;
        }
@@ -289,6 +291,8 @@ Template.debateRoom.rendered = function(){
 
   }
   $('.modal-trigger').leanModal();
+  $('.modal-trigger2').leanModal();  
+
 };
 
 

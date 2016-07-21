@@ -1,83 +1,45 @@
-<!-- For button to bring out side bar --> 
 
 
 
 
-<template name = "slideOutThing">
-  
-   <a class="btn-floating btn-large waves-effect waves-light red"> <i class="material-icons">trending_flat</i></a>
- {{> index }}
-
-</template>
-
-
-<!--.................... for slide out chat box ................. -->
-
-
-<template name="index">
-  <div class = "tab-box" id = "slide-out">
-    <ul class="nav nav-pills">
-      <li data-template="chatbox" role="presentation" class="active"><a href="#">Chat-box</a></li>
-      <li data-template="Analytics" role="presentation"><a href="#">Analytics</a></li>
-      <li data-template="FAQ" role="presentation"><a href="#">FAQ</a></li>
-    </ul>
-    {{> Template.dynamic template=tab data=tabData}}
-  </div>
-</template>
 
 
 <template name="chatbox" id = "chatbox">
   <!-- <h3 class="page-header">Books</h3> -->
-
-  <ul class="list-group">
-    {{#each this}}
-      <li class="list-group-item"><strong>{{name}}</strong> by {{creator}}
-  <div id="introduction" class="section scrollspy">
     {{ > messages }}
-    {{  > register  }}
-    </div>
-        </li>
-      {{/each}}
-  </ul>
-</template>
-
-
-
-<template name="Analytics">
- <!--  <h3 class="page-header">Movies</h3> -->
-
-  <ul class="list-group">
-    {{#each this}}
-      <li class="list-group-item"><strong>{{name}}</strong> by {{creator}}</li>
-    {{/each}}
-  </ul>
-</template>
-
-<template name="FAQ">
-  <!-- <h3 class="page-header">Games</h3> For head tags -->
-
-  <ul class="list-group">
-    {{#each this}}
-      <li class="list-group-item"><strong>{{name}}</strong> by {{creator}}</li>
-    {{/each}}
-  </ul>
+    {{  > register  }}  
 </template>
 
 
 <!--........For messaging view box and submit.....--> 
 
-<template name="messages">
-  {{#each messages}}
-    <strong>{{handle}}:</strong> {{message}} about: {{formatDate time }}<br>
-  {{/each}}
+<template name="messages" >
+<div id="chatwindow">
+  <div id="messagewindow">
+    {{#each messages}}
+      <strong>{{handle}}:</strong> {{message}} about: {{formatDate createdAt}}
+      <br>
+    {{/each}}
+    </div>
+   </div> 
 </template>
 
-<template name="register">
-  <form>
-    <!-- {{#unless currentUser}} -->
-      <p>Handle: @ <input type="text" name ="registerHandle" ></p>
-      <p><input type="submit" value="Register" id = "handle"></p>
-    <!-- {{ /unless}} -->
-  </form>
-  <p>Message: <input type="text" id="message"></p>
+<template name="register">   
+      {{#unless getCookie}}
+      <form> 
+            <p>Handle: @ <input type="text" name ="registerHandle" minlength="3"></p>
+            <button class="btn waves-effect waves-light" type="submit" name="action" value="Register" id = "handle">Submit
+            <i class="material-icons right">send</i>
+            </button>
+      </form>
+        {{/unless}}
+       
+            <input id="message" type="text" class="validate" placeholder="Suuh dude...">
+            <label for="message">Message</label>
 </template>
+
+
+
+
+
+

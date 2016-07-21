@@ -13,5 +13,8 @@ import '/public/stylesheets/style.css';
 
 Template.homepage.onRendered(function(){
 
+	$('.modal-trigger').leanModal();
+
 
 });
+

@@ -3,6 +3,8 @@ import { Rooms } from '../../api/rooms';
 import { Meteor } from 'meteor/meteor';
 import { Arguments } from '../../api/rooms';
 import { RoomUsers } from '../../api/rooms';
+import { Votes } from '../../api/rooms';
+import { Views } from '../../api/rooms';
 
 import './viewer_chat.html';
 import './viewer_chat.css';
@@ -12,59 +14,6 @@ var moment = require('moment');
 // Messages = new Meteor.Collection('messages');
 
 
-//................... For dynamic tabs.........................//
-
-
-Template.index.onCreated( function() {
-  this.currentTab = new ReactiveVar( "chatbox" );
-});
-
-Template.index.helpers({
-  tab: function() {
-    return Template.instance().currentTab.get();
-  },
-  tabData: function() {
-    var tab = Template.instance().currentTab.get();
-
-    var data = {
-      "chatbox": [
-        { "name": "Viewer chat here: From Darwin to Munger", "creator": "Peter Bevelin" }
-        
-      ],
-      "Analytics": [
-        { "name": "Ghostbusters", "creator": "Dan Aykroyd" },
-        
-      ],
-      "FAQ": [
-        { "name": "Grand Theft Auto V", "creator": "Rockstar Games" },
-        
-      ]
-    };
-
-    return data[ tab ];
-  }
-});
-
-Template.index.events({
-  'click .nav-pills li': function( event, template ) {
-    var currentTab = $( event.target ).closest( "li" );
-
-    currentTab.addClass( "active" );
-    $( ".nav-pills li" ).not( currentTab ).removeClass( "active" );
-
-    template.currentTab.set( currentTab.data( "template" ) );
-  }
-});
-
-
-
-//.................... For slide out panel .....................//
-
-Template.slideOutThing.events({
-  'click i.material-icons': function( event, template ) {
-    $('#slide-out').toggleClass('show-slider');  
-  }
-});
 
 
 //.................... To keep username clean currently not working .....................//
@@ -111,6 +60,20 @@ Template.messages.helpers({
 
 
 
+//..................... helper for handle so cannot set twice ..................//
+
+// Template.register.helpers({
+//     getCookie: function(name,value) {
+//     var handle = event.target.registerHandle.value;
+//     Cookie.set('handle', handle);
+//       if(document.handle.indexOf(name) == 0) 
+//           return -1<document.handle.indexOf(value?name+"="+value+";":name+"=")
+//     }
+// });
+
+// helper not exactly working yet
+
+
 
 //..................... for handle ..................//
 
@@ -131,12 +94,14 @@ Template.register.events({
 
     });
 
+
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
       // if (Meteor.user())
       //     var handle = event.target.registerHandle.value;
         // else // 13 is the enter key event + add code for user session!!
+
       if (document.getElementById('message').value != "") {
         var argument = new Argument();
         argument.message = document.getElementById('message').value;
