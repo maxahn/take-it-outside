@@ -33,40 +33,14 @@
       <input id="on" name="state-d" value="{{getCreator._id}}" type="radio" checked="" class="voteCreator">
       <label for="on" onclick="">{{getCreator.name}}</label>
 
-<<<<<<< HEAD
-       
-        {{#if currentUser}}
-          <!-- {{currentUser.name}} -->
-          <li><button class="waves-effect waves-light btn" id='facebook-logout'>Logout</button></li>
-        {{else}}
-          <li><a><i id='facebook-login' class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
-        {{/if}}  
-=======
       <input id="na" name="state-d" type="radio" disabled checked="checked">
       <label for="na" onclick="">VOTE</label>
->>>>>>> master
 
       <input id="off" name="state-d" value="{{getChallenged._id}}" type="radio" class="voteChallenger">
       <label for="off" onclick="">{{getChallenged.name}}</label>
 
       <a></a>
     </div>
-<<<<<<< HEAD
-  </nav>
-  <div id="votebar" class="switch-toggle switch-3 switch-candy switch-light"> <!--og votebar -->
-   
-    <input id="on" name="state-d" value="{{getCreator._id}}" type="radio" checked="" class="voteCreator">
-    <label for="on" onclick="">{{getCreator.name}}</label>
-
-    <input id="na" name="state-d" type="radio" disabled checked="checked">
-    <label for="na" onclick="">VOTE</label>
-
-    <input id="off" name="state-d" value="{{getChallenged._id}}" type="radio" class="voteChallenger">
-    <label for="off" onclick="">{{getChallenged.name}}</label>
-
-    <a></a>
-=======
->>>>>>> master
   </div>
 
 <!--   <div class="switch-toggle switch-3 switch-candy">
@@ -120,7 +94,11 @@
 
   <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
-
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>Creator votes : {{getCreatorVotes}}</li>
+      <li>Challenged votes : {{getChallengedVotes}}</li>                                            
+      <li>Total viewers : {{getTotalView}}</li>
+    </ul>
     {{> chart}}
     </div>
     <div class="modal-footer">
