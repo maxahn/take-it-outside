@@ -1,8 +1,3 @@
-<body>
-  <div class='debate-wrapper'>
-    {{> debateRoom}}
-  </div>
-</body>
 <template name='debateRoom'>
   <div class='top-bar'>
     <nav>
@@ -18,8 +13,8 @@
           <li><a><i class="fa fa-bar-chart modal-trigger" aria-hidden="true" href="#modal1"></i></a></li>
 
           {{#unless isDebater currentUser.profile.name}}
-          <li><a><i class="fa fa-comments modal-trigger2" href="#modal2" aria-hidden="true"></i></a></li>
-           {{/unless}}
+            <li><a><i class="fa fa-comments modal-trigger2" href="#modal2" aria-hidden="true"></i></a></li>
+          {{/unless}}
 
           {{#if currentUser}}
             <!-- {{currentUser.name}} -->
