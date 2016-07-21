@@ -26,15 +26,20 @@
 
 <template name="register">   
       {{#unless getCookie}}
-        <p>Handle: @ <input type="text" name ="registerHandle" minlength="3"></p>
-        <button class="btn waves-effect waves-light" type="submit" name="action" value="Register" id = "handle">Submit
-    <i class="material-icons right">send</i>
-  </button>
+      <form> 
+            <p>Handle: @ <input type="text" name ="registerHandle" minlength="3"></p>
+            <button class="btn waves-effect waves-light" type="submit" name="action" value="Register" id = "handle">Submit
+            <i class="material-icons right">send</i>
+            </button>
+      </form>
         {{/unless}}
        
             <input id="message" type="text" class="validate" placeholder="Suuh dude...">
             <label for="message">Message</label>
 </template>
+
+
+
 
 
 
