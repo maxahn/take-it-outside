@@ -290,7 +290,22 @@ Template.debateRoom.rendered = function(){
     CountDownTimer(Template.instance().data.expiryTime,'countdown');
     this.rendered = true;
 
+    if (Cookie.set('handle', handle)) {
+      $(".formThing").hide();
+      $('#messagewindow').css('bottom', '0');
+    }  // for hiding handle when coming back to page
+
   }
+
+  $('.modal-trigger2').on('click', function(){
+    // debugger;
+    setTimeout(function(){
+      //scroll to the bottom. 1billion should do it...
+      $("#messagewindow").animate({ scrollTop: 10000000 }, "slow");
+    }, 100);
+  });
+
+
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();  
   window.scrollTo(0,document.body.scrollHeight);

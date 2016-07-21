@@ -99,15 +99,18 @@ Template.register.events({
   'submit form': function(event) {
     event.preventDefault();
     var handle = event.target.registerHandle.value;
-    Cookie.set('handle', handle);  // need to set experiation on it
+    Cookie.set('handle', handle); 
+    $(".formThing").hide(); // need to set experiation on it
     
     Meteor.call('saveViewer', Cookie.get('handle'), Session.get('roomId'), function(err, viewer) {
       if (err) {
         console.log('error with Meteor method saveViewer');
+        $(".formThing").hide();
       } else {
         var viewerId = viewer._id;
         Cookie.set('userId', viewerId);
       }
+
 
     });
 
@@ -128,6 +131,10 @@ Template.register.events({
         Meteor.call('saveViewerComment', argument, function(err, result) {
           if (err) {
             console.log('error with saveForm Meteor method');
+          }else{
+
+            var textarea = document.getElementById('messagewindow');
+            textarea.scrollTop = textarea.scrollHeight;
           }
         });
         document.getElementById('message').value = '';
@@ -135,8 +142,8 @@ Template.register.events({
         Cookie.get('handle');
       }
 
-      $("#messagewindow").animate({ scrollTop: $(document).height()-$(window).height() }, "slow");
-  return false;
+
+      return false;
     }
   }
 });
