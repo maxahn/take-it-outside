@@ -131,7 +131,7 @@ Template.debateRoom.helpers({
 Template.debateRoom.events({
   'submit .chat-input'(event) {
     event.preventDefault();
-    
+
 
     const target = event.target;
     const text = target.text.value;
@@ -141,7 +141,7 @@ Template.debateRoom.events({
       if (err) {
         console.log('Error caused by saveDebateArgument Meteor method');
       } else {
-      
+       window.scrollTo(0,document.body.scrollHeight);
       }
     });
     event.target.text.value = '';
@@ -293,7 +293,7 @@ Template.debateRoom.rendered = function(){
   }
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();  
-
+  window.scrollTo(0,document.body.scrollHeight);
 };
 
 
