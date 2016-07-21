@@ -2,26 +2,31 @@
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">{{room.topic}}</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul id="nav-mobile" class="right hide-on-med-and-down navbar-fixed">
         
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
+                                                   
+        <!-- <li>Total viewers : {{getTotalView}}</li> -->
+        <li><a></a></li>
+        <!-- <li><a href="collapsible.html">Time left</a></li> -->
         <li id="countdown"></li>
-        <li><a class="waves-effect btn modal-trigger" href="#modal1">STATS</a></li>
+        <li><a></a></li>
+        <li><a><i class="fa fa-bar-chart modal-trigger" aria-hidden="true" href="#modal1"></i></a></li>
 
         {{#unless isDebater currentUser.profile.name}}
-        <li><a class="waves-effect btn modal-trigger2" href="#modal2">Chat</a></li>
+        <li><a><i class="fa fa-comments modal-trigger2" href="#modal2" aria-hidden="true"></i></a></li>
          {{/unless}}
-
-        <li><a class="waves-effect btn modal-trigger2" href="#modal2">CHAT</a></li>
+        <!-- <li><a class="waves&#45;effect btn modal&#45;trigger2" href="#modal2">CHAT</a></li> -->
                                                   
         <li>Total viewers : {{getTotalView}}</li>
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
         <li id="countdown"></li>
+        
         {{#if currentUser}}
           <!-- {{currentUser.name}} -->
           <li><button id='facebook-logout'>Logout</button></li>
         {{else}}
-          <li><button id='facebook-login'>Login with Facebook</button></li>
+          <li><a><i id='facebook-login' class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
         {{/if}}  
 
 <!--         <li><a href="badges.html">Total viewers</a></li>
@@ -30,7 +35,7 @@
       </ul>
     </div>
   </nav>
-  <div class="switch-toggle switch-3 switch-candy">
+  <div class="switch-toggle switch-3 switch-candy"> <!--og votebar -->
    
     <input id="on" name="state-d" value="{{getCreator._id}}" type="radio" checked="" class="voteCreator">
     <label for="on" onclick="">{{getCreator.name}}</label>
@@ -46,13 +51,20 @@
   {{setSession}}
     {{#if room}}
       <div class='debate-room'>
-      <!-- <div class='debater-names'>
-        {{#each debaters}}
-          <div class='{{userType}}-name'>
-            <h3>{{name}}</h3>
-          </div>
-        {{/each}}
-      </div> -->
+
+<!--   <div class="switch-toggle switch-3 switch-candy">
+    <input id="on" name="state-d" type="radio" value="{{getCreator._id}}" class="voteCreator" checked="">
+    <label for="on" onclick="">{{getCreator.name}}</label>
+
+    <input id="na" name="state-d" type="radio" disabled checked="checked">
+        <label for="na" onclick="">VOTE</label>
+
+    <input id="off" name="state-d" type="radio" value="{{getChallenged._id}}" class="voteChallenger">
+    <label for="off" onclick="">{{getChallenged.name}}</label>
+
+    <a></a>
+  </div> -->
+
         <div>
           {{#each allArguments}}
             <div class= '{{getUserType argRoomUserId}}-point card-panel hoverable'> 
@@ -108,18 +120,3 @@
   </div> 
 
 </template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

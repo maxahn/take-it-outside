@@ -1,14 +1,14 @@
-body {
-  position: fixed; 
-  overflow-y: scroll;
-  width: 100%;
-}
+/* body { */
+/*   position: fixed;  */
+/*   overflow-y: scroll; */
+/*   width: 100%; */
+/* } */
 .debate-room {
   margin-left: 20%;
   margin-right: 20%;
   /* max-width: 700px; */
-  height: 500px;
-  overflow: scroll;
+  height: 700px;
+  /* overflow: scroll; */
 }
 .topic {
   font-size: 20px;
@@ -52,7 +52,6 @@ body {
 .point {
   clear: both;
 }
-
 .debater-names h3:hover {
   color: grey;
   cursor: pointer;
