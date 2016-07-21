@@ -60,10 +60,9 @@
     <a></a>
   </div> -->
 
-  <div class='debate-room'>
-
     {{setSession}}
       {{#if room}}
+  <div class='debate-room'>
         <!-- <div class='debater-names'>
           {{#each debaters}}
             <div class='{{userType}}-name'>
@@ -81,6 +80,7 @@
             </div>
           {{/each}}
         </div>
+  </div>
         {{#if isDebater currentUser.profile.name}}
           <form class='chat-input'>
             <input type='text' name ='text' placeholder='Enter argument here'>
@@ -90,7 +90,6 @@
         <p>Room not found!</p>
      {{/if}}
 
-  </div>
 
 
   
