@@ -51,12 +51,13 @@
     </div>
 <!--  Scripts-->
 
- <div id="modal1" class="modal">
+ <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Login to Facebook</h4>
       <a><i id='facebook-login' class="fa fa-facebook-square fa-4x" aria-hidden="true"></i></a>
       {{#if currentUser}}
-      <button class="waves-effect waves-light btn" id='facebook-logout'>Logout</button>
+      <button style="align:left;" class="waves-effect waves-light btn" id='facebook-logout'>Logout</button>
+      
       {{>form}}
       {{/if}} 
     </div>

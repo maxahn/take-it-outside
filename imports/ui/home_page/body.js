@@ -36,6 +36,8 @@ Template.homepage.events({
 Template.homepage.onRendered(function(){
  $('.modal-trigger').leanModal();
 
+
+
 });
 
 
