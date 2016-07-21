@@ -55,4 +55,8 @@
   color: grey;
   cursor: pointer;
 }
-
+.chat-input {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
