@@ -3,7 +3,6 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">{{room.topic}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-
         
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
         <li id="countdown"></li>
@@ -14,10 +13,6 @@
          {{/unless}}
 
         <li><a class="waves-effect btn modal-trigger2" href="#modal2">CHAT</a></li>
-
-
-
-
                                                   
         <li>Total viewers : {{getTotalView}}</li>
         <!-- <li><a href="collapsible.html">Time left</a></li> -->
@@ -49,7 +44,6 @@
     <a></a>
   </div>
   <div class='debate-room'>
-
     {{setSession}}
       {{#if room}}
         <!-- <div class='debater-names'>
@@ -69,26 +63,22 @@
             </div>
           {{/each}}
         </div>
+        <div>
         {{#if isDebater currentUser.profile.name}}
           <form class='chat-input'>
             <input type='text' name ='text' placeholder='Enter argument here'>
           </form>
         {{/if}}
+        </div>
       {{else}}
         <p>Room not found!</p>
      {{/if}}
-
   </div>
-
-
-  
 
  <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="../../dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-
 
      <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
@@ -104,8 +94,6 @@
     </div>
   </div>
 
-
-
   <div id="modal2" class="modal bottom-sheet">
     <div class="modal-content">
     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -118,10 +106,6 @@
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div> 
-
-
-
-
 
 </template>
 

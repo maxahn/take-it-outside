@@ -2,6 +2,8 @@
   margin-left: 20%;
   margin-right: 20%;
   /* max-width: 700px; */
+  height: 600px;
+  overflow: scroll;
 }
 .topic {
   font-size: 20px;
