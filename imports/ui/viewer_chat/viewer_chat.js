@@ -33,7 +33,6 @@ Template.messages.helpers({
   var roomId = Session.get('roomId');
   var viewers = RoomUsers.find({$and: [{userRoomId: roomId}, {userType: 'viewer'}]});
   // var viewers = RoomUsers.find({});
-  var rooms = Rooms.find({});
   var viewerIds = [];
   // debugger;
   // for each (let viewer in viewers) {
@@ -44,12 +43,30 @@ Template.messages.helpers({
   //   viewerIds.push(viewers[counter]._id);
   // }
   
-
   viewers.forEach(function(viewer) {
     viewerIds.push(viewer._id);
   });
+  var roomArguments = Arguments.find({argRoomUserId: {$in: viewerIds}}, { sort: { date_created: -1}});
+
   // debugger;
-  return Arguments.find({argRoomUserId: {$in: viewerIds}}, { sort: { date_created: -1}});
+  // return Arguments.find({argRoomUserId: {$in: viewerIds}}, { sort: { date_created: -1}});
+  var argumentCreatorHashes = []; 
+ 
+  viewers.forEach(function(viewer){
+    
+    roomArguments.forEach(function(argument) {
+      if (viewer._id ===  argument.argRoomUserId) {
+        var argumentCreatorHash = {
+          message: argument.message,
+          handle: viewer.name,
+          createdAt: argument.createdAt
+        };
+        argumentCreatorHashes.push(argumentCreatorHash);
+      }
+    });
+  });
+ 
+  return argumentCreatorHashes;
    // return Arguments.find({});
   },
 
@@ -98,8 +115,9 @@ Template.register.events({
   },
   'keydown input#message' : function (event) {
     if (event.which == 13) {
-      // if (Meteor.user())
-      //     var handle = event.target.registerHandle.value;
+      if (Meteor.user())
+      var handle = event.target.registerHandle.value;
+      Cookie.set('handle', handle);
         // else // 13 is the enter key event + add code for user session!!
 
       if (document.getElementById('message').value != "") {
@@ -114,8 +132,13 @@ Template.register.events({
         });
         document.getElementById('message').value = '';
         message.value = '';
-        
+        Cookie.get('handle');
       }
+
+      $("#messagewindow").animate({ scrollTop: $(document).height()-$(window).height() }, "slow");
+  return false;
     }
   }
 });
+
+
