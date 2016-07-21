@@ -171,10 +171,12 @@ Vote = Class.create({
 		voteDebaterId: {
 			type: String
 		},
-		visitorId: {
-			type: String
-		},
-
+		// visitorId: {
+		// 	type: String
+		// },
+    vote: {
+      type: Boolean
+    }
 		
 
 	},
