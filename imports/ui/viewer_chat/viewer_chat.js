@@ -101,12 +101,12 @@ Template.register.events({
     event.preventDefault();
     var handle = event.target.registerHandle.value;
     Cookie.set('handle', handle); 
-    $(".formThing").hide(); // need to set experiation on it
+    // $(".formThing").hide(); // need to set experiation on it
     
     Meteor.call('saveViewer', Cookie.get('handle'), Session.get('roomId'), function(err, viewer) {
       if (err) {
         console.log('error with Meteor method saveViewer');
-        $(".formThing").hide();
+        // $(".formThing").hide();
       } else {
         var viewerId = viewer._id;
         Cookie.set('userId', viewerId);
