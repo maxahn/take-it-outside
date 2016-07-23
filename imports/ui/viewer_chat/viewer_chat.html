@@ -16,10 +16,15 @@
 <template name="messages" >
 <div id="chatwindow">
   <div id="messagewindow">
-    {{#each messages}}
-      <strong>{{handle}}:</strong> {{message}} about: {{formatDate createdAt}}
-      <br>
-    {{/each}}
+      
+        {{#each messages}}
+         <span class = "bubble">
+          <span class = "user-handle"> {{handle}} </span>{{message}} 
+          <span class = "created-at"> {{formatDate createdAt}} </span>
+          <br>
+          </span>
+        {{/each}}
+      
     </div>
    </div> 
 </template>
