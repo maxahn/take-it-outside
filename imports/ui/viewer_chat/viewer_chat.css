@@ -73,19 +73,20 @@ ul.row {
 
 #chatwindow{
     position:relative;
-    height:250px; 
+    height: 200px; 
 }
 #messagewindow, #inputcontainer{
     position: absolute;
     left:0;
     right:0;
-    border:1px solid #000;
+    background-color: white;
+   
 
 }
 #messagewindow{   
     overflow:auto;
     top:0;
-    bottom:3em;
+    bottom:2em;
 }
 #inputcontainer{
     display:block;
@@ -106,5 +107,87 @@ ul.row {
 }
 
 
+div.modal-content {
 
+position: relative !important;
+padding-top: 10px !important; 
+background-color: lightblue;
+
+
+}
+
+div.forms {
+
+  position: absolute !important;
+  bottom: 0;
+  width: 96% !important;
+  background-color: white;
+  
+}
+
+.myInput {
+    background-color: white !important; 
+     border: 1px solid black !important; 
+     /*border-bottom: none !important; */
+     border-radius: 3px !important;
+     /*outline: none; */
+     height: 2em !important; 
+    /*width: 100%;*/
+     font-size: 11px !important; 
+     margin: 0 !important; 
+     padding-left: 5px !important;
+     width: 94.695% !important;
+
+   /*  padding: 0; 
+     box-shadow: none; 
+     box-sizing: content-box;*/ 
+     /*transition: all 0.3s; */
+}
+
+.bubble {
+   /*background-color: #F2F2F2;*/
+   border-radius: 5px;
+   box-shadow: 2px 2px 6px #B2B2B2;
+   display: inline-block;
+   padding: 10px 18px;
+   vertical-align: top;
+   left: 20px;
+   font-size: 15px;
+  margin-top: 8px;
+  
+
+ 
+}
+
+
+
+.bubble::before {
+    background-color: #F2F2F2;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    transform:             rotate( 29deg ) skew( -35deg );
+        -moz-transform:    rotate( 29deg ) skew( -35deg );
+        -ms-transform:     rotate( 29deg ) skew( -35deg );
+        -o-transform:      rotate( 29deg ) skew( -35deg );
+        -webkit-transform: rotate( 29deg ) skew( -35deg );
+    width:  20px;
+}
+
+.created-at {
+
+  font-size: 13px;
+  font-style: italic;
+}
+
+
+
+.user-handle {
+
+color: #3a9bbb;
+font-weight: bold;
+
+}
 

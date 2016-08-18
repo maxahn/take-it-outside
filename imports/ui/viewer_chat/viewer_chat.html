@@ -16,29 +16,33 @@
 <template name="messages" >
 <div id="chatwindow">
   <div id="messagewindow">
-    {{#each messages}}
-      <strong>{{handle}}:</strong> {{message}} about: {{formatDate createdAt}}
-      <br>
-    {{/each}}
+      
+        {{#each messages}}
+         <span class = "bubble">
+          <span class = "user-handle"> {{handle}} </span>{{message}} 
+          <span class = "created-at"> {{formatDate createdAt}} </span>
+          <br>
+          </span>
+        {{/each}}
+      
     </div>
    </div> 
 </template>
 
 <template name="register">   
-      {{#unless getCookie}}
-      <form> 
-            <p>Handle: @ <input type="text" name ="registerHandle" minlength="3"></p>
-            <button class="btn waves-effect waves-light" type="submit" name="action" value="Register" id = "handle">Submit
-            <i class="material-icons right">send</i>
-            </button>
-      </form>
-        {{/unless}}
-       
-            <input id="message" type="text" class="validate" placeholder="Suuh dude...">
-            <label for="message">Message</label>
+      <div class='forms'>
+        <form  id = "chatter"> 
+
+              <input class='myInput' type="text" name ="registerHandle" minlength="3" placeholder="Enter handle..">
+              <button type="submit" name="action" value="Register" id = "handle">Submit
+              </button>
+        </form>
+         
+        <input id="message" type="text" class="validate myInput" placeholder="Suuh dude...">
+      </div>
 </template>
 
-
+<!-- removed class = "formThing", might need later for checking if already set cookie so the input box disappears--> 
 
 
 
